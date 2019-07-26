@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="007havegone">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="007havegone">
+    
+    <meta name="keywords" content="hexo,Algorithm,Data structure,C++,Java">
+    
+    <meta name="description" content="个人博客，写心得随笔。">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>算法导论9.1-1找第二小的元素 · 007&#39;s Studio</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >007&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">算法导论9.1-1找第二小的元素</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>007's Studio.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            算法导论9.1-1找第二小的元素
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.7k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/07/26</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="算法导论9-1-1找第二小的元素"><a href="#算法导论9-1-1找第二小的元素" class="headerlink" title="算法导论9.1-1找第二小的元素"></a>算法导论9.1-1找第二小的元素</h1><h2 id="1、证明：在最坏情况下，找到n个元素中第二小的元素需要-n-lceil-lgn-rceil-2-次比较。（提示：可以同时找到最小元素）"><a href="#1、证明：在最坏情况下，找到n个元素中第二小的元素需要-n-lceil-lgn-rceil-2-次比较。（提示：可以同时找到最小元素）" class="headerlink" title="1、证明：在最坏情况下，找到n个元素中第二小的元素需要 $n+ \lceil lgn  \rceil -2$次比较。（提示：可以同时找到最小元素）"></a>1、证明：在最坏情况下，找到n个元素中第二小的元素需要 $n+ \lceil lgn  \rceil -2$次比较。（提示：可以同时找到最小元素）</h2><p>做以下断言：无论采用何种比较算法，在寻找最小元素的过程中，第二小的元素一定与最小元素做过比较。<br>显然，因为第二小的元素直到遇到最小元素前，一定会胜出进入下一轮。如果最小元素没有与第二小元素相比较，则无法得出该元素是最小的关系。  </p>
+<p>因此，要想是我们找到最小元素的比较次数最少，就需要在寻找最小元素的过程中与最小元素发生比较的次数尽量的少。  </p>
+<p>由于每次我们只能取两个元素进行比较，从而考虑每一轮将我们比较元素两两比较，较小的元素进入下一轮（如比较元素有奇数个，落单的直接进入下一轮），这样比较所得的最小元素比较过的元素是最少的（每轮只有一个）。  </p>
+<p>我们将比较过程转化为二叉树（以数组 [7,8,1,3,4,5,9]为例）:</p>
+<p><img src="/2019/07/26/算法导论9-1-1找第二小的元素/二叉树.jpg" alt="二叉树"></p>
+<h3 id="1-证明-n-1"><a href="#1-证明-n-1" class="headerlink" title="1.证明 $n-1$"></a>1.证明 $n-1$</h3><p>其中，除了叶节点外，每个结点都是一次比较的结果。因此该算法中，比较次数为树中度为2的结点数。根据二叉树的性子可以得出比较次数为 $n-1$ （二叉树：度为2的结点数=叶子叶子结点数-1）。可以看出树的每一层只有一个结点与最小元素比较，达到了下界，因此是最优的。</p>
+<p>这里的 $n-1$ 次比较下界还有另外的思路。可以把每个元素看成一个集合。集合中用最小元素代表这个集合。初始状态下 $n$个点都是单独的集合，比较后相当于把集合做合并。合并后用最小值代表这个集合。那么初始状态下的 $n$ 个集合，至少经过 $n-1$ 次合并才能得到1个集合。  </p>
+<h3 id="2-证明-lceil-lg-rceil-1"><a href="#2-证明-lceil-lg-rceil-1" class="headerlink" title="2.证明 $\lceil lg \rceil -1$"></a>2.证明 $\lceil lg \rceil -1$</h3><p>可以看出，与最小元素比较的次数为树高h-1（根节点的高度为1）。有因为叶节点数个数为n。从而有： $n \leq 2^{h-1}$，故有 $h-1 = \lceil lg n \rceil$,即与最小元素比较的次数至少为 $\lceil lg n \rceil$。  </p>
+<p>从这 $\lceil lg n \rceil$个元素中找到的最小元素即是第二小的元素。最坏情况下第二小元素第一轮遇到最小元素被淘汰，从而在寻找最小元素的过程中，我们无法得到其他元素与第二小元素比较大小关系。这种情况下，要在 $\lceil lg n \rceil$个元素中找到最小元素需要 $\lceil lg n \rceil - 1$次比较。</p>
+<p>综上：最坏情况下，要找到第二小的元素所需的比较次数为 $n + \lceil lg n\rceil -2$ 次比较。</p>
+<h2 id="2-算法实现："><a href="#2-算法实现：" class="headerlink" title="2.算法实现："></a>2.算法实现：</h2><p>&emsp; 根据上面的解释。我们其实只要找到最小元素，然后在最小元素比较过程中比较过的元素记录下来，然后我们在这堆元素（上面证明共$\lceil lg n\rceil$个）中找最小元素即可。</p>
+<p>&emsp;具体实现：对于每一个元素，采用数组或链表的结构，每次比较后胜出的元素记录与它比较的元素在原数组的下标，同时自身进入下一轮的比较，根据上面的图可知，每经过一轮比较，元素被筛选掉一半，直至最终仅剩一个元素时，它就是最小元素，返回与它比较元素的元素集合。最终在该集合中寻找第二小元素。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> cnt;<span class="comment">//记录比较次数</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;vec)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        srand(time(<span class="literal">nullptr</span>));</span><br><span class="line">        for_each(vec.begin(),vec.end(),[](<span class="keyword">int</span> &amp;v)&#123;v=rand();&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; findSmallestAndCollection(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; vec,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;* paths)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//初始状太全是胜者进入下一轮</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; winnerIndex(vec.size());</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;winnerIndex.size();++i)winnerIndex[i]=i;</span><br><span class="line">        <span class="comment">//直到胜者唯一</span></span><br><span class="line">        <span class="keyword">while</span>(winnerIndex.size()!=<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            winnerIndex=compareAndStore(vec,winnerIndex,paths);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> paths[winnerIndex[<span class="number">0</span>]];<span class="comment">//最终剩一个返回对于的path</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">findSecondSmallest</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; vec,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; *paths)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    	<span class="keyword">int</span> smallest2=INF;</span><br><span class="line">    	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; path=Solution::findSmallestAndCollection(vec,paths);</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">auto</span> i:path)<span class="comment">//最 lgn个元素的最小值即是第二小元素</span></span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="keyword">if</span>(vec[i]&lt;smallest2)&#123;</span><br><span class="line">	            Solution::cnt++;<span class="comment">//比较次数+1</span></span><br><span class="line">	            smallest2=vec[i];</span><br><span class="line">	        &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="keyword">return</span> smallest2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; compareAndStore(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;arr,<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;winnerIndex,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;* paths)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ret;</span><br><span class="line">        <span class="keyword">int</span> sz=winnerIndex.size();</span><br><span class="line">        <span class="keyword">if</span>(sz&amp;<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            ret.push_back(winnerIndex[sz<span class="number">-1</span>]);</span><br><span class="line">            --sz;</span><br><span class="line">            <span class="comment">//这里为了方便，奇数个元素时最后一个直接加入，同时数组大小-1</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;sz;i+=<span class="number">2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">        	<span class="comment">//小的加入ret进入下一轮，同时记录它的比较元素下标</span></span><br><span class="line">            <span class="keyword">if</span>(arr[winnerIndex[i]]&lt;=arr[winnerIndex[i<span class="number">-1</span>]])&#123;</span><br><span class="line">                ret.push_back(winnerIndex[i]);</span><br><span class="line">                paths[winnerIndex[i]].push_back(winnerIndex[i<span class="number">-1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                ret.push_back(winnerIndex[i<span class="number">-1</span>]);</span><br><span class="line">                paths[winnerIndex[i<span class="number">-1</span>]].push_back(winnerIndex[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            Solution::cnt++;<span class="comment">//比较次数+1</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> Solution::cnt=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">showTopTen</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;vec)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    sort(vec.begin(),vec.end());</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;vec.size()&amp;&amp;i&lt;<span class="number">10</span>;++i)</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; vec[i] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"输入元素个数"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; len;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec(len);Solution::init(vec);<span class="comment">//产生len个随机数</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; *comparePath=<span class="keyword">new</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;[vec.size()];<span class="comment">//建立每个元素比较的路径</span></span><br><span class="line">	<span class="keyword">int</span> smallest2=Solution::findSecondSmallest(vec,comparePath);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Second smallest element :"</span>&lt;&lt;smallest2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Compare time O(n+lgn-2) \n Std:"</span> &lt;&lt; (len+<span class="built_in">ceil</span>(<span class="built_in">log</span>(len)/<span class="built_in">log</span>(<span class="number">2</span>))<span class="number">-2</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"\nExtra:"</span> &lt;&lt; Solution::cnt &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    showTopTen(vec);<span class="comment">//打印vec最小的10个元素</span></span><br><span class="line">    <span class="keyword">delete</span>[] comparePath;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h2><p>该算法主要注重比较次数，但是空间复杂度不乐观（保存比较路径），时间复杂度为 $O(n)$。适合于那种一次比较需要耗费大量时间的值。下面有两篇我解决该题参考的博客。</p>
+<h3 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h3><p>只涉及证明：</p>
+<p>博客1：<a href="https://blog.csdn.net/qq_33382034/article/details/53495036" target="_blank" rel="noopener">https://blog.csdn.net/qq_33382034/article/details/53495036</a>  </p>
+<p>包括证明和算法实现（python）</p>
+<p>博客2：<a href="http://windmissing.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/2015-12/9.1-1-second_smallest_element.html" target="_blank" rel="noopener">http://windmissing.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/2015-12/9.1-1-second_smallest_element.html</a></p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://007havegone.github.io">007havegone</a>
+            <p>原文链接：<a href="http://007havegone.github.io/2019/07/26/算法导论9-1-1找第二小的元素/">http://007havegone.github.io/2019/07/26/算法导论9-1-1找第二小的元素/</a>
+            <p>发表日期：<a href="http://007havegone.github.io/2019/07/26/算法导论9-1-1找第二小的元素/">July 26th 2019, 9:08:35 pm</a>
+            <p>更新日期：<a href="http://007havegone.github.io/2019/07/26/算法导论9-1-1找第二小的元素/">July 26th 2019, 9:18:49 pm</a>
+            <p>版权声明：‘原创内容，转载时请附上出处’</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/07/22/主方法求解递归式/" title= "主方法求解递归式">
+                    <div class="prevTitle">主方法求解递归式</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:996209949@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/007havegone" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#算法导论9-1-1找第二小的元素"><span class="toc-number">1.</span> <span class="toc-text">算法导论9.1-1找第二小的元素</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、证明：在最坏情况下，找到n个元素中第二小的元素需要-n-lceil-lgn-rceil-2-次比较。（提示：可以同时找到最小元素）"><span class="toc-number">1.1.</span> <span class="toc-text">1、证明：在最坏情况下，找到n个元素中第二小的元素需要 $n+ \lceil lgn  \rceil -2$次比较。（提示：可以同时找到最小元素）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-证明-n-1"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.证明 $n-1$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-证明-lceil-lg-rceil-1"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.证明 $\lceil lg \rceil -1$</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-算法实现："><span class="toc-number">1.2.</span> <span class="toc-text">2.算法实现：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、总结"><span class="toc-number">1.3.</span> <span class="toc-text">3、总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考博客"><span class="toc-number">1.3.1.</span> <span class="toc-text">参考博客</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 4
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/26</span><a class="archive-post-title" href= "/2019/07/26/算法导论9-1-1找第二小的元素/" >算法导论9.1-1找第二小的元素</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href= "/2019/07/22/主方法求解递归式/" >主方法求解递归式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href= "/2019/07/13/Effective-c-读书笔记第一章/" >Effective c++ 读书笔记第一章</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href= "/2019/07/13/hello-world/" >Hello World</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="主方法、时间复杂度、算法分析、算法导论"><span class="iconfont-archer">&#xe606;</span>主方法、时间复杂度、算法分析、算法导论</span>
+    
+        <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
+    
+        <span class="sidebar-tag-name" data-tags="C++、Effective C++"><span class="iconfont-archer">&#xe606;</span>C++、Effective C++</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "007havegone"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>
+
+
