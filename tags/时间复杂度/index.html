@@ -346,27 +346,36 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/29/算法导论第二章插入排序/" >
+        <a class="abstract-title" href = "/2019/07/22/主方法求解递归式/" >
             
-                <span>算法导论第二章插入排序</span>
+                <span>主方法求解递归式</span>
         </a>
         <div class="abstract-content">
-            算法导论 第二章插入排序实现&emsp;插入排序算法是时间复杂度为 $O(n)$，输入规模$n$较小时，插入排序往往能有较好的效果。
-&emsp;最优情况：数据整体有序，无需须交换元素，时间复杂度$O(n)$
-&emsp;最坏情况：数据整体逆序，每个元素要 $1~n-1$次，时间复杂度为 $O(n^2)$。
-&emsp;插入排序中的常数因子较小使得在$n$在较小的时候，在很多情况能够运行更快。作为归并排序，快速排序等算法在小规模时处理的问题时的子程序。
-书中的伪代码123456789INSERTION-SORT(A)1 for j = 2 to A.length2 	key = A[j]...
+            主方法求解递归式&emsp;&emsp;在分析递归的算法时，主方法可以较快的计算出算法的时间复杂度主方法可以用于满足以下形式的递归式。
+T(n)=aT(n/b)+f(n)其中$a\geq1和b&gt;1$是常数，$f(n)$是渐进函数。&emsp;&emsp;主方法描述的算法：将原本规模为$n$的问题，分解为 $a$ 个规模为 $n/b$ 的子问题，其中 $a,b\in \mathbb{Z^+}$，函数 $f(n)$ 包含了问题分解和子问题合并的代价。
+下面是归并排序的递归式:
+
+T(n)=
+\begin{cases}
+\Theta(1) & 若n=1 \\
+2T(n/2)+\Theta...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/29</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/22</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论 插入排序">算法导论 插入排序</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "主方法">主方法</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "时间复杂度">时间复杂度</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法分析">算法分析</a>
     
 </div>
             
@@ -523,6 +532,8 @@
     
     
     
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 6
@@ -574,13 +585,19 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="主方法、时间复杂度、算法分析、算法导论"><span class="iconfont-archer">&#xe606;</span>主方法、时间复杂度、算法分析、算法导论</span>
-    
         <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
     
-        <span class="sidebar-tag-name" data-tags="算法导论 插入排序"><span class="iconfont-archer">&#xe606;</span>算法导论 插入排序</span>
+        <span class="sidebar-tag-name" data-tags="主方法"><span class="iconfont-archer">&#xe606;</span>主方法</span>
     
-        <span class="sidebar-tag-name" data-tags="C++、Effective C++"><span class="iconfont-archer">&#xe606;</span>C++、Effective C++</span>
+        <span class="sidebar-tag-name" data-tags="时间复杂度"><span class="iconfont-archer">&#xe606;</span>时间复杂度</span>
+    
+        <span class="sidebar-tag-name" data-tags="算法分析"><span class="iconfont-archer">&#xe606;</span>算法分析</span>
+    
+        <span class="sidebar-tag-name" data-tags="排序"><span class="iconfont-archer">&#xe606;</span>排序</span>
+    
+        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="Effective C++"><span class="iconfont-archer">&#xe606;</span>Effective C++</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -614,6 +631,10 @@ jsonContent:
 </div>
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="算法导论"><span class="iconfont-archer">&#xe60a;</span>算法导论</span>
+    
+        <span class="sidebar-category-name" data-categories="读书笔记"><span class="iconfont-archer">&#xe60a;</span>读书笔记</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
