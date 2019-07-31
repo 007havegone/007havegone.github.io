@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="007havegone">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="007havegone">
+    
+    <meta name="keywords" content="hexo,Algorithm,Data structure,C++,Java">
+    
+    <meta name="description" content="个人博客，写心得随笔。">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>算法导论思考题2-4 · 007&#39;s Studio</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >007&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">算法导论思考题2-4</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>007's Studio.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            算法导论思考题2-4
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "排序">排序</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "逆序对">逆序对</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "线段树">线段树</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">211</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/07/30</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="思考题2-4（逆序对）-假设A-1-n-是一个有-n-个不同数的数组，若iA-j-，则对偶-i-j-称为A的一个逆序对-inversion-。"><a href="#思考题2-4（逆序对）-假设A-1-n-是一个有-n-个不同数的数组，若iA-j-，则对偶-i-j-称为A的一个逆序对-inversion-。" class="headerlink" title="思考题2-4（逆序对） 假设A[1..n]是一个有$n$个不同数的数组，若iA[j]，则对偶(i,j)称为A的一个逆序对(inversion)。"></a>思考题2-4（逆序对） 假设A[1..n]是一个有$n$个不同数的数组，若i<j且a[i]>A[j]，则对偶(i,j)称为A的一个逆序对(inversion)。</j且a[i]></h2><h3 id="a-列出数组-的5个逆序对。"><a href="#a-列出数组-的5个逆序对。" class="headerlink" title="a.列出数组$$的5个逆序对。"></a>a.列出数组$<2,3,8,6,1>$的5个逆序对。</2,3,8,6,1></h3><p>&emsp;逆序对有$(1,5),(2,5),(3,4),(3,5),(4,5)$</p>
+<hr>
+<h3 id="b-有集合-1-2-dots-n-中的元素构成的什么数组具有最多的逆序对？它有多少逆序对？"><a href="#b-有集合-1-2-dots-n-中的元素构成的什么数组具有最多的逆序对？它有多少逆序对？" class="headerlink" title="b.有集合$\{1,2,\dots,n\}$中的元素构成的什么数组具有最多的逆序对？它有多少逆序对？"></a>b.有集合$\{1,2,\dots,n\}$中的元素构成的什么数组具有最多的逆序对？它有多少逆序对？</h3><p>&emsp; 当数组为 $\{1,2,\dots,n\}$为逆序时，即$\{n,n-1,\dots,1\}$时逆序对最多。对于 $\forall i,j \in [1,n],(i,j)$均为逆序对。此时共有逆序对$(_n^2)=n(n-1)/2$</p>
+<hr>
+<p>c.插入排序的运行时间与输入数组中逆序对的数量之间是什么关系?证明你的回答。</p>
+<p>&emsp;假设数组$A$初始时存在逆序对$(k,j)$，那么有$k<j$和$a[k]<a[j]$。在1-8行外层for循环中，每次令$key=a[j]$，$i=j-1$，在5-7行的while循环中，有$a[i]>key$，即存在一对逆序对，while循环的一次迭代，将$A[i]$后移一位，最终前$j$个元素处于有序，此时消除了前$j$个元素的逆序对。对于7-9的一次循环，相当于消除一对逆序对。因此，插入排序的运行时间和数组的逆序对之间呈线性关系。</j$和$a[k]<a[j]$。在1-8行外层for循环中，每次令$key=a[j]$，$i=j-1$，在5-7行的while循环中，有$a[i]></p>
+<hr>
+<p>d.给出一个确定在n个元素的任何排列中逆序对数量的算法，最坏情况需要$\Theta(nlgn)$的时间。</p>
+<p>&emsp;对于这个问题，可以采用归并排序统计逆序对量，或者采用线段树。下面给出具体思路</p>
+<p><strong>1、归并排序</strong></p>
+<p>计算数组的逆序对数量，可以采用归并排序二分的思想。对于一个数组来说逆序对的来源可以分为3种情况。</p>
+<p>对于一个数组 $A[left,right],mid=(left+right)/2$<br>(1) 两个都在左半数组，$left \leq i \leq j \leq mid，A[i] &gt; A[j]$<br>(2) 两个都在右半数组，$mid+1 \leq i \leq j \leq right,A[i] &gt; A[j]$<br>(3) 左右各一个，$left \leq i \leq mid &lt; j \leq right,A[i] &gt; A[j]$</p>
+<p>根据上面的思路，只需要对归并排序的代码稍微改动即可。下面是我的实现：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InversionCount</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">		总的逆序对等于左子数组的内部逆序对+右子数组的内部逆序对+来自左和右形成的逆序对</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">MergeSort</span><span class="params">(<span class="keyword">int</span> A[],<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span>(l&lt;r)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> m=(l+r)/<span class="number">2</span>;</span><br><span class="line">			cnt+=MergeSort(A,l,m);<span class="comment">//第1种情况</span></span><br><span class="line">			cnt+=MergeSort(A,m+<span class="number">1</span>,r);<span class="comment">//第2种情况</span></span><br><span class="line">			cnt+=Merge1(A,l,m,r);<span class="comment">//第3种情况</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> cnt;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//书种归并排序采用哨兵的版本</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">Merge1</span><span class="params">(<span class="keyword">int</span> A[],<span class="keyword">int</span> l,<span class="keyword">int</span> m,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> inv_cnt=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> *L=<span class="keyword">new</span> <span class="keyword">int</span>[m-l+<span class="number">2</span>];</span><br><span class="line">		<span class="keyword">int</span> *R=<span class="keyword">new</span> <span class="keyword">int</span>[r-m+<span class="number">1</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=l,k=<span class="number">0</span>;i&lt;=m;)</span><br><span class="line">			L[k++]=A[i++];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=m+<span class="number">1</span>,k=<span class="number">0</span>;i&lt;=r;)</span><br><span class="line">			R[k++]=A[i++];</span><br><span class="line">		<span class="keyword">int</span> LenA=m-l+<span class="number">1</span>;<span class="comment">//左子数组的长度</span></span><br><span class="line">		L[m-l+<span class="number">1</span>]=R[r-m]=INF;<span class="comment">//设置哨兵</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k=l,i=<span class="number">0</span>,j=<span class="number">0</span>;k&lt;=r;)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(L[i]&lt;=R[j])<span class="comment">//i&lt;j且A[i]&lt;=A[j]，没有逆序对</span></span><br><span class="line">				A[k++]=L[i++];</span><br><span class="line">			<span class="keyword">else</span>&#123;<span class="comment">//i&lt;j且A[i]&gt;A[j]</span></span><br><span class="line">				<span class="keyword">if</span>(L[i]!=INF)&#123;<span class="comment">//这里有可能左侧数组先达到尾部，此时防止INF引起额外累加。</span></span><br><span class="line">                <span class="comment">//大于A[j]的数量=LenA-i(小于A[i]的数量，数组从0开始)</span></span><br><span class="line">					inv_cnt+=LenA-i;</span><br><span class="line">				&#125;</span><br><span class="line">				A[k++]=R[j++];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="comment">// printf("l = %d r = %d cnt = %d\n",l,r,inv_cnt);</span></span><br><span class="line">		<span class="keyword">return</span> inv_cnt;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//不用哨兵处理会更方便点</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">Merge2</span><span class="params">(<span class="keyword">int</span> A[],<span class="keyword">int</span> l,<span class="keyword">int</span> m,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> *B=<span class="keyword">new</span> <span class="keyword">int</span>[r-l+<span class="number">1</span>];</span><br><span class="line">		<span class="keyword">int</span> i=l,j=m+<span class="number">1</span>,k=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> inv_cnt=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(i&lt;=m&amp;&amp;j&lt;=r)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(A[i]&lt;=A[j])</span><br><span class="line">				B[k++]=A[i++];</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				inv_cnt+=m-i+<span class="number">1</span>;</span><br><span class="line">				B[k++]=A[j++];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span>(i&lt;=m)</span><br><span class="line">			B[k++]=A[i++];</span><br><span class="line">		<span class="keyword">while</span>(j&lt;=r)</span><br><span class="line">			B[k++]=A[j++];</span><br><span class="line">		k=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=l;i&lt;=r;)</span><br><span class="line">		&#123;</span><br><span class="line">			A[i++]=B[k++];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> inv_cnt;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> A[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> B[]=&#123;<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> C[]=&#123;<span class="number">6</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">5</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> D[]=&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">1</span>&#125;;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; InversionCount::MergeSort(A,<span class="number">0</span>,<span class="number">7</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; InversionCount::MergeSort(B,<span class="number">0</span>,<span class="number">7</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; InversionCount::MergeSort(C,<span class="number">0</span>,<span class="number">5</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; InversionCount::MergeSort(D,<span class="number">0</span>,<span class="number">4</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2、线段树</strong></p>
+<p>可以采用线段树来处理，这里不打算具体展开线段树的内容，后面有时间再整理一个关于线段树的专题。下面介绍算法思路。</p>
+<p>1、为数组$A[1,n]$建立线段树，区间统计$[left,rigth]的数目，初始化均为0$，如果数据范围较大数据比较分散，可以先进行一次离散化。</p>
+<p>2、依次对$A[1,n] \in [min,man]$的每个元素进行以下操作，假设$A[i]=k$,则对线段树查找区间$[k+1,max]$的大小，加入逆序对数量中，然后令$A[k]+1$。</p>
+<p>上面的操作相当于遍历数组A，对于每一个元素，查找当前在它前面大于它的元素个数，然后累加起来，得到逆序对。遍历数组时间为$O(n)$，每进行一次查找操作为$O(lgn)$，总的的时间复杂度为$O(nlgn)$。</p>
+<p>下面时代码实现，常规的线段树模板。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lchild (x&lt;&lt;1) </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rchild (x&lt;&lt;1|1)</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> A[N&lt;&lt;<span class="number">2</span>|<span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	A[x]=A[lchild]+A[rchild];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//建立线段树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> left,<span class="keyword">int</span> right,<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(left==right)&#123;</span><br><span class="line">		A[x]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> mid=(left+right)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	build(left,mid,lchild);</span><br><span class="line">	build(mid+<span class="number">1</span>,right,rchild);</span><br><span class="line">	update(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//查询区间[L,R]</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> left,<span class="keyword">int</span> right,<span class="keyword">int</span> L,<span class="keyword">int</span> R,<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(L&lt;=left&amp;&amp;right&lt;=R)</span><br><span class="line">		<span class="keyword">return</span> A[x];</span><br><span class="line">	<span class="keyword">int</span> ret=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> mid=(left+right)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(L&lt;=mid)</span><br><span class="line">		ret+=query(left,mid,L,R,lchild);</span><br><span class="line">	<span class="keyword">if</span>(R&gt;mid)</span><br><span class="line">		ret+=query(mid+<span class="number">1</span>,right,L,R,rchild);</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//修改 A[x]=k的结点+1</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> left,<span class="keyword">int</span> right,<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(left==right)&#123;</span><br><span class="line">		++A[x];</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> mid=(left+right)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(i&lt;=mid)</span><br><span class="line">		modify(i,left,mid,lchild);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		modify(i,mid+<span class="number">1</span>,right,rchild);</span><br><span class="line">	update(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> arr[]=&#123;<span class="number">10</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>&#125;;</span><br><span class="line">	build(<span class="number">1</span>,<span class="number">10</span>,<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> i:arr)</span><br><span class="line">	&#123;</span><br><span class="line">		cnt+=query(<span class="number">1</span>,<span class="number">10</span>,i+<span class="number">1</span>,<span class="number">10</span>,<span class="number">1</span>);</span><br><span class="line">		modify(i,<span class="number">1</span>,<span class="number">10</span>,<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; cnt &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://007havegone.github.io">007havegone</a>
+            <p>原文链接：<a href="http://007havegone.github.io/2019/07/30/算法导论思考题2-4/">http://007havegone.github.io/2019/07/30/算法导论思考题2-4/</a>
+            <p>发表日期：<a href="http://007havegone.github.io/2019/07/30/算法导论思考题2-4/">July 30th 2019, 5:41:22 pm</a>
+            <p>更新日期：<a href="http://007havegone.github.io/2019/07/30/算法导论思考题2-4/">July 30th 2019, 10:42:17 pm</a>
+            <p>版权声明：‘原创内容，转载时请附上出处’</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2019/07/31/算法导论思考题4-1/" title= "算法导论思考题4-1">
+                    <div class="nextTitle">算法导论思考题4-1</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/07/29/算法导论第二章插入排序/" title= "算法导论第二章插入排序">
+                    <div class="prevTitle">算法导论第二章插入排序</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:996209949@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/007havegone" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer others" target="_blank" title=others></a>
+            
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#思考题2-4（逆序对）-假设A-1-n-是一个有-n-个不同数的数组，若iA-j-，则对偶-i-j-称为A的一个逆序对-inversion-。"><span class="toc-number">1.</span> <span class="toc-text">思考题2-4（逆序对） 假设A[1..n]是一个有$n$个不同数的数组，若iA[j]，则对偶(i,j)称为A的一个逆序对(inversion)。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a-列出数组-的5个逆序对。"><span class="toc-number">1.1.</span> <span class="toc-text">a.列出数组$$的5个逆序对。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b-有集合-1-2-dots-n-中的元素构成的什么数组具有最多的逆序对？它有多少逆序对？"><span class="toc-number">1.2.</span> <span class="toc-text">b.有集合$\{1,2,\dots,n\}$中的元素构成的什么数组具有最多的逆序对？它有多少逆序对？</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 8
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href= "/2019/07/31/算法导论思考题4-1/" >算法导论思考题4-1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/30</span><a class="archive-post-title" href= "/2019/07/30/算法导论思考题2-4/" >算法导论思考题2-4</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/29</span><a class="archive-post-title" href= "/2019/07/29/算法导论第二章插入排序/" >算法导论第二章插入排序</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/29</span><a class="archive-post-title" href= "/2019/07/29/算法导论思考题1-1/" >算法导论思考题1-1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/26</span><a class="archive-post-title" href= "/2019/07/26/算法导论9-1-1找第二小的元素/" >算法导论9.1-1找第二小的元素</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href= "/2019/07/22/主方法求解递归式/" >主方法求解递归式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href= "/2019/07/13/Effective-c-读书笔记第一章/" >Effective c++ 读书笔记第一章</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href= "/2019/07/13/hello-world/" >Hello World</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="主方法"><span class="iconfont-archer">&#xe606;</span>主方法</span>
+    
+        <span class="sidebar-tag-name" data-tags="时间复杂度"><span class="iconfont-archer">&#xe606;</span>时间复杂度</span>
+    
+        <span class="sidebar-tag-name" data-tags="算法分析"><span class="iconfont-archer">&#xe606;</span>算法分析</span>
+    
+        <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
+    
+        <span class="sidebar-tag-name" data-tags="排序"><span class="iconfont-archer">&#xe606;</span>排序</span>
+    
+        <span class="sidebar-tag-name" data-tags="逆序对"><span class="iconfont-archer">&#xe606;</span>逆序对</span>
+    
+        <span class="sidebar-tag-name" data-tags="线段树"><span class="iconfont-archer">&#xe606;</span>线段树</span>
+    
+        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="Effective C++"><span class="iconfont-archer">&#xe606;</span>Effective C++</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="算法导论"><span class="iconfont-archer">&#xe60a;</span>算法导论</span>
+    
+        <span class="sidebar-category-name" data-categories="读书笔记"><span class="iconfont-archer">&#xe60a;</span>读书笔记</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "007havegone"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>
+
+
