@@ -452,7 +452,7 @@ height:50vh;
 <hr>
 <p><strong>邮局位置问题</strong>的定义如下，给定权重分别为$w_1,w_2,\dotsb,w_n$的$n$个点$p_1,p_2,\dotsb,p_n$，我们希望找到一个点$p$(不一定是输入点中的一个)，使得$\sum_{i=1}^{n}{w_id(p,p_i)}$最小，这里$d(a,b)$表示点$a$和$b$之间的距离。</p>
 <h3 id="d-emsp-证明：对一维邮局位置问题，带权中位数是最好的解决方法，其中，每个点都是一个实数，点-a-和-b-之间的距离是-d-a-b-a-b-。"><a href="#d-emsp-证明：对一维邮局位置问题，带权中位数是最好的解决方法，其中，每个点都是一个实数，点-a-和-b-之间的距离是-d-a-b-a-b-。" class="headerlink" title="d.&emsp;证明：对一维邮局位置问题，带权中位数是最好的解决方法，其中，每个点都是一个实数，点$a$和$b$之间的距离是$d(a,b)=|a-b|$。"></a>d.&emsp;证明：对一维邮局位置问题，带权中位数是最好的解决方法，其中，每个点都是一个实数，点$a$和$b$之间的距离是$d(a,b)=|a-b|$。</h3><p>&emsp;采用$x_1,x_2,\dotsb,x_n$表示$n$个点的坐标，每个点相应的权值为$w_1,w_2,\dotsb,w_n$，令$x=x_k$为带权中位数。</p>
-<p>&emsp;对于任意点$p$，我们设函数$f(p)=\sum_{i=1}^n{w_i|p-x_i|}$，我们需要找出令该函数最小值的点。令$y$是除$x$外的任意点，我们通过证明$f(y)-f(x) \geq 0$来检验带权中位数$x$的是最优解。我们可以分为下面两种情况来研究：$y &gt; x$和 $x &gt; y$。对于$\forall  x,y$有：</p>
+<p>&emsp;对于任意点$p$，我们设函数$f(p)=\sum_{i=1}^n{w_i|p-x_i|}$，我们需要找出令该函数最小值的点。令$y$是除$x$外的任意点，我们通过证明$f(y)-f(x) \geq 0$来检验带权中位数$x$是最优解。我们可以分为下面两种情况来讨论：$y &gt; x$和 $x &gt; y$。对于$\forall  x,y$有：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
     f(y)-f(x) &=\sum_{i=1}^{n}{w_i|y-x_i|} -\sum_{i=1}^{n}{w_i |x-x_i|}    \\
@@ -465,8 +465,8 @@ height:50vh;
 \frac{|y-x_i| \geq 0 \quad AND \quad |x-x_i| \leq y-x}
 {\to |y-x_i|-|x-x_i| \geq -(y-x) = x-y}</script><p>&emsp;1.3、$x_i \leq x &lt; y$，类似1.1</p>
 <script type="math/tex; mode=display">
-\frac{|x-x_i|+|y-x|=|y-x_i| \quad AND \quad |y-x|=y-x}{\to |y-x_i|-|x-x_i|=|y-x|=y-x}</script><p>解释一下上面这么些的愿意，如：1.1，$d(x,x_i)==d(x,y)+d(y,x_i)$，绝对值内的减法理解为距离计算，配凑出与我们要求的式子，进行等价转换，后面方便处理。</p>
-<p><strong>其实对于1.1和1.3我们简单根据正负情况消去绝对值符号就行。</strong></p>
+\frac{|x-x_i|+|y-x|=|y-x_i| \quad AND \quad |y-x|=y-x}{\to |y-x_i|-|x-x_i|=|y-x|=y-x}</script><p>解释一下上面这么写的原因，如：1.1，$d(x,x_i)==d(x,y)+d(y,x_i)$，绝对值内的减法理解为距离计算，配凑出与我们要求的式子，进行等价转换，后面方便处理。</p>
+<p><strong>其实对于1.1和1.3我们简单根据正负情况消去绝对值符号也行。</strong></p>
 <p>&emsp;将前两种情况($x &lt; x_i$)与第三种情况分开($x_i \leq x$)。。我们有：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
@@ -534,7 +534,7 @@ f(y)-f(x)
             <p>原文作者：<a href="http://007havegone.github.io">007havegone</a>
             <p>原文链接：<a href="http://007havegone.github.io/2019/08/02/算法导论思考题9-2/">http://007havegone.github.io/2019/08/02/算法导论思考题9-2/</a>
             <p>发表日期：<a href="http://007havegone.github.io/2019/08/02/算法导论思考题9-2/">August 2nd 2019, 12:13:03 am</a>
-            <p>更新日期：<a href="http://007havegone.github.io/2019/08/02/算法导论思考题9-2/">August 3rd 2019, 5:20:22 pm</a>
+            <p>更新日期：<a href="http://007havegone.github.io/2019/08/02/算法导论思考题9-2/">August 3rd 2019, 5:38:55 pm</a>
             <p>版权声明：‘原创内容，转载时请附上出处’</p>
         </div>
     
@@ -793,22 +793,6 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 11
@@ -885,21 +869,17 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
-    
-        <span class="sidebar-tag-name" data-tags="排序"><span class="iconfont-archer">&#xe606;</span>排序</span>
-    
         <span class="sidebar-tag-name" data-tags="主方法"><span class="iconfont-archer">&#xe606;</span>主方法</span>
-    
-        <span class="sidebar-tag-name" data-tags="算法分析"><span class="iconfont-archer">&#xe606;</span>算法分析</span>
     
         <span class="sidebar-tag-name" data-tags="时间复杂度"><span class="iconfont-archer">&#xe606;</span>时间复杂度</span>
     
-        <span class="sidebar-tag-name" data-tags="中位数"><span class="iconfont-archer">&#xe606;</span>中位数</span>
+        <span class="sidebar-tag-name" data-tags="算法分析"><span class="iconfont-archer">&#xe606;</span>算法分析</span>
     
-        <span class="sidebar-tag-name" data-tags="二分查找"><span class="iconfont-archer">&#xe606;</span>二分查找</span>
+        <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
     
         <span class="sidebar-tag-name" data-tags="逆序对"><span class="iconfont-archer">&#xe606;</span>逆序对</span>
+    
+        <span class="sidebar-tag-name" data-tags="排序"><span class="iconfont-archer">&#xe606;</span>排序</span>
     
         <span class="sidebar-tag-name" data-tags="线段树"><span class="iconfont-archer">&#xe606;</span>线段树</span>
     
@@ -908,6 +888,10 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
         <span class="sidebar-tag-name" data-tags="Effective C++"><span class="iconfont-archer">&#xe606;</span>Effective C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="中位数"><span class="iconfont-archer">&#xe606;</span>中位数</span>
+    
+        <span class="sidebar-tag-name" data-tags="二分查找"><span class="iconfont-archer">&#xe606;</span>二分查找</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
