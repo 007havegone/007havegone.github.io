@@ -22,7 +22,7 @@
     <meta name="description" content="个人博客，写心得随笔。">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>算法导论第二章插入排序 · 007&#39;s Studio</title>
+    <title>算法导论思考题9-2 · 007&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >007&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">算法导论第二章插入排序</a>
+                <a href="#" class="post-name">算法导论思考题9-2</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            算法导论第二章插入排序
+            算法导论思考题9-2
             <!-- 404 -->
             
         </h1>
@@ -268,18 +268,18 @@ height:50vh;
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "排序">排序</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "中位数">中位数</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">344</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.1k</span>阅读时长: <span class="post-count reading-time">9 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/07/29</span>
+                    <span class="post-intro-time">2019/08/02</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -403,21 +403,138 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="算法导论-第二章插入排序实现"><a href="#算法导论-第二章插入排序实现" class="headerlink" title="算法导论 第二章插入排序实现"></a>算法导论 第二章插入排序实现</h1><p>&emsp;插入排序算法是时间复杂度为 $O(n)$，输入规模$n$较小时，插入排序往往能有较好的效果。</p>
-<p>&emsp;最优情况：数据整体有序，无需须交换元素，时间复杂度$O(n)$</p>
-<p>&emsp;最坏情况：数据整体逆序，每个元素要 $1~n-1$次，时间复杂度为 $O(n^2)$。</p>
-<p>&emsp;插入排序中的常数因子较小使得在$n$在较小的时候，在很多情况能够运行更快。作为归并排序，快速排序等算法在小规模时处理的问题时的子程序。</p>
-<p>书中的伪代码<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">INSERTION-SORT(A)</span><br><span class="line"><span class="number">1</span> <span class="keyword">for</span> j = <span class="number">2</span> to A.length</span><br><span class="line"><span class="number">2</span> 	key = A[j]</span><br><span class="line"><span class="number">3</span> 	<span class="comment">//Insert A[j] into the sorted sequence[1..j-1]</span></span><br><span class="line"><span class="number">4</span>	i = j<span class="number">-1</span></span><br><span class="line"><span class="number">5</span>	<span class="keyword">while</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> A[i] &gt; key</span><br><span class="line"><span class="number">6</span>		A[i+<span class="number">1</span>] = A[i]</span><br><span class="line"><span class="number">7</span>		i = i+<span class="number">1</span></span><br><span class="line"><span class="number">8</span>		A[i+<span class="number">1</span>] = key</span><br></pre></td></tr></table></figure></p>
-<p>具体实现：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	数组存放位置为[0,len-1]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InsertSort</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">//升序</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InsertSortInc</span><span class="params">(<span class="keyword">int</span> A[],<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;len;++j)&#123;</span><br><span class="line">			<span class="keyword">int</span> i=j<span class="number">-1</span>;</span><br><span class="line">			<span class="keyword">int</span> key=A[j];</span><br><span class="line">			<span class="keyword">while</span>(i&gt;=<span class="number">0</span>&amp;&amp;A[i]&gt;key)&#123;</span><br><span class="line">				A[i+<span class="number">1</span>]=A[i];</span><br><span class="line">				--i;</span><br><span class="line">			&#125;</span><br><span class="line">			A[i+<span class="number">1</span>]=key;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//降序</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InsertSortDec</span><span class="params">(<span class="keyword">int</span> A[],<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;len;j++)&#123;</span><br><span class="line">			<span class="keyword">int</span> i=j<span class="number">-1</span>;</span><br><span class="line">			<span class="keyword">int</span> key=A[j];</span><br><span class="line">			<span class="keyword">while</span>(i&gt;=<span class="number">0</span>&amp;&amp;A[i]&lt;key)&#123;</span><br><span class="line">				A[i+<span class="number">1</span>]=A[i];</span><br><span class="line">				--i;</span><br><span class="line">			&#125;</span><br><span class="line">			A[i+<span class="number">1</span>]=key;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+        <h3 id="9-2-emsp-带权中位数-对分别具体以正权重-w-1-w-2-dotsb-w-n-且满足-sum-i-1-n-w-i-1-的-n-个互异的元素-x-1-x-2-dotsb-x-n-来说，带权中位数-x-k-较小中位数-是满足如下条件的元素："><a href="#9-2-emsp-带权中位数-对分别具体以正权重-w-1-w-2-dotsb-w-n-且满足-sum-i-1-n-w-i-1-的-n-个互异的元素-x-1-x-2-dotsb-x-n-来说，带权中位数-x-k-较小中位数-是满足如下条件的元素：" class="headerlink" title="9-2&emsp;(带权中位数)对分别具体以正权重$w_1,w_2,\dotsb,w_n$,且满足$\sum_{i=1}^{n}{w_i=1}$的$n$个互异的元素$x_1,x_2,\dotsb,x_n$来说，带权中位数$x_k$(较小中位数)是满足如下条件的元素："></a>9-2&emsp;(带权中位数)对分别具体以正权重$w_1,w_2,\dotsb,w_n$,且满足$\sum_{i=1}^{n}{w_i=1}$的$n$个互异的元素$x_1,x_2,\dotsb,x_n$来说，带权中位数$x_k$(较小中位数)是满足如下条件的元素：</h3><script type="math/tex; mode=display">
+\sum_{x_i < x_k}w_i <\frac{1}{2} \quad和\quad\sum_{x_i > x_k}w_i \leq \frac{1}{2}</script><p>例如，如果元素是$0.1  ,0.35  ,0.05  ,0.1  ,0.15  ,0.05  ,0.2$，并且每个元素的权重等于本身(即对所有$i=1,2,\dotsb,7都有w_i=x_i$)，那么中位数是0.1，而带全中位数是0.2。</p>
+<h3 id="a-emsp-证明：如果对所有-i-1-2-dotsb-n-都有-w-i-1-n-，那么-x-1-x-2-dotsb-x-n-的中位数就是-x-i-的带权中位数。"><a href="#a-emsp-证明：如果对所有-i-1-2-dotsb-n-都有-w-i-1-n-，那么-x-1-x-2-dotsb-x-n-的中位数就是-x-i-的带权中位数。" class="headerlink" title="a.&emsp; 证明：如果对所有$i=1,2,\dotsb,n$都有$w_i=1/n$，那么$x_1,x_2,\dotsb,x_n$的中位数就是$x_i$的带权中位数。"></a>a.&emsp; 证明：如果对所有$i=1,2,\dotsb,n$都有$w_i=1/n$，那么$x_1,x_2,\dotsb,x_n$的中位数就是$x_i$的带权中位数。</h3><p>证明：$x_i,x_2,\dotsb,n$的中位数（<strong>题目给的是低中位数</strong>）是$x_k=x$那么就有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    |\{x_i| 1 \leq i \leq n,x_i < x\}| &< n/2 \\
+    |\{x_i| 1 \leq i \leq n,x_i > x\}| &\leq n/2
+\end{aligned}</script><p>这里解释下:</p>
+<p>第1个式子是小于中位数的个数，因为是低中位数，无论集合是奇数偶数个都是小于$n/2$；</p>
+<p>第2个式子是大于中位数的个数，当集合个数是奇数是，也是小于$n/2$，当集合个数为偶数时，等号成立。</p>
+<p>同时因为每一个元素的权值都是置为$1/n$，那么就有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    \sum_{x_i<x}{w_i} &= \sum_{x_i<x}{\frac{1}{n}}  \\
+                      &= \frac{1}{n}·\sum_{x_i<x}1  \\
+                      &= \frac{1}{n}·|\{x_i| 1 \leq i \leq n,x_i <x\}|  \\
+                      &< \frac{1}{n} · \frac{n}{2}  \\
+                      &= \frac{1}{2}
+\end{aligned}</script><p>满足带权中位数的第一个条件。同理，我们有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    \sum_{x_i>x}{w_i} &= \sum_{x_i>x}{\frac{1}{n}}  \\
+                      &= \frac{1}{n}·\sum_{x_i>x}1  \\
+                      &= \frac{1}{n}·|\{x_i| 1 \leq i \leq n,x_i > x\}| \\
+                      &\leq \frac{1}{n}·\frac{n}{2} \\
+                      &=\frac{1}{2}
+\end{aligned}</script><p>第二个条件得证。因此当集合X的每个元素的权重都是$1/n$时，$x_1,x_2,\dotsb,x_n$的中位数$x_k=x$，同时也是带权中位数。</p>
+<hr>
+<h3 id="b-emsp-利用排序，设计一个最坏情况下-O-nlgn-时间的算法，可以得到-n-个元素的带权中位数。"><a href="#b-emsp-利用排序，设计一个最坏情况下-O-nlgn-时间的算法，可以得到-n-个元素的带权中位数。" class="headerlink" title="b.&emsp; 利用排序，设计一个最坏情况下$O(nlgn)$时间的算法，可以得到$n$个元素的带权中位数。"></a>b.&emsp; 利用排序，设计一个最坏情况下$O(nlgn)$时间的算法，可以得到$n$个元素的带权中位数。</h3><p><strong>Step1</strong>、可以对元素$x_1,x_2,\dotsb,x_n$采用归并排序或者堆排序算法来升序排序。</p>
+<p><strong>Step2</strong>、然后从最小$x_1$开始，从左往右遍历每一个，将权值累加起来，当权值超过$1/2$，那么最后一个导致超过$1/2$的元素就是带权中位数。</p>
+<p>Step1时间复杂度为$O(nlgn)$，Step2时间复杂度为$O(n)$。满足题目要求。</p>
+<hr>
+<h3 id="c-emsp-说明如何利用像9-3节的SELECT这样的线性时间中位数算法，在-Theta-n-最坏情况时间内求出带权中位数。"><a href="#c-emsp-说明如何利用像9-3节的SELECT这样的线性时间中位数算法，在-Theta-n-最坏情况时间内求出带权中位数。" class="headerlink" title="c.&emsp;说明如何利用像9.3节的SELECT这样的线性时间中位数算法，在$\Theta(n)$最坏情况时间内求出带权中位数。"></a>c.&emsp;说明如何利用像9.3节的SELECT这样的线性时间中位数算法，在$\Theta(n)$最坏情况时间内求出带权中位数。</h3><p>线性时间查找带权中位数的思想是二分查找。算法工作流程如下:</p>
+<p>1、问题规模$n \leq 2$，可以在$O(1)$情况下暴力解决。</p>
+<p>2、问题规模$n &gt; 2$时，我们先找到集合$X$的中位数$x_k =x$，将集合$X$用$x_k$划分为两个集合，下面称为$L=\{x_i|1 \leq i \leq n,x_i &lt; x\}$和$G=\{x_i|1 \leq i \leq n,x_i &gt;x\}$,然后计算$W_L$和$W_G$（两部分的权重）。根据$W_G$和$W_G$的权重情况，可以分为3种情况处理：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+   a、 x_k即为带权中位数 &    W_L < 1/2 \ and \ W_G <1/2   \\
+   b、 在集合L中查找     &          W_L>1/2             \\
+   c、 在集合G中查找     &          W_G>1/2   
+\end{cases}</script><p>在处理b、c情况时，我们为了避免下一次划分时重复计算$W_L$和$W_G$，对于情况b：我们可以将$w_k=w_k+W_G$，然后将$x_k$加入下一步要进行查找的集合$L$中。</p>
+<p>下面时该算法的伪代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">WEIGHTED-MEDIUM(X)</span><br><span class="line">    <span class="comment">//规模小于等于2，O(1)解决</span></span><br><span class="line">    <span class="keyword">if</span> X.size = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> x[<span class="number">1</span>]</span><br><span class="line">    elseif x.size = <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> w[<span class="number">1</span>]&gt;=w[<span class="number">2</span>]</span><br><span class="line">            <span class="keyword">return</span> x1</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> x2</span><br><span class="line">    <span class="comment">//规模 &gt;2，取中位数，二分递归进行</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        find the Medium x[k] in X[<span class="number">1</span>,..,n]</span><br><span class="line">        partition the <span class="built_in">set</span> X by x[k] into L,G</span><br><span class="line">        computer WL=sum of w[i] in the <span class="built_in">set</span> L</span><br><span class="line">                 WG=sum of w[i] in the <span class="built_in">set</span> G</span><br><span class="line">        <span class="keyword">if</span> WL&lt;<span class="number">1</span>/<span class="number">2</span> <span class="keyword">and</span> WG &lt; <span class="number">1</span>/<span class="number">2</span></span><br><span class="line">            <span class="keyword">return</span> x[k]</span><br><span class="line">        elseif WL &gt; <span class="number">1</span>/<span class="number">2</span></span><br><span class="line">            w[k]=w[k]+WG</span><br><span class="line">            X'&lt;--&#123;x[i] in X | x[i] &lt;= x[k]&#125;</span><br><span class="line">            <span class="keyword">return</span> WEIGHT-MEDIUM(X')</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            w[k]=w[k]+WL</span><br><span class="line">            X'&lt;--&#123;x[i] in X | x[i] &gt;= x[k]&#125;</span><br><span class="line">            <span class="keyword">return</span> WEIGHTED-MEDIUM(X')</span><br></pre></td></tr></table></figure>
+<p><strong>算法分析</strong>：在对数组的每一次递归过程中，取中位数$x_k$，划分集合X和计算$W_L,W_R$的时间复杂度均为$O(n)$。最差情况下满足以下递归式：</p>
+<script type="math/tex; mode=display">
+    T(n)=T(n/2+1)+\Theta(n)</script><p>下一次递归，划分的集合是原来的一半元素，同时还有$x_k$，因此为$T(2n+1)$。<br>这个递归式和快速选择(线性选择算法)的递推式接近，该算法的时间复杂度$T(n)=\Theta(n)$。</p>
+<hr>
+<p><strong>邮局位置问题</strong>的定义如下，给定权重分别为$w_1,w_2,\dotsb,w_n$的$n$个点$p_1,p_2,\dotsb,p_n$，我们希望找到一个点$p$(不一定是输入点中的一个)，使得$\sum_{i=1}^{n}{w_id(p,p_i)}$最小，这里$d(a,b)$表示点$a$和$b$之间的距离。</p>
+<h3 id="d-emsp-证明：对一维邮局位置问题，带权中位数是最好的解决方法，其中，每个点都是一个实数，点-a-和-b-之间的距离是-d-a-b-a-b-。"><a href="#d-emsp-证明：对一维邮局位置问题，带权中位数是最好的解决方法，其中，每个点都是一个实数，点-a-和-b-之间的距离是-d-a-b-a-b-。" class="headerlink" title="d.&emsp;证明：对一维邮局位置问题，带权中位数是最好的解决方法，其中，每个点都是一个实数，点$a$和$b$之间的距离是$d(a,b)=|a-b|$。"></a>d.&emsp;证明：对一维邮局位置问题，带权中位数是最好的解决方法，其中，每个点都是一个实数，点$a$和$b$之间的距离是$d(a,b)=|a-b|$。</h3><p>&emsp;采用$x_1,x_2,\dotsb,x_n$表示$n$个点的坐标，每个点相应的权值为$w_1,w_2,\dotsb,w_n$，令$x=x_k$为带权中位数。</p>
+<p>&emsp;对于任意点$p$，我们设函数$f(p)=\sum_{i=1}^n{w_i|p-x_i|}$，我们需要找出令该函数最小值的点。令$y$是除$x$外的任意点，我们通过证明$f(y)-f(x) \geq 0$来检验带权中位数$x$的是最优解。我们可以分为下面两种情况来研究：$y &gt; x$和 $x &gt; y$。对于$\forall  x,y$有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    f(y)-f(x) &=\sum_{i=1}^{n}{w_i|y-x_i|} -\sum_{i=1}^{n}{w_i |x-x_i|}    \\
+              &=\sum_{i=1}^{n}{w_i(|y-x_i|-|x-x_i|)}
+\end{aligned}</script><p>1、 当$y&gt;x$时，对于上面式子中的$|y-x_i|-|x-x_i|$可以分为三种情况：</p>
+<p>&emsp;1.1、$x &lt; y \leq x_i$</p>
+<script type="math/tex; mode=display">\frac{|y-x|+|y-x_i|=|x-x_i| \quad AND \quad |y-x|=y-x}
+{\to |y-x_i|-|x-x_i|=-|y-x|=x-y}</script><p>&emsp;1.2、$x &lt; x_i \leq y$</p>
+<script type="math/tex; mode=display">
+\frac{|y-x_i| \geq 0 \quad AND \quad |x-x_i| \leq y-x}
+{\to |y-x_i|-|x-x_i| \geq -(y-x) = x-y}</script><p>&emsp;1.3、$x_i \leq x &lt; y$，类似1.1</p>
+<script type="math/tex; mode=display">
+\frac{|x-x_i|+|y-x|=|y-x_i| \quad AND \quad |y-x|=y-x}{\to |y-x_i|-|x-x_i|=|y-x|=y-x}</script><p>解释一下上面这么些的愿意，如：1.1，$d(x,x_i)==d(x,y)+d(y,x_i)$，绝对值内的减法理解为距离计算，配凑出与我们要求的式子，进行等价转换，后面方便处理。</p>
+<p><strong>其实对于1.1和1.3我们简单根据正负情况消去绝对值符号就行。</strong></p>
+<p>&emsp;将前两种情况($x &lt; x_i$)与第三种情况分开($x_i \leq x$)。。我们有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    f(y)-f(x) &= \sum_{i=1}^{n}{w_i(|y-x_i|-|x-x_i|)}   \\
+              &\geq \sum_{x<x_i}{w_i(x-y)}+\sum_{x \geq x_i}{w_i(y-x)}  \\
+              &= (y-x)\left(\sum_{x \geq x_i}{w_i}-\sum_{x < x_i}{w_i}\right)
+\end{aligned}</script><p>结合$x_k$的性质，我们有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    \sum_{x_i < x}{w_i} <1/2 \quad
+    \underrightarrow{implies} & \sum_{x_i \leq x}{w_i} \geq 1/2    \\
+    和 \sum_{x_i>x}{w_i} &\leq 1/2  \\
+    \therefore \sum_{x \geq x_i}{w_i}-\sum_{x < x_i}{w_i} &\geq 0
+\end{aligned}</script><p>又$\because y-x &gt;0$，$\therefore f(y)-f(x) \geq 0$</p>
+<p>2、当$x &gt; y$时，我们同样将$|y-x_i|-|x-x_i|$分为下面三种情况：</p>
+<p>&emsp;2.1、$x_i \leq y &lt; x$</p>
+<script type="math/tex; mode=display">
+\frac{|y - x_i|+|x - y|=|x-x_i|\quad AND \quad |x-y|=x-y}
+{\to |y-x_i|-|x-x_i|=-|x-y|=y-x}</script><p>&emsp;2.2、$y \leq x_i &lt; x$</p>
+<script type="math/tex; mode=display">
+\frac{|y-x_i \geq 0| \quad AND \quad |x_-x_i| \leq x-y}
+{\to |y-x_i|-|x-x_i| \geq -(x-y)=y-x}</script><p>&emsp;2.3、$y &lt; x \leq x_i$,类似情况1</p>
+<script type="math/tex; mode=display">\frac{|x-y|+|x-x_i|=|y-x_i| AND |x-y|=x-y}
+{\to |y-x_i|-|x-x_i|=|x-y|=x-y}</script><p>&emsp;和之前处理一样，分为前两种情况为$x_i &lt; x$，第三种情况为$x \leq x_i$，我们有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+   f(y)-f(x) &=\sum_{i=1}^{n}{w_i(|y-x_i|-|x-x_i|)}   \\
+             &\geq \sum_{x_i<x}{w_i(y-x)} +\sum_{x\leq x_i}{w_i(x-y)}   \\
+             &=(y-x)\left(\sum_{x_i<x}{w_i}-\sum_{x \leq x_i}{w_i} \right)\\
+\end{aligned}</script><p>同上，$\because x$是带权中位数，有:</p>
+<script type="math/tex; mode=display">\begin{aligned}
+    \sum_{x_i < x}{w_i} &< 1/2  \\ 
+    和 \sum_{x_i >x}{w_i} \leq 1/2 \quad &\underrightarrow{implies} 
+    \sum_{x_i \geq x}{w_i} > 1/2    \\
+    \therefore \sum_{x_i < x}{w_i}-\sum_{x \leq x_i}{w_i} &>0
+\end{aligned}</script><p>又 $\because y-x&gt;0 \therefore f(y)-f(x)&gt;0$。</p>
+<p>综上：</p>
+<script type="math/tex; mode=display">
+f(y)-f(x)
+\begin{cases}
+    \geq 0 & y > x\\
+      >  0 & x > y
+\end{cases}</script><p>因此，带权中位数$x=x_k$是一维邮局问题的最优解,得证。</p>
+<hr>
+<h3 id="e-emsp-请给出二位邮局位置问题的最好解决方法：其中的点是-x-y-的二位坐标形式，点-a-x-1-y-1-与-b-x-2-y-2-之间的距离是-Manhattan-距离-曼哈顿距离-出租车距离-街区距离-，即-d-a-b-x-1-x-2-y-1-y-2"><a href="#e-emsp-请给出二位邮局位置问题的最好解决方法：其中的点是-x-y-的二位坐标形式，点-a-x-1-y-1-与-b-x-2-y-2-之间的距离是-Manhattan-距离-曼哈顿距离-出租车距离-街区距离-，即-d-a-b-x-1-x-2-y-1-y-2" class="headerlink" title="e.&emsp;请给出二位邮局位置问题的最好解决方法：其中的点是$(x,y)$的二位坐标形式，点$a=(x_1,y_1)$与$b=(x_2,y_2)$之间的距离是$Manhattan$距离(曼哈顿距离/出租车距离/街区距离)，即$d(a,b)=|x_1-x_2|+|y_1-y_2|$"></a>e.&emsp;请给出二位邮局位置问题的最好解决方法：其中的点是$(x,y)$的二位坐标形式，点$a=(x_1,y_1)$与$b=(x_2,y_2)$之间的距离是$Manhattan$距离(曼哈顿距离/出租车距离/街区距离)，即$d(a,b)=|x_1-x_2|+|y_1-y_2|$</h3><p>&emsp;我们采用一对坐标来表示每个点$p_i=(x_i,y_i)$，同时每个点相应的权值为$w_i$。因此，我们的目标转变为找到一个点$p=(x,y)$使下面的函数达到最小值：</p>
+<script type="math/tex; mode=display">f(x,y)=\sum_{i=1}^{n}{w_i(|x-x_i|+|y-y_i|)}</script><p>&emsp;我们可以将函数$f(x,y)$转变为两个等价的一元函数相加:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    f(x,y)&=g(x)+h(y)\\
+     其中，g(x) &=\sum_{i=1}^{n}{w_i|x-x_i|}  \\
+     h(y) &=\sum_{i=1}^{n}{w_i|y-y_i|}
+\end{aligned}</script><p>我们要使$f(x,y)$取得最小值，可以单独的对每一维度进行处理，因为$g(x)$不依赖于变量$y，h(y)$不依赖于变量$x$。因此：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    \min_{x,y}{f(x,y)} &= \min_{x,y}{(g(x)+h(y))}   \\
+                       &= \min_{x} \left(\min_{y}(g(x)+h(y))\right) \\
+                       &= \min_{x} \left(g(x)+ \min_{y}h(y) \right) \\
+                       &= \min_{x}g(x)+\min_{y}h(y)
+\end{aligned}</script><p>&emsp;原先的二维问题，现在问题就转变为求2个一维最优解问题。和我们上面问题$d$一样，因此，我们只要分别求$x、y$维度上的带权中位数，设为$x_k,y_k$。最终答案记为$(x_k,y_k)$。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://007havegone.github.io">007havegone</a>
-            <p>原文链接：<a href="http://007havegone.github.io/2019/07/29/算法导论第二章插入排序/">http://007havegone.github.io/2019/07/29/算法导论第二章插入排序/</a>
-            <p>发表日期：<a href="http://007havegone.github.io/2019/07/29/算法导论第二章插入排序/">July 29th 2019, 6:00:17 pm</a>
-            <p>更新日期：<a href="http://007havegone.github.io/2019/07/29/算法导论第二章插入排序/">July 30th 2019, 4:59:20 pm</a>
+            <p>原文链接：<a href="http://007havegone.github.io/2019/08/02/算法导论思考题9-2/">http://007havegone.github.io/2019/08/02/算法导论思考题9-2/</a>
+            <p>发表日期：<a href="http://007havegone.github.io/2019/08/02/算法导论思考题9-2/">August 2nd 2019, 12:13:03 am</a>
+            <p>更新日期：<a href="http://007havegone.github.io/2019/08/02/算法导论思考题9-2/">August 3rd 2019, 5:20:22 pm</a>
             <p>版权声明：‘原创内容，转载时请附上出处’</p>
         </div>
     
@@ -425,17 +542,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/07/30/算法导论思考题2-4/" title= "算法导论思考题2-4">
-                    <div class="nextTitle">算法导论思考题2-4</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/07/29/算法导论思考题1-1/" title= "算法导论思考题1-1">
-                    <div class="prevTitle">算法导论思考题1-1</div>
+                <a href= "/2019/08/01/算法导论9-3-8两个有序数组的中位数/" title= "算法导论9.3-8两个有序数组的中位数">
+                    <div class="prevTitle">算法导论9.3-8两个有序数组的中位数</div>
                 </a>
             
         </li>
@@ -551,7 +663,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#算法导论-第二章插入排序实现"><span class="toc-number">1.</span> <span class="toc-text">算法导论 第二章插入排序实现</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-emsp-带权中位数-对分别具体以正权重-w-1-w-2-dotsb-w-n-且满足-sum-i-1-n-w-i-1-的-n-个互异的元素-x-1-x-2-dotsb-x-n-来说，带权中位数-x-k-较小中位数-是满足如下条件的元素："><span class="toc-number">1.</span> <span class="toc-text">9-2 (带权中位数)对分别具体以正权重$w_1,w_2,\dotsb,w_n$,且满足$\sum_{i=1}^{n}{w_i=1}$的$n$个互异的元素$x_1,x_2,\dotsb,x_n$来说，带权中位数$x_k$(较小中位数)是满足如下条件的元素：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#a-emsp-证明：如果对所有-i-1-2-dotsb-n-都有-w-i-1-n-，那么-x-1-x-2-dotsb-x-n-的中位数就是-x-i-的带权中位数。"><span class="toc-number">2.</span> <span class="toc-text">a.  证明：如果对所有$i=1,2,\dotsb,n$都有$w_i=1/n$，那么$x_1,x_2,\dotsb,x_n$的中位数就是$x_i$的带权中位数。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b-emsp-利用排序，设计一个最坏情况下-O-nlgn-时间的算法，可以得到-n-个元素的带权中位数。"><span class="toc-number">3.</span> <span class="toc-text">b.  利用排序，设计一个最坏情况下$O(nlgn)$时间的算法，可以得到$n$个元素的带权中位数。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c-emsp-说明如何利用像9-3节的SELECT这样的线性时间中位数算法，在-Theta-n-最坏情况时间内求出带权中位数。"><span class="toc-number">4.</span> <span class="toc-text">c. 说明如何利用像9.3节的SELECT这样的线性时间中位数算法，在$\Theta(n)$最坏情况时间内求出带权中位数。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#d-emsp-证明：对一维邮局位置问题，带权中位数是最好的解决方法，其中，每个点都是一个实数，点-a-和-b-之间的距离是-d-a-b-a-b-。"><span class="toc-number">5.</span> <span class="toc-text">d. 证明：对一维邮局位置问题，带权中位数是最好的解决方法，其中，每个点都是一个实数，点$a$和$b$之间的距离是$d(a,b)=|a-b|$。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-emsp-请给出二位邮局位置问题的最好解决方法：其中的点是-x-y-的二位坐标形式，点-a-x-1-y-1-与-b-x-2-y-2-之间的距离是-Manhattan-距离-曼哈顿距离-出租车距离-街区距离-，即-d-a-b-x-1-x-2-y-1-y-2"><span class="toc-number">6.</span> <span class="toc-text">e. 请给出二位邮局位置问题的最好解决方法：其中的点是$(x,y)$的二位坐标形式，点$a=(x_1,y_1)$与$b=(x_2,y_2)$之间的距离是$Manhattan$距离(曼哈顿距离/出租车距离/街区距离)，即$d(a,b)=|x_1-x_2|+|y_1-y_2|$</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
