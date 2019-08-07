@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://007havegone.github.io/"/>
-  <updated>2019-08-07T09:23:21.091Z</updated>
+  <updated>2019-08-07T09:57:56.729Z</updated>
   <id>http://007havegone.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://007havegone.github.io/2019/08/07/Win10%E4%B8%ADshift-%E9%BC%A0%E6%A0%87%E5%8F%B3%E9%94%AE%E8%B0%83%E5%87%BAcmd%E7%AA%97%E5%8F%A3/"/>
     <id>http://007havegone.github.io/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/</id>
     <published>2019-08-07T08:06:33.000Z</published>
-    <updated>2019-08-07T09:23:21.091Z</updated>
+    <updated>2019-08-07T09:57:56.729Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Win10中shift-鼠标右键调出cmd窗口"><a href="#Win10中shift-鼠标右键调出cmd窗口" class="headerlink" title="Win10中shift+鼠标右键调出cmd窗口"></a>Win10中shift+鼠标右键调出cmd窗口</h1><p>最近Win10系统更新，更新后发现之前按shift+鼠标右键时，菜单栏里面的cmd选项不见了，取而代之的是 Powershell窗口。用习惯了了cmd还是有点不习惯powershell。</p><p>下面是我Win10更新后shift+鼠标右键的选项栏的效果：</p><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/无cmd.jpg" alt></p><p>&emsp;这里不做cmd和powershell的比较。简单来说powershell像是cmd的一个超集，不仅仅支持cmd的命令，还额外支持.net命令，也支持部分常用的Linux命令。powershell的字体颜色比cmd丰富点。但是相应的powershell所占用的资源更多，有时候我在powershell运行命令可以感觉到明显的延迟感。（可能电脑开的进程比较多）不过cmd较少遇到这种情况。</p><h2 id="1、在shift-鼠标右键中添加cmd。"><a href="#1、在shift-鼠标右键中添加cmd。" class="headerlink" title="1、在shift+鼠标右键中添加cmd。"></a>1、在shift+鼠标右键中添加cmd。</h2><p>用到的工具是注册表。</p><ol><li>按 <code>Win + R</code> 或 <code>鼠标右键window</code> 打开运行窗口</li></ol><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/运行窗口.jpg" alt></p><ol><li>输入 <code>regedit</code> 调出注册表</li></ol><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/注册表.jpg" alt></p><ol><li>在注册表中定位到：<code>\HKEY_CLASSES_ROOT\Directory\Background\shell\cmd</code>，将右侧的<code>HideBasedOnVelocityId</code>重命名为<code>ShowBasedOnVelocityId</code>即可。</li></ol><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/改名.jpg" alt></p><ol><li>同样的，如果想要关闭右键powershell，只要修改定位到：<code>\HKEY_CLASSES_ROOT\Directory\Background\shell\Powershell</code>,将右侧的<code>ShowBasedOnVelocityId</code>重命名为<code>HideBasedOnVelocityId</code>即可。</li></ol><hr><p><strong>注意事项：</strong> 修改的过程中可能会遇到权限不足的情况，无法进行编辑。</p><h2 id="2、权限修改"><a href="#2、权限修改" class="headerlink" title="2、权限修改"></a>2、权限修改</h2><ol><li>这时候右键cmd文件夹或powershell文件加选择权限项。</li></ol><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/右键权限.jpg" alt></p><ol><li>在权限面板中：<code>组或用户名</code>一栏选择自己的用户，在下边的<code>Users的权限控制</code>选择上<code>完全控制</code>。然后点击下面的<code>高级</code>。</li></ol><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/权限.jpg" alt></p><ol><li>在高级面板中：点击顶部的<code>更改所有者</code>，<code>输入要选择的对象名称</code>处输入当前账号名称，譬如输入xxx，再点<code>检查名称</code>并确定。回到上级菜单后继续确定即可。</li></ol><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/更改所有者.jpg" alt></p><ol><li>然后再修改注册表名即可。</li></ol><hr><h2 id="3、最终效果："><a href="#3、最终效果：" class="headerlink" title="3、最终效果："></a>3、最终效果：</h2><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/修改后效果.jpg" alt></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Win10中shift-鼠标右键调出cmd窗口"><a href="#Win10中shift-鼠标右键调出cmd窗口" class="headerlink" title="Win10中shift+鼠标右键调出cmd窗口"></a>Win10中shift+鼠标右键调出cmd窗口</h1><p>最近Win10系统更新，更新后发现之前按shift+鼠标右键时，菜单栏里面的cmd选项不见了，取而代之的是 Powershell窗口。用习惯了了cmd还是有点不习惯powershell。</p><p>下面是我Win10更新后shift+鼠标右键的选项栏的效果：</p><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/无cmd.jpg" alt></p><p>&emsp;这里不做cmd和powershell的比较。简单来说powershell像是cmd的一个超集，不仅仅支持cmd的命令，还额外支持.net命令，也支持部分常用的Linux命令。powershell的字体颜色比cmd丰富点。但是相应的powershell所占用的资源更多，有时候我在powershell运行命令可以感觉到明显的延迟感。（可能电脑开的进程比较多）不过cmd较少遇到这种情况。</p><h2 id="1、在shift-鼠标右键中添加cmd。"><a href="#1、在shift-鼠标右键中添加cmd。" class="headerlink" title="1、在shift+鼠标右键中添加cmd。"></a>1、在shift+鼠标右键中添加cmd。</h2><p>用到的工具是注册表。</p><ol><li>按 <code>Win + R</code> 或 <code>鼠标右键window</code> 打开运行窗口</li></ol><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/运行窗口.jpg" alt></p><ol><li>输入 <code>regedit</code> 调出注册表</li></ol><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/注册表.jpg" alt></p><ol><li>在注册表中定位到：<code>\HKEY_CLASSES_ROOT\Directory\Background\shell\cmd</code>，将右侧的<code>HideBasedOnVelocityId</code>重命名为<code>ShowBasedOnVelocityId</code>即可。</li></ol><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/改名.jpg" alt></p><ol><li>同样的，如果想要关闭右键powershell，只要修改定位到：<code>\HKEY_CLASSES_ROOT\Directory\Background\shell\Powershell</code>,将右侧的<code>ShowBasedOnVelocityId</code>重命名为<code>HideBasedOnVelocityId</code>即可。</li></ol><hr><p><strong>注意事项：</strong> 修改的过程中可能会遇到权限不足的情况，无法进行编辑。</p><h2 id="2、权限修改"><a href="#2、权限修改" class="headerlink" title="2、权限修改"></a>2、权限修改</h2><ol><li>这时候右键cmd文件夹或powershell文件夹选择权限项。</li></ol><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/右键权限.jpg" alt></p><ol><li>在权限面板中：<code>组或用户名</code>一栏选择自己的用户，在下边的<code>Users的权限控制</code>选择上<code>完全控制</code>。然后点击下面的<code>高级</code>。</li></ol><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/权限.jpg" alt></p><ol><li>在高级面板中：点击顶部的<code>更改所有者</code>，<code>输入要选择的对象名称</code>处输入当前账号名称，譬如输入xxx，再点<code>检查名称</code>并确定。回到上级菜单后继续确定即可。</li></ol><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/更改所有者.jpg" alt></p><ol><li>然后再修改注册表名即可。</li></ol><hr><h2 id="3、最终效果："><a href="#3、最终效果：" class="headerlink" title="3、最终效果："></a>3、最终效果：</h2><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/修改后效果.jpg" alt></p>]]></content>
     
     <summary type="html">
     
@@ -290,9 +290,9 @@
     
       <category term="主方法" scheme="http://007havegone.github.io/tags/%E4%B8%BB%E6%96%B9%E6%B3%95/"/>
     
-      <category term="时间复杂度" scheme="http://007havegone.github.io/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/"/>
-    
       <category term="算法分析" scheme="http://007havegone.github.io/tags/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/"/>
+    
+      <category term="时间复杂度" scheme="http://007havegone.github.io/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/"/>
     
   </entry>
   
