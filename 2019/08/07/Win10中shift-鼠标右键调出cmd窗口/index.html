@@ -22,7 +22,7 @@
     <meta name="description" content="个人博客，写心得随笔。">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>主方法求解递归式 · 007&#39;s Studio</title>
+    <title>Win10中shift+鼠标右键调出cmd窗口 · 007&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >007&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">主方法求解递归式</a>
+                <a href="#" class="post-name">Win10中shift+鼠标右键调出cmd窗口</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            主方法求解递归式
+            Win10中shift+鼠标右键调出cmd窗口
             <!-- 404 -->
             
         </h1>
@@ -266,24 +266,22 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "操作系统">操作系统</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "主方法">主方法</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Win10">Win10</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "时间复杂度">时间复杂度</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法分析">算法分析</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "cmd">cmd</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.3k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">478</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/07/22</span>
+                    <span class="post-intro-time">2019/08/07</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -407,75 +405,54 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="主方法求解递归式"><a href="#主方法求解递归式" class="headerlink" title="主方法求解递归式"></a>主方法求解递归式</h1><p>&emsp;&emsp;在分析递归的算法时，主方法可以较快的计算出算法的时间复杂度<br>主方法可以用于满足以下形式的递归式。</p>
-<script type="math/tex; mode=display">T(n)=aT(n/b)+f(n)</script><p>其中$a\geq1和b&gt;1$是常数，$f(n)$是渐进函数。<br>&emsp;&emsp;主方法描述的算法：将原本规模为$n$的问题，分解为 $a$ 个规模为 $n/b$ 的子问题，其中 $a,b\in \mathbb{Z^+}$，函数 $f(n)$ 包含了问题分解和子问题合并的代价。</p>
-<p>下面是归并排序的递归式:</p>
-<script type="math/tex; mode=display">
-T(n)=
-\begin{cases}
-\Theta(1) & 若n=1 \\
-2T(n/2)+\Theta(n) & 若n>1 \\
-\end{cases}</script><p>其中，$a=2, b=2, f(n)=\Theta(n^2)。$<br>&emsp;&emsp;在具体处理过程中,会遇到 $n/b$ 可能不是整数的情况。可以将 $a$ 项 $T(n/b)$全都替换为$T(\lfloor n/b \rfloor)或T(\lceil n/b\rceil)$ 并不会影响递归式的渐进性质。</p>
+        <h1 id="Win10中shift-鼠标右键调出cmd窗口"><a href="#Win10中shift-鼠标右键调出cmd窗口" class="headerlink" title="Win10中shift+鼠标右键调出cmd窗口"></a>Win10中shift+鼠标右键调出cmd窗口</h1><p>最近Win10系统更新，更新后发现之前按shift+鼠标右键时，菜单栏里面的cmd选项不见了，取而代之的是 Powershell窗口。用习惯了了cmd还是有点不习惯powershell。</p>
+<p>下面是我Win10更新后shift+鼠标右键的选项栏的效果：</p>
+<p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/无cmd.jpg" alt></p>
+<p>&emsp;这里不做cmd和powershell的比较。简单来说powershell像是cmd的一个超集，不仅仅支持cmd的命令，还额外支持.net命令，也支持部分常用的Linux命令。powershell的字体颜色比cmd丰富点。但是相应的powershell所占用的资源更多，有时候我在powershell运行命令可以感觉到明显的延迟感。（可能电脑开的进程比较多）不过cmd较少遇到这种情况。</p>
+<h2 id="1、在shift-鼠标右键中添加cmd。"><a href="#1、在shift-鼠标右键中添加cmd。" class="headerlink" title="1、在shift+鼠标右键中添加cmd。"></a>1、在shift+鼠标右键中添加cmd。</h2><p>用到的工具是注册表。</p>
+<ol>
+<li>按 <code>Win + R</code> 或 <code>鼠标右键window</code> 打开运行窗口</li>
+</ol>
+<p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/运行窗口.jpg" alt></p>
+<ol>
+<li>输入 <code>regedit</code> 调出注册表</li>
+</ol>
+<p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/注册表.jpg" alt></p>
+<ol>
+<li>在注册表中定位到：<code>\HKEY_CLASSES_ROOT\Directory\Background\shell\cmd</code>，将右侧的<code>HideBasedOnVelocityId</code>重命名为<code>ShowBasedOnVelocityId</code>即可。</li>
+</ol>
+<p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/改名.jpg" alt></p>
+<ol>
+<li>同样的，如果想要关闭右键powershell，只要修改定位到：<code>\HKEY_CLASSES_ROOT\Directory\Background\shell\Powershell</code>,将右侧的<code>ShowBasedOnVelocityId</code>重命名为<code>HideBasedOnVelocityId</code>即可。</li>
+</ol>
 <hr>
-<h3 id="主定理"><a href="#主定理" class="headerlink" title="主定理"></a>主定理</h3><p>主定理：$a\geq1和b&gt;1$是常数，$f(n)$是一个函数，$T(n)$是定义在非负整数上的递归式:</p>
-<script type="math/tex; mode=display">T(n)=aT(n/b)+f(n)</script><p>其中将 $n/b$ 解释为$\lfloor n/b \rfloor或\lceil n/b\rceil$。那么$T(n)$有如下渐近界：</p>
-<p> 1.若对某个常数 $\epsilon &gt;0$有 $f(n)= O(n^{log_ba-\epsilon})$ ,则 $T(n)=\Theta(n^{log_ba})。$</p>
-<p> 2.若$f(n)=\Theta(n^{log_ba})$，则 $T(n)=\Theta(n^{log_ba} lgn)$</p>
-<p> 3.若对某个常数$\epsilon&gt;0$ 有 $f(n)=\Omega(n^{log_ba+\epsilon})$，且对某个常数 $c&lt;1$ 和所有足够大的 $n$ 有 $af(n/b)\leq cf(n)$，则 $T(n)=\Theta(f(n))$。 </p>
-<p>&emsp;&emsp;实际上就是将函数 $f(n)$ 和函数 $n^{log_ba}$ 进行比较。如情况1和情况3，两者的较大者决定了递归式的解。对于情况2，则再乘上一个对数因子 $lgn$ ，解为 $T(n)=\Theta(n^{loa_ba}  lgn)=\Theta(f(n) lgn)$。</p>
-<p><strong>注意:</strong> 对于第1种情况和第3种情况的 $\mathbf{f(n)}$ 渐进小于和渐进大于 $\mathbf{n^{log_ba}}$，其中相差一个因子 $n^\epsilon$，其中 $\epsilon$为大于0的常数，即要满足 <strong>多项式的差距</strong>。同时第三种情况还要满足 “正则”条件 $af(n/b)\leq cf(n)$。</p>
-<p><strong>这三种情况未覆盖 $f(n)$ 的所有可能性。</strong> 即 $f(n)$ 不满足多项式级别的渐进小于 $n^{log_ba}$而处于情况1和情况2之间。同理，不满足 $f(n)$ 渐进大于而处于 $n^{log_ba}$ 而处于情况2和情况2之间，或则情况3而不满足正则条件，均不能使用主方法求解递归式。</p>
+<p><strong>注意事项：</strong> 修改的过程中可能会遇到权限不足的情况，无法进行编辑。</p>
+<h2 id="2、权限修改"><a href="#2、权限修改" class="headerlink" title="2、权限修改"></a>2、权限修改</h2><ol>
+<li>这时候右键cmd文件夹或powershell文件加选择权限项。</li>
+</ol>
+<p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/右键权限.jpg" alt></p>
+<ol>
+<li>在权限面板中：<code>组或用户名</code>一栏选择自己的用户，在下边的<code>Users的权限控制</code>选择上<code>完全控制</code>。然后点击下面的<code>高级</code>。</li>
+</ol>
+<p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/权限.jpg" alt></p>
+<ol>
+<li>在高级面板中：点击顶部的<code>更改所有者</code>，<code>输入要选择的对象名称</code>处输入当前账号名称，譬如输入xxx，再点<code>检查名称</code>并确定。回到上级菜单后继续确定即可。</li>
+</ol>
+<p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/更改所有者.jpg" alt></p>
+<ol>
+<li>然后再修改注册表名即可。</li>
+</ol>
 <hr>
-<h3 id="主方法使用例子"><a href="#主方法使用例子" class="headerlink" title="主方法使用例子"></a>主方法使用例子</h3><p>1、</p>
-<script type="math/tex; mode=display">T(n)=9T(n/3)+ n</script><p>其中 $a=9,b=3,f(n)=n$。很容易求解 $n^{log_ba}=n^2=\Theta(n^2)$。<br>有$f(n)=n= O( n^{log_ba-\epsilon})$，其中$\epsilon=1$，故满足情况1，因此得出$T(n)=\Theta(n^2)$。</p>
-<p>2、</p>
-<script type="math/tex; mode=display">T(n)=T(2n/3)+1</script><p>其中 $a=1,b=3/2,f(n)=1$。$n^{log_ba}=n^{log_{3/2}1}=\Theta(1)$。<br>有$f(n)=\Theta(n^{log_ba})=\Theta(1)$。因此满足情况2，则 $T(n)=\Theta(n^{log_ba} lgn)=\Theta(lgn)$。</p>
-<p>3、</p>
-<script type="math/tex; mode=display">T(n)=3T(n/4)+nlgn</script><p>其中 $a=3,b=4,f(n)=nlgn$。$n^{log_ba}=n^{log_43}= O(n^{0.793})$。由于$f(n)=\Omega(n^{log_43+\epsilon})$，其中$\epsilon\approx0.2$。<br>接下来证明正则条件，即</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-af(n/b) & \leq cf(n) \\ 
-3(n/4)lg(n/4) & \leq  cnlgn\\ 
-\end{aligned}</script><p>显然，当$c=3/4$时，不等式成立。<br>故$T(n)=\Theta(f(n))=\Theta(nlgn)$</p>
-<p>下面这个递归式不能运用主方法<br>4、</p>
-<script type="math/tex; mode=display">T(n)=2T(n/2)+nlgn</script><p>其中 $a=2,b=2,f(n)=nlgn$，$n^{log_ba}=\Theta(n)$，<br>可能会得到错误的结论有：$f(n)=\Omega(n^{log_22+\epsilon})$。然后继续求解下去。<br>实际上，不满足之前提到的情况1和情况3的渐进差距需要时多项式级别的。<br>即：</p>
-<script type="math/tex; mode=display">\frac{nlgn} {n^{log_22}}=\frac {nlgn} {n} = lgn = O(n^\epsilon)</script><blockquote>
-<p>这里的 $\mathbf{\omicron}$ 符号代表非渐进紧确的上界，<br>如：$f(n)=\omicron(g(n))$: $\forall c&gt;0$，$\exists$常量$n_0&gt;0$，使得 $\forall n\geq n_0$，有 $0 \leq f(n) \leq cg(n)$。简单理解小于但不等于。</p>
-</blockquote>
-<p>即不满足多项式级别的大于。故处于情况2和情况3之间。不可以采用主方法求解。</p>
-<h3 id="练习题4-5-1：-建议自己动手做完后对照。"><a href="#练习题4-5-1：-建议自己动手做完后对照。" class="headerlink" title="练习题4.5-1： 建议自己动手做完后对照。"></a>练习题4.5-1： 建议自己动手做完后对照。</h3><p>a.</p>
-<script type="math/tex; mode=display">T(n)=2T(n/4)+1</script><p>其中$a=2,b=4,f(n)=1$, $n^{log_ba}= \sqrt n$。<br>有 $f(n) = O(n^{log_ba-\epsilon}) = O(n^{0.5-\epsilon})$，其中$\epsilon = 0.5$。<br>故 $T(n) = \Theta(n^{log_42}) = \Theta(\sqrt n)$</p>
-<hr>
-<p>b.</p>
-<script type="math/tex; mode=display">T(n)=2T(n/4)+\sqrt{n}</script><p>同上,可以求出 $n^{log_ba}$，由于 $f(n) = \sqrt n =\Theta(\sqrt n) = \Theta(n^{log_42})$<br>故$T(n) = \Theta( f(n)lgn) = \Theta(\sqrt n  lgn)$</p>
-<hr>
-<p>c.</p>
-<script type="math/tex; mode=display">T(n)=2T(n/4)+n</script><p>同上，求出 $n^{log_ba}$，由于 $f(n) = \Omega(n^{0.5 + \epsilon})$, 其中 $\epsilon =0.5$。接下来证明正则条件：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-af(n/b)  & \leq c f(n)\\
-2(n/4)    & \leq c \ n\\
-\frac 1 2  & \leq c
-\end{aligned}</script><p>显然，取 $c = \frac 1 2$时，满足条件。故 $T(n) = \Theta(f(n)) = \Theta(n)$</p>
-<hr>
-<p>d.</p>
-<script type="math/tex; mode=display">T(n)=2T(n/4)+n^2</script><p>同上，求出 $n^{log_ba}$，由于 $f(n) =  n^2 = \Omega(n^{logb_a+\epsilon})$，其中 $\epsilon = 1.5$。下面证明正则条件：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-a f(n/b) & \leq c f(n) \\
-2 (n/4)^2 & \leq c \ n^2 \\
-n^2/8 & \leq c \ n^2
-\end{aligned}</script><p>显然，取 $c = 1/8$ 时，满足条件。故 $T(n) = \Theta( f(n) ) = \Theta(n^2)$。</p>
-<p><strong>参考文献：算法导论</strong></p>
+<h2 id="3、最终效果："><a href="#3、最终效果：" class="headerlink" title="3、最终效果："></a>3、最终效果：</h2><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/修改后效果.jpg" alt></p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://007havegone.github.io">007havegone</a>
-            <p>原文链接：<a href="http://007havegone.github.io/2019/07/22/主方法求解递归式/">http://007havegone.github.io/2019/07/22/主方法求解递归式/</a>
-            <p>发表日期：<a href="http://007havegone.github.io/2019/07/22/主方法求解递归式/">July 22nd 2019, 11:49:10 pm</a>
-            <p>更新日期：<a href="http://007havegone.github.io/2019/07/22/主方法求解递归式/">July 30th 2019, 4:59:09 pm</a>
+            <p>原文链接：<a href="http://007havegone.github.io/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/">http://007havegone.github.io/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/</a>
+            <p>发表日期：<a href="http://007havegone.github.io/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/">August 7th 2019, 4:06:33 pm</a>
+            <p>更新日期：<a href="http://007havegone.github.io/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/">August 7th 2019, 5:23:21 pm</a>
             <p>版权声明：‘原创内容，转载时请附上出处’</p>
         </div>
     
@@ -483,17 +460,12 @@ n^2/8 & \leq c \ n^2
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/07/26/算法导论9-1-1找第二小的元素/" title= "算法导论9.1-1找第二小的元素">
-                    <div class="nextTitle">算法导论9.1-1找第二小的元素</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/07/13/Effective-c-读书笔记第一章/" title= "Effective c++ 读书笔记第一章">
-                    <div class="prevTitle">Effective c++ 读书笔记第一章</div>
+                <a href= "/2019/08/02/算法导论思考题9-2/" title= "算法导论思考题9-2">
+                    <div class="prevTitle">算法导论思考题9-2</div>
                 </a>
             
         </li>
@@ -609,7 +581,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#主方法求解递归式"><span class="toc-number">1.</span> <span class="toc-text">主方法求解递归式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主定理"><span class="toc-number">1.0.1.</span> <span class="toc-text">主定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主方法使用例子"><span class="toc-number">1.0.2.</span> <span class="toc-text">主方法使用例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#练习题4-5-1：-建议自己动手做完后对照。"><span class="toc-number">1.0.3.</span> <span class="toc-text">练习题4.5-1： 建议自己动手做完后对照。</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Win10中shift-鼠标右键调出cmd窗口"><span class="toc-number">1.</span> <span class="toc-text">Win10中shift+鼠标右键调出cmd窗口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、在shift-鼠标右键中添加cmd。"><span class="toc-number">1.1.</span> <span class="toc-text">1、在shift+鼠标右键中添加cmd。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、权限修改"><span class="toc-number">1.2.</span> <span class="toc-text">2、权限修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、最终效果："><span class="toc-number">1.3.</span> <span class="toc-text">3、最终效果：</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
