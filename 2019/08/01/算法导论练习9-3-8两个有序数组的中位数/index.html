@@ -22,7 +22,7 @@
     <meta name="description" content="个人博客，写心得随笔。">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>算法导论9.1-1找第二小的元素 · 007&#39;s Studio</title>
+    <title>算法导论练习9.3-8两个有序数组的中位数 · 007&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >007&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">算法导论9.1-1找第二小的元素</a>
+                <a href="#" class="post-name">算法导论练习9.3-8两个有序数组的中位数</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            算法导论9.1-1找第二小的元素
+            算法导论练习9.3-8两个有序数组的中位数
             <!-- 404 -->
             
         </h1>
@@ -268,16 +268,20 @@ height:50vh;
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
     
+        <a class="post-tag" href="javascript:void(0);" data-tags = "中位数">中位数</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "二分查找">二分查找</a>
+    
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.7k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.3k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/07/26</span>
+                    <span class="post-intro-time">2019/08/01</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -401,33 +405,37 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="算法导论9-1-1找第二小的元素"><a href="#算法导论9-1-1找第二小的元素" class="headerlink" title="算法导论9.1-1找第二小的元素"></a>算法导论9.1-1找第二小的元素</h1><h2 id="1、证明：在最坏情况下，找到n个元素中第二小的元素需要-n-lceil-lgn-rceil-2-次比较。（提示：可以同时找到最小元素）"><a href="#1、证明：在最坏情况下，找到n个元素中第二小的元素需要-n-lceil-lgn-rceil-2-次比较。（提示：可以同时找到最小元素）" class="headerlink" title="1、证明：在最坏情况下，找到n个元素中第二小的元素需要 $n+ \lceil lgn  \rceil -2$次比较。（提示：可以同时找到最小元素）"></a>1、证明：在最坏情况下，找到n个元素中第二小的元素需要 $n+ \lceil lgn  \rceil -2$次比较。（提示：可以同时找到最小元素）</h2><p>做以下断言：无论采用何种比较算法，在寻找最小元素的过程中，第二小的元素一定与最小元素做过比较。<br>显然，因为第二小的元素直到遇到最小元素前，一定会胜出进入下一轮。如果最小元素没有与第二小元素相比较，则无法得出该元素是最小的关系。  </p>
-<p>因此，要想是我们找到最小元素的比较次数最少，就需要在寻找最小元素的过程中与最小元素发生比较的次数尽量的少。  </p>
-<p>由于每次我们只能取两个元素进行比较，从而考虑每一轮将我们比较元素两两比较，较小的元素进入下一轮（如比较元素有奇数个，落单的直接进入下一轮），这样比较所得的最小元素比较过的元素是最少的（每轮只有一个）。  </p>
-<p>我们将比较过程转化为二叉树（以数组 [7,8,1,3,4,5,9]为例）:</p>
-<p><img src="/2019/07/26/算法导论9-1-1找第二小的元素/二叉树.jpg" alt="二叉树"></p>
-<h3 id="1-证明-n-1"><a href="#1-证明-n-1" class="headerlink" title="1.证明 $n-1$"></a>1.证明 $n-1$</h3><p>其中，除了叶节点外，每个结点都是一次比较的结果。因此该算法中，比较次数为树中度为2的结点数。根据二叉树的性子可以得出比较次数为 $n-1$ （二叉树：度为2的结点数=叶子叶子结点数-1）。可以看出树的每一层只有一个结点与最小元素比较，达到了下界，因此是最优的。</p>
-<p>这里的 $n-1$ 次比较下界还有另外的思路。可以把每个元素看成一个集合。集合中用最小元素代表这个集合。初始状态下 $n$个点都是单独的集合，比较后相当于把集合做合并。合并后用最小值代表这个集合。那么初始状态下的 $n$ 个集合，至少经过 $n-1$ 次合并才能得到1个集合。  </p>
-<h3 id="2-证明-lceil-lg-rceil-1"><a href="#2-证明-lceil-lg-rceil-1" class="headerlink" title="2.证明 $\lceil lg \rceil -1$"></a>2.证明 $\lceil lg \rceil -1$</h3><p>可以看出，与最小元素比较的次数为树高h-1（根节点的高度为1）。有因为叶节点数个数为n。从而有： $n \leq 2^{h-1}$，故有 $h-1 = \lceil lg n \rceil$,即与最小元素比较的次数至少为 $\lceil lg n \rceil$。  </p>
-<p>从这 $\lceil lg n \rceil$个元素中找到的最小元素即是第二小的元素。最坏情况下第二小元素第一轮遇到最小元素被淘汰，从而在寻找最小元素的过程中，我们无法得到其他元素与第二小元素比较大小关系。这种情况下，要在 $\lceil lg n \rceil$个元素中找到最小元素需要 $\lceil lg n \rceil - 1$次比较。</p>
-<p>综上：最坏情况下，要找到第二小的元素所需的比较次数为 $n + \lceil lg n\rceil -2$ 次比较。</p>
-<h2 id="2-算法实现："><a href="#2-算法实现：" class="headerlink" title="2.算法实现："></a>2.算法实现：</h2><p>&emsp; 根据上面的解释。我们其实只要找到最小元素，然后在最小元素比较过程中比较过的元素记录下来，然后我们在这堆元素（上面证明共$\lceil lg n\rceil$个）中找最小元素即可。</p>
-<p>&emsp;具体实现：对于每一个元素，采用数组或链表的结构，每次比较后胜出的元素记录与它比较的元素在原数组的下标，同时自身进入下一轮的比较，根据上面的图可知，每经过一轮比较，元素被筛选掉一半，直至最终仅剩一个元素时，它就是最小元素，返回与它比较元素的元素集合。最终在该集合中寻找第二小元素。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> cnt;<span class="comment">//记录比较次数</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;vec)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        srand(time(<span class="literal">nullptr</span>));</span><br><span class="line">        for_each(vec.begin(),vec.end(),[](<span class="keyword">int</span> &amp;v)&#123;v=rand();&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; findSmallestAndCollection(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; vec,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;* paths)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//初始状太全是胜者进入下一轮</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; winnerIndex(vec.size());</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;winnerIndex.size();++i)winnerIndex[i]=i;</span><br><span class="line">        <span class="comment">//直到胜者唯一</span></span><br><span class="line">        <span class="keyword">while</span>(winnerIndex.size()!=<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            winnerIndex=compareAndStore(vec,winnerIndex,paths);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> paths[winnerIndex[<span class="number">0</span>]];<span class="comment">//最终剩一个返回对于的path</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">findSecondSmallest</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; vec,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; *paths)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    	<span class="keyword">int</span> smallest2=INF;</span><br><span class="line">    	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; path=Solution::findSmallestAndCollection(vec,paths);</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">auto</span> i:path)<span class="comment">//最 lgn个元素的最小值即是第二小元素</span></span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="keyword">if</span>(vec[i]&lt;smallest2)&#123;</span><br><span class="line">	            Solution::cnt++;<span class="comment">//比较次数+1</span></span><br><span class="line">	            smallest2=vec[i];</span><br><span class="line">	        &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="keyword">return</span> smallest2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; compareAndStore(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;arr,<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;winnerIndex,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;* paths)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ret;</span><br><span class="line">        <span class="keyword">int</span> sz=winnerIndex.size();</span><br><span class="line">        <span class="keyword">if</span>(sz&amp;<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            ret.push_back(winnerIndex[sz<span class="number">-1</span>]);</span><br><span class="line">            --sz;</span><br><span class="line">            <span class="comment">//这里为了方便，奇数个元素时最后一个直接加入，同时数组大小-1</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;sz;i+=<span class="number">2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">        	<span class="comment">//小的加入ret进入下一轮，同时记录它的比较元素下标</span></span><br><span class="line">            <span class="keyword">if</span>(arr[winnerIndex[i]]&lt;=arr[winnerIndex[i<span class="number">-1</span>]])&#123;</span><br><span class="line">                ret.push_back(winnerIndex[i]);</span><br><span class="line">                paths[winnerIndex[i]].push_back(winnerIndex[i<span class="number">-1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                ret.push_back(winnerIndex[i<span class="number">-1</span>]);</span><br><span class="line">                paths[winnerIndex[i<span class="number">-1</span>]].push_back(winnerIndex[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            Solution::cnt++;<span class="comment">//比较次数+1</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> Solution::cnt=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">showTopTen</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;vec)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    sort(vec.begin(),vec.end());</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;vec.size()&amp;&amp;i&lt;<span class="number">10</span>;++i)</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; vec[i] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"输入元素个数"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; len;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec(len);Solution::init(vec);<span class="comment">//产生len个随机数</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; *comparePath=<span class="keyword">new</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;[vec.size()];<span class="comment">//建立每个元素比较的路径</span></span><br><span class="line">	<span class="keyword">int</span> smallest2=Solution::findSecondSmallest(vec,comparePath);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Second smallest element :"</span>&lt;&lt;smallest2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Compare time O(n+lgn-2) \n Std:"</span> &lt;&lt; (len+<span class="built_in">ceil</span>(<span class="built_in">log</span>(len)/<span class="built_in">log</span>(<span class="number">2</span>))<span class="number">-2</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"\nExtra:"</span> &lt;&lt; Solution::cnt &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    showTopTen(vec);<span class="comment">//打印vec最小的10个元素</span></span><br><span class="line">    <span class="keyword">delete</span>[] comparePath;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h2><p>该算法主要注重比较次数，但是空间复杂度不乐观（保存比较路径），时间复杂度为 $O(n)$。适合于那种一次比较需要耗费大量时间的值。下面有两篇我解决该题参考的博客。</p>
-<h3 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h3><p>只涉及证明：</p>
-<p>博客1：<a href="https://blog.csdn.net/qq_33382034/article/details/53495036" target="_blank" rel="noopener">https://blog.csdn.net/qq_33382034/article/details/53495036</a>  </p>
-<p>包括证明和算法实现（python）</p>
-<p>博客2：<a href="http://windmissing.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/2015-12/9.1-1-second_smallest_element.html" target="_blank" rel="noopener">http://windmissing.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/2015-12/9.1-1-second_smallest_element.html</a></p>
+        <h3 id="9-3-8-emsp-设X-1-n-和Y-1-n-为两个数组，每个都包含n个有序的元素，请设计一个-O-lgn-时间的算法找出数组X和Y中所有2n个元素的中位数。"><a href="#9-3-8-emsp-设X-1-n-和Y-1-n-为两个数组，每个都包含n个有序的元素，请设计一个-O-lgn-时间的算法找出数组X和Y中所有2n个元素的中位数。" class="headerlink" title="9.3-8&emsp;设X[1..n]和Y[1..n]为两个数组，每个都包含n个有序的元素，请设计一个$O(lgn)$时间的算法找出数组X和Y中所有2n个元素的中位数。"></a>9.3-8&emsp;设X[1..n]和Y[1..n]为两个数组，每个都包含n个有序的元素，请设计一个$O(lgn)$时间的算法找出数组X和Y中所有2n个元素的中位数。</h3><p><strong>下面假设中位数(低中位数，数组长度偶数时较小的那个)在数组$X$中。如果要求中间两个数的均值，只需要在该基础之上修改一点就好。</strong></p>
+<p>a、$X[k]=m$为中位数，对于数组$X$,有$k$个元素小于等于$X[k]$，同时有$n-k$个元素大于等于$X[k]$。当两个数组合并有序时，对于中位数来说，共有$n$个元素小于等于$X[k]$，n个元素大于等于$X[k]$。那么对于数组$Y$来说，有$n-k$个元素小于等于$X[k]$，$n-(n-k)=k$个元素大于等于$X[k]$。那么就存在以下不等式：</p>
+<script type="math/tex; mode=display">Y[n-k] \leq X[k] \leq Y[n-k+1],1 \leq k < n</script><p>b、$若X[k]$不是中位数。且中位数为$X[k’] \,(1 \leq k’ &lt; k &lt; n)$，那么就有：</p>
+<script type="math/tex; mode=display">Y[n-k'] \leq X[k'] \leq Y[n-k'+1]</script><p>那么对于$X[k]$来说，有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+  Y[n-k+1] &\leq Y[n-k'] \leq X[k'] < X[k] \\
+               Y[n-k+1] &< X[k]  
+\end{aligned}</script><p>c、$若X[k]$不是中位数。且中位数为$X[k’]  (1 \leq k &lt; k’ &lt; n)$，那么就有：</p>
+<script type="math/tex; mode=display">Y[n-k'] \leq X[k'] \leq Y[n-k'+1]</script><p>那么对于$X[k]$来说，有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    X[k] &< X[k'] \leq Y[n-k'+1] \leq Y[n-k] \\
+                X[k] &< Y[n-k]
+\end{aligned}</script><p>d、在递归的过程中，我们要注意一个递归的一个边界问题，在实际的编程中，对于数组$A[L,..R]，1 \leq L \leq R \leq n$。我们取$k=(L+R)/2,k \in [1,n]$, 当$k=n$时，那么对于上面三种情况会出现$Y[n-k]=Y[0]$是一个空数组，对于这种情况，其实只需判断$X[k]=X[n] \leq Y[1]$。</p>
+<p>利用上面的性质，就可以在$O(1)$的时间内判断$X[k]$是否时中位数。对于一个数组区间$X[L,R]$。我们采用二分的思想，取中点$k=(L+R)/2$，判断上面的条件，如果满足条件a或d，那么$X[k]$就是中位数，如果是条件b，那么说明$k$偏大，我们在左子区间继续二分查找，否则为条件c，我们在右子区间继续二分查找。这样的一个二分查找过程的时间复杂度为$\Theta(lgn)$。</p>
+<p>上面给出性质的是假设中位数在数组$X$的分析，如果中位数不在数组$X$中，在查找的过程中到达边界而不满足$X[k]$为中位数的a条件，我们可以返回一个标志如NOTFIND。此时中位数一定在数组$Y$中，我们进行同样的操作。最差情况下进行$2lgn$次查找。时间复杂度仍为为$\Theta(lgn)$。</p>
+<p>下面是伪代码:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Two-Array-Medium(X,Y)</span><br><span class="line">n &lt;-- X.length  <span class="comment">//与数组Y长度相同</span></span><br><span class="line">medium = Find-Medium(X,Y,<span class="number">1</span>,n,n)<span class="comment">//先尝试在数组X查找</span></span><br><span class="line"><span class="keyword">if</span> medium = NOTFIND<span class="comment">//未找到，在Y数组查找</span></span><br><span class="line">    medium = Find-Medium(Y,X,<span class="number">1</span>,n,n)</span><br><span class="line"><span class="keyword">return</span> medium</span><br><span class="line"></span><br><span class="line">Find-Medium(A,B,low,high,n)</span><br><span class="line"><span class="keyword">if</span> low &gt; high</span><br><span class="line">    <span class="keyword">return</span> NOTFIND</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    k = (high+low)/<span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> k=n <span class="keyword">and</span> A[n]&lt;=B[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span> A[n]</span><br><span class="line">    elseif k &lt; n <span class="keyword">and</span> B[n-k] &lt;= A[k] &lt;= B[n-k+<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span> A[k]</span><br><span class="line">    elseif B[n-k+<span class="number">1</span>] &lt; A[k]</span><br><span class="line">        <span class="keyword">return</span> Find-Medium(A,B,low,k<span class="number">-1</span>,n)</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> Find-Medium(A,B,k+<span class="number">1</span>,high,n)</span><br></pre></td></tr></table></figure>
+<p>实际编程中，数组从0开始稍微改动下即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;random&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LEN 5</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NOTFIND 0x3f3f3f3f</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//参数n为数组长度,此时边界为n-1</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findMedium</span><span class="params">(<span class="keyword">int</span> A[],<span class="keyword">int</span> B[],<span class="keyword">int</span> L,<span class="keyword">int</span> R,<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(L&gt;R)</span><br><span class="line">		<span class="keyword">return</span> NOTFIND;</span><br><span class="line">	<span class="keyword">int</span> k=(L+R)/<span class="number">2</span>;</span><br><span class="line">        <span class="comment">// k=n-1时要独立一个分支，否则第二个if会越界</span></span><br><span class="line">	<span class="keyword">if</span>(k==(n<span class="number">-1</span>)&amp;&amp;A[k]&lt;=B[<span class="number">0</span>])</span><br><span class="line">		<span class="keyword">return</span> A[k];</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(k&lt;(n<span class="number">-1</span>)&amp;&amp;B[n-k<span class="number">-2</span>]&lt;=A[k]&amp;&amp;A[k]&lt;=B[n-k<span class="number">-1</span>])</span><br><span class="line">		<span class="keyword">return</span> A[k];</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(B[n-k<span class="number">-1</span>]&lt;A[k])</span><br><span class="line">		<span class="keyword">return</span> findMedium(A,B,L,k<span class="number">-1</span>,n);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> findMedium(A,B,k+<span class="number">1</span>,R,n);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">TwoArrayMedium</span><span class="params">(<span class="keyword">int</span> A[],<span class="keyword">int</span> B[],<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret=NOTFIND;</span><br><span class="line">	<span class="keyword">if</span>((ret=findMedium(A,B,<span class="number">0</span>,len<span class="number">-1</span>,len))==NOTFIND)</span><br><span class="line">		ret=findMedium(B,A,<span class="number">0</span>,len<span class="number">-1</span>,len);<span class="comment">//不在数组A,继续在B中查找</span></span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">unsigned</span> N&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getRandomArray</span><span class="params">(T (&amp;arr)[N])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//随机生成2000以内的随机数</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> default_random_engine <span class="title">e</span><span class="params">(time(<span class="literal">nullptr</span>))</span></span>;</span><br><span class="line">	<span class="keyword">static</span> uniform_int_distribution&lt;T&gt; d(<span class="number">0</span>,<span class="number">2000</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> &amp;i:arr)</span><br><span class="line">		i=d(e);</span><br><span class="line">	sort(arr,arr+N);<span class="comment">//数组排序</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> A[LEN];</span><br><span class="line">	<span class="keyword">int</span> B[LEN];</span><br><span class="line">	getRandomArray(A);</span><br><span class="line">	getRandomArray(B);</span><br><span class="line">	<span class="keyword">int</span> C[<span class="number">2</span>*LEN];</span><br><span class="line">	copy(A,A+LEN,C);</span><br><span class="line">	copy(B,B+LEN,C+LEN);</span><br><span class="line">	sort(C,C+<span class="number">2</span>*LEN);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> i:C)</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"中位数为:"</span> &lt;&lt; TwoArrayMedium(A,B,LEN) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这个问题我只求了低中位数，因为数组总长度为$2n$恒为偶数，因此如果要求中间两个数的均值。只需要在上面代码的基础上稍微改下，加上$k+1$位置的数，然后除2即可达到。<strong>（注意：如果k求出是X数组的最后一位，那么高中位数在数组Y中）</strong>。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://007havegone.github.io">007havegone</a>
-            <p>原文链接：<a href="http://007havegone.github.io/2019/07/26/算法导论9-1-1找第二小的元素/">http://007havegone.github.io/2019/07/26/算法导论9-1-1找第二小的元素/</a>
-            <p>发表日期：<a href="http://007havegone.github.io/2019/07/26/算法导论9-1-1找第二小的元素/">July 26th 2019, 9:08:35 pm</a>
-            <p>更新日期：<a href="http://007havegone.github.io/2019/07/26/算法导论9-1-1找第二小的元素/">July 30th 2019, 4:59:16 pm</a>
+            <p>原文链接：<a href="http://007havegone.github.io/2019/08/01/算法导论练习9-3-8两个有序数组的中位数/">http://007havegone.github.io/2019/08/01/算法导论练习9-3-8两个有序数组的中位数/</a>
+            <p>发表日期：<a href="http://007havegone.github.io/2019/08/01/算法导论练习9-3-8两个有序数组的中位数/">August 1st 2019, 6:16:30 pm</a>
+            <p>更新日期：<a href="http://007havegone.github.io/2019/08/01/算法导论练习9-3-8两个有序数组的中位数/">August 9th 2019, 1:13:38 am</a>
             <p>版权声明：‘原创内容，转载时请附上出处’</p>
         </div>
     
@@ -436,16 +444,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/07/29/算法导论思考题1-1/" title= "算法导论思考题1-1">
-                    <div class="nextTitle">算法导论思考题1-1</div>
+                <a href= "/2019/08/02/算法导论思考题9-2/" title= "算法导论思考题9-2">
+                    <div class="nextTitle">算法导论思考题9-2</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/07/22/主方法求解递归式/" title= "主方法求解递归式">
-                    <div class="prevTitle">主方法求解递归式</div>
+                <a href= "/2019/07/31/算法导论思考题6-2/" title= "算法导论思考题6-2">
+                    <div class="prevTitle">算法导论思考题6-2</div>
                 </a>
             
         </li>
@@ -561,7 +569,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#算法导论9-1-1找第二小的元素"><span class="toc-number">1.</span> <span class="toc-text">算法导论9.1-1找第二小的元素</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、证明：在最坏情况下，找到n个元素中第二小的元素需要-n-lceil-lgn-rceil-2-次比较。（提示：可以同时找到最小元素）"><span class="toc-number">1.1.</span> <span class="toc-text">1、证明：在最坏情况下，找到n个元素中第二小的元素需要 $n+ \lceil lgn  \rceil -2$次比较。（提示：可以同时找到最小元素）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-证明-n-1"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.证明 $n-1$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-证明-lceil-lg-rceil-1"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.证明 $\lceil lg \rceil -1$</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-算法实现："><span class="toc-number">1.2.</span> <span class="toc-text">2.算法实现：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、总结"><span class="toc-number">1.3.</span> <span class="toc-text">3、总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考博客"><span class="toc-number">1.3.1.</span> <span class="toc-text">参考博客</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-3-8-emsp-设X-1-n-和Y-1-n-为两个数组，每个都包含n个有序的元素，请设计一个-O-lgn-时间的算法找出数组X和Y中所有2n个元素的中位数。"><span class="toc-number">1.</span> <span class="toc-text">9.3-8 设X[1..n]和Y[1..n]为两个数组，每个都包含n个有序的元素，请设计一个$O(lgn)$时间的算法找出数组X和Y中所有2n个元素的中位数。</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -699,9 +707,28 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 13
+        Total : 14
         </div>
         <!-- search  -->
         
@@ -717,7 +744,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/08</span><a class="archive-post-title" href= "/2019/08/08/算法导论10-4-5二叉树遍历/" >算法导论10.4-5二叉树遍历</a>
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href= "/2019/08/08/算法导论练习12-1/" >算法导论 练习12.1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href= "/2019/08/08/算法导论练习10.4-5二叉树遍历/" >算法导论练习10.4-5二叉树遍历</a>
         </li>
     
     
@@ -732,7 +764,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/2019/08/01/算法导论9-3-8两个有序数组的中位数/" >算法导论9.3-8两个有序数组的中位数</a>
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/2019/08/01/算法导论练习9-3-8两个有序数组的中位数/" >算法导论练习9.3-8两个有序数组的中位数</a>
         </li>
     
     
@@ -762,7 +794,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/26</span><a class="archive-post-title" href= "/2019/07/26/算法导论9-1-1找第二小的元素/" >算法导论9.1-1找第二小的元素</a>
+            <span class="archive-post-date">07/26</span><a class="archive-post-title" href= "/2019/07/26/算法导论练习9-1-1找第二小的元素/" >算法导论练习9.1-1找第二小的元素</a>
         </li>
     
     
@@ -793,9 +825,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
     
-        <span class="sidebar-tag-name" data-tags="逆序对"><span class="iconfont-archer">&#xe606;</span>逆序对</span>
-    
         <span class="sidebar-tag-name" data-tags="排序"><span class="iconfont-archer">&#xe606;</span>排序</span>
+    
+        <span class="sidebar-tag-name" data-tags="逆序对"><span class="iconfont-archer">&#xe606;</span>逆序对</span>
     
         <span class="sidebar-tag-name" data-tags="线段树"><span class="iconfont-archer">&#xe606;</span>线段树</span>
     
@@ -818,6 +850,8 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
         <span class="sidebar-tag-name" data-tags="Effective C++"><span class="iconfont-archer">&#xe606;</span>Effective C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

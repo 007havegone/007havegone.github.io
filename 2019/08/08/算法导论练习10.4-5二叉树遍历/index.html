@@ -22,7 +22,7 @@
     <meta name="description" content="个人博客，写心得随笔。">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>算法导论10.4-5二叉树遍历 · 007&#39;s Studio</title>
+    <title>算法导论练习10.4-5二叉树遍历 · 007&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >007&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">算法导论10.4-5二叉树遍历</a>
+                <a href="#" class="post-name">算法导论练习10.4-5二叉树遍历</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            算法导论10.4-5二叉树遍历
+            算法导论练习10.4-5二叉树遍历
             <!-- 404 -->
             
         </h1>
@@ -416,7 +416,7 @@ height:50vh;
 <p>下面是测试代码：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NIL -1</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Tree</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	Tree* left;</span><br><span class="line">	Tree* right;</span><br><span class="line">	Tree* parent;</span><br><span class="line">	<span class="keyword">int</span> key;</span><br><span class="line">	Tree():left(<span class="literal">nullptr</span>),right(<span class="literal">nullptr</span>),parent(<span class="literal">nullptr</span>)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> Tree* t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; t-&gt;key &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createTree</span><span class="params">(Tree *&amp;t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> key;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; key;</span><br><span class="line">	<span class="keyword">if</span>(key==NIL)&#123;</span><br><span class="line">		t=<span class="literal">nullptr</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	t=<span class="keyword">new</span> Tree();</span><br><span class="line">	t-&gt;key=key;</span><br><span class="line">	createTree(t-&gt;left);</span><br><span class="line">	createTree(t-&gt;right);</span><br><span class="line">	<span class="comment">//存在子结点，更细父指针</span></span><br><span class="line">	<span class="keyword">if</span>(t-&gt;left)</span><br><span class="line">		t-&gt;left-&gt;parent=t;</span><br><span class="line">	<span class="keyword">if</span>(t-&gt;right)</span><br><span class="line">		t-&gt;right-&gt;parent=t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 递归版本</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inorder_travel</span><span class="params">(Tree *h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(h)</span><br><span class="line">	&#123;</span><br><span class="line">		inorder_travel(h-&gt;left);</span><br><span class="line">		print(h);</span><br><span class="line">		inorder_travel(h-&gt;right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用stack非递归版本，结点不需要parent指针</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inorder_byStack</span><span class="params">(Tree*h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">stack</span>&lt;Tree*&gt; sta;</span><br><span class="line">	Tree *p=h;</span><br><span class="line">	<span class="keyword">while</span>(p || !sta.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span>(p)</span><br><span class="line">		&#123;</span><br><span class="line">			sta.push(p);</span><br><span class="line">			p=p-&gt;left;</span><br><span class="line">		&#125;</span><br><span class="line">		p=sta.top();sta.pop();</span><br><span class="line">		print(p);</span><br><span class="line">		p=p-&gt;right;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 没有使用栈的版本，通过h和pre之间的关系进行遍历。</span></span><br><span class="line"><span class="comment">// 回溯需要parent指针。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inorder_noStack</span><span class="params">(Tree* h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!h)<span class="keyword">return</span>;</span><br><span class="line">	<span class="comment">//pre作为前驱，判断从左孩子还是右孩子返回</span></span><br><span class="line">	Tree* pre=<span class="literal">nullptr</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="literal">true</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//找到左结点</span></span><br><span class="line">		<span class="keyword">if</span>(pre!=h-&gt;left)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">while</span>(h-&gt;left)</span><br><span class="line">				h=h-&gt;left;</span><br><span class="line">		&#125;</span><br><span class="line">		print(h);</span><br><span class="line">		<span class="comment">//存在右结点则进入</span></span><br><span class="line">		<span class="keyword">if</span>(h-&gt;right)&#123;</span><br><span class="line">			h=h-&gt;right;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//右孩子返回时，回溯直到根结点的父节点或是父节点的左孩子</span></span><br><span class="line">		<span class="keyword">do</span>&#123;</span><br><span class="line">			pre=h;</span><br><span class="line">			h=h-&gt;parent;</span><br><span class="line">			<span class="keyword">if</span>(h==<span class="literal">nullptr</span>)</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">		&#125;<span class="keyword">while</span>(pre==h-&gt;right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Tree* head;</span><br><span class="line">	createTree(head);</span><br><span class="line">	inorder_travel(head);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	inorder_byStack(head);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	inorder_noStack(head);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>测试数据:<br>    1 2 4 7 -1 -1 -1 5 8 -1 -1 -1 3 6 -1 9 -1 -1 -1</p>
-<p>树的形状是：<br><img src="/2019/08/08/算法导论10-4-5二叉树遍历/二叉树.jpg" alt></p>
+<p>树的形状是：<br><img src="/2019/08/08/算法导论练习10.4-5二叉树遍历/二叉树.jpg" alt></p>
 <p>中序遍历结果：<br>    7 4 2 8 5 1 6 9 3</p>
 
     </article>
@@ -424,15 +424,20 @@ height:50vh;
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://007havegone.github.io">007havegone</a>
-            <p>原文链接：<a href="http://007havegone.github.io/2019/08/08/算法导论10-4-5二叉树遍历/">http://007havegone.github.io/2019/08/08/算法导论10-4-5二叉树遍历/</a>
-            <p>发表日期：<a href="http://007havegone.github.io/2019/08/08/算法导论10-4-5二叉树遍历/">August 8th 2019, 2:00:03 pm</a>
-            <p>更新日期：<a href="http://007havegone.github.io/2019/08/08/算法导论10-4-5二叉树遍历/">August 8th 2019, 4:53:16 pm</a>
+            <p>原文链接：<a href="http://007havegone.github.io/2019/08/08/算法导论练习10.4-5二叉树遍历/">http://007havegone.github.io/2019/08/08/算法导论练习10.4-5二叉树遍历/</a>
+            <p>发表日期：<a href="http://007havegone.github.io/2019/08/08/算法导论练习10.4-5二叉树遍历/">August 8th 2019, 2:00:03 pm</a>
+            <p>更新日期：<a href="http://007havegone.github.io/2019/08/08/算法导论练习10.4-5二叉树遍历/">August 9th 2019, 1:13:23 am</a>
             <p>版权声明：‘原创内容，转载时请附上出处’</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2019/08/08/算法导论练习12-1/" title= "算法导论 练习12.1">
+                    <div class="nextTitle">算法导论 练习12.1</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -693,9 +698,28 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 13
+        Total : 14
         </div>
         <!-- search  -->
         
@@ -711,7 +735,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/08</span><a class="archive-post-title" href= "/2019/08/08/算法导论10-4-5二叉树遍历/" >算法导论10.4-5二叉树遍历</a>
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href= "/2019/08/08/算法导论练习12-1/" >算法导论 练习12.1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href= "/2019/08/08/算法导论练习10.4-5二叉树遍历/" >算法导论练习10.4-5二叉树遍历</a>
         </li>
     
     
@@ -726,7 +755,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/2019/08/01/算法导论9-3-8两个有序数组的中位数/" >算法导论9.3-8两个有序数组的中位数</a>
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/2019/08/01/算法导论练习9-3-8两个有序数组的中位数/" >算法导论练习9.3-8两个有序数组的中位数</a>
         </li>
     
     
@@ -756,7 +785,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/26</span><a class="archive-post-title" href= "/2019/07/26/算法导论9-1-1找第二小的元素/" >算法导论9.1-1找第二小的元素</a>
+            <span class="archive-post-date">07/26</span><a class="archive-post-title" href= "/2019/07/26/算法导论练习9-1-1找第二小的元素/" >算法导论练习9.1-1找第二小的元素</a>
         </li>
     
     
@@ -787,9 +816,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
     
-        <span class="sidebar-tag-name" data-tags="逆序对"><span class="iconfont-archer">&#xe606;</span>逆序对</span>
-    
         <span class="sidebar-tag-name" data-tags="排序"><span class="iconfont-archer">&#xe606;</span>排序</span>
+    
+        <span class="sidebar-tag-name" data-tags="逆序对"><span class="iconfont-archer">&#xe606;</span>逆序对</span>
     
         <span class="sidebar-tag-name" data-tags="线段树"><span class="iconfont-archer">&#xe606;</span>线段树</span>
     
@@ -812,6 +841,8 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
         <span class="sidebar-tag-name" data-tags="Effective C++"><span class="iconfont-archer">&#xe606;</span>Effective C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
