@@ -22,7 +22,7 @@
     <meta name="description" content="个人博客，写心得随笔。">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>007&#39;s Studio</title>
+    <title>算法导论10.4-5二叉树遍历 · 007&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -77,6 +77,8 @@
 
     <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -201,14 +203,23 @@
 </head>
 
     
-        <body class="home-body">
+        <body class="post-body">
     
     
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >007&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">算法导论10.4-5二叉树遍历</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>007's Studio.</a>
 </header>
@@ -221,23 +232,23 @@
 
 
 
-height:60vh;
+height:50vh;
 ">
     
     <!-- 主页  -->
     
     
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/加藤惠阳台.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            007's Studio.
-            <!-- 文章页  -->
+            算法导论10.4-5二叉树遍历
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -245,12 +256,51 @@ height:60vh;
             <!-- 主页副标题  -->
             
             
-                it's better to burn out than to fade away
-            
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "二叉树">二叉树</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "中序遍历">中序遍历</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">615</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/08/08</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -351,216 +401,65 @@ height:60vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/22/主方法求解递归式/" >
-            
-                <span>主方法求解递归式</span>
-        </a>
-        <div class="abstract-content">
-            主方法求解递归式&emsp;&emsp;在分析递归的算法时，主方法可以较快的计算出算法的时间复杂度主方法可以用于满足以下形式的递归式。
-T(n)=aT(n/b)+f(n)其中$a\geq1和b&gt;1$是常数，$f(n)$是渐进函数。&emsp;&emsp;主方法描述的算法：将原本规模为$n$的问题，分解为 $a$ 个规模为 $n/b$ 的子问题，其中 $a,b\in \mathbb{Z^+}$，函数 $f(n)$ 包含了问题分解和子问题合并的代价。
-下面是归并排序的递归式:
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>10.4-5 给定一个n结点的二叉树，写出一个$O(n)$时间的非递归过程，将该树的每一个结点的关键字输出。要求除该树本身的存储空间外只能使用固定量的额外存储空间，且中过程中不得修改该树，即使是暂时的修改也不允许。</p>
+<p>要完成$O(1))$的空间内遍历该树，需要每个结点需要能访问其父节点进行回溯。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Tree</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    Tree *parent;</span><br><span class="line">    Tree *left;</span><br><span class="line">    Tree *right;</span><br><span class="line">    <span class="keyword">int</span> key;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>中序遍历：</p>
+<ol>
+<li>访问左孩子</li>
+<li>访问右孩子</li>
+<li>从左孩子返回，访问根节点，进入右孩子访问</li>
+<li>从右孩子返回，整棵树访问完成，回溯直到为根节点或该结点是父节点的左孩子</li>
+</ol>
+<p>下面是测试代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NIL -1</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Tree</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	Tree* left;</span><br><span class="line">	Tree* right;</span><br><span class="line">	Tree* parent;</span><br><span class="line">	<span class="keyword">int</span> key;</span><br><span class="line">	Tree():left(<span class="literal">nullptr</span>),right(<span class="literal">nullptr</span>),parent(<span class="literal">nullptr</span>)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> Tree* t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; t-&gt;key &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createTree</span><span class="params">(Tree *&amp;t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> key;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; key;</span><br><span class="line">	<span class="keyword">if</span>(key==NIL)&#123;</span><br><span class="line">		t=<span class="literal">nullptr</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	t=<span class="keyword">new</span> Tree();</span><br><span class="line">	t-&gt;key=key;</span><br><span class="line">	createTree(t-&gt;left);</span><br><span class="line">	createTree(t-&gt;right);</span><br><span class="line">	<span class="comment">//存在子结点，更细父指针</span></span><br><span class="line">	<span class="keyword">if</span>(t-&gt;left)</span><br><span class="line">		t-&gt;left-&gt;parent=t;</span><br><span class="line">	<span class="keyword">if</span>(t-&gt;right)</span><br><span class="line">		t-&gt;right-&gt;parent=t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 递归版本</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inorder_travel</span><span class="params">(Tree *h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(h)</span><br><span class="line">	&#123;</span><br><span class="line">		inorder_travel(h-&gt;left);</span><br><span class="line">		print(h);</span><br><span class="line">		inorder_travel(h-&gt;right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用stack非递归版本，结点不需要parent指针</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inorder_byStack</span><span class="params">(Tree*h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">stack</span>&lt;Tree*&gt; sta;</span><br><span class="line">	Tree *p=h;</span><br><span class="line">	<span class="keyword">while</span>(p || !sta.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span>(p)</span><br><span class="line">		&#123;</span><br><span class="line">			sta.push(p);</span><br><span class="line">			p=p-&gt;left;</span><br><span class="line">		&#125;</span><br><span class="line">		p=sta.top();sta.pop();</span><br><span class="line">		print(p);</span><br><span class="line">		p=p-&gt;right;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 没有使用栈的版本，通过h和pre之间的关系进行遍历。</span></span><br><span class="line"><span class="comment">// 回溯需要parent指针。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inorder_noStack</span><span class="params">(Tree* h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//pre作为前驱，判断从左孩子还是右孩子返回</span></span><br><span class="line">	Tree* pre=<span class="literal">nullptr</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="literal">true</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//找到左结点</span></span><br><span class="line">		<span class="keyword">if</span>(pre!=h-&gt;left)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">while</span>(h-&gt;left)</span><br><span class="line">				h=h-&gt;left;</span><br><span class="line">		&#125;</span><br><span class="line">		print(h);</span><br><span class="line">		<span class="comment">//存在右结点则进入</span></span><br><span class="line">		<span class="keyword">if</span>(h-&gt;right)&#123;</span><br><span class="line">			h=h-&gt;right;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//右孩子返回时，回溯直到根结点的父节点或是父节点的左孩子</span></span><br><span class="line">		<span class="keyword">do</span>&#123;</span><br><span class="line">			pre=h;</span><br><span class="line">			h=h-&gt;parent;</span><br><span class="line">			<span class="keyword">if</span>(h==<span class="literal">nullptr</span>)</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">		&#125;<span class="keyword">while</span>(pre==h-&gt;right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Tree* head;</span><br><span class="line">	createTree(head);</span><br><span class="line">	inorder_travel(head);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	inorder_byStack(head);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	inorder_noStack(head);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试数据:<br>    1 2 4 7 -1 -1 -1 5 8 -1 -1 -1 3 6 -1 9 -1 -1 -1</p>
+<p>树的形状是：<br><img src="/2019/08/08/算法导论10-4-5二叉树遍历/二叉树.jpg" alt></p>
+<p>中序遍历结果：<br>    7 4 2 8 5 1 6 9 3</p>
 
-T(n)=
-\begin{cases}
-\Theta(1) & 若n=1 \\
-2T(n/2)+\Theta...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "主方法">主方法</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "时间复杂度">时间复杂度</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法分析">算法分析</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/13/Effective-c-读书笔记第一章/" >
-            
-                <span>Effective c++ 读书笔记第一章</span>
-        </a>
-        <div class="abstract-content">
-            
-Ⅰ、 让自习惯C++
-条款01：视C++为一个语言连邦
-C++是一个多重泛型编程语言，同时支持过程形式、面向对象形式、泛型形式、元编程形式的语言。
-将C++是为一个联邦,主要的此语言为4个：
-1.procedural-based C。C语言的面向过程2.Object-Oriented C++。面向对象3.Template C++。 C++ 的泛型 (generics) 编程和由 template 的强大功能带来 template   metaprogramming (TMP,模板元编程)4.STL。template程序库，主要包括 容器、迭代器、算法以及函数对象
-tips:编程过程中在...
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://007havegone.github.io">007havegone</a>
+            <p>原文链接：<a href="http://007havegone.github.io/2019/08/08/算法导论10-4-5二叉树遍历/">http://007havegone.github.io/2019/08/08/算法导论10-4-5二叉树遍历/</a>
+            <p>发表日期：<a href="http://007havegone.github.io/2019/08/08/算法导论10-4-5二叉树遍历/">August 8th 2019, 2:00:03 pm</a>
+            <p>更新日期：<a href="http://007havegone.github.io/2019/08/08/算法导论10-4-5二叉树遍历/">August 8th 2019, 3:45:37 pm</a>
+            <p>版权声明：‘原创内容，转载时请附上出处’</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "C++">C++</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Effective C++">Effective C++</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/13/hello-world/" >
-            
-                <span>Hello World</span>
-        </a>
-        <div class="abstract-content">
-            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
-More info: Writing
-Run server1$ hexo server
-More...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/13</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/">&#60; PREV</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
-    
-</main>
-            <!-- profile -->
+    <ul class="post-paginator">
+        <li class="next">
             
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src= /avatar/Misaka.jpg >
-    <div class="profile-name">007havegone</div>
-    
-    <div class="profile-signature">
-        It&#39;s a left-handed thing, you won&#39;t understand.
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
+        </li>
+        <li class="previous">
             
-                <a href="mailto:996209949@qq.com" class="iconfont-archer email" title=email ></a>
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/" title= "Win10中shift+鼠标右键调出cmd窗口">
+                    <div class="prevTitle">Win10中shift+鼠标右键调出cmd窗口</div>
+                </a>
             
-        
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-        
-            
-                <a href="//github.com/007havegone" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
     
-        
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
     
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-            
-                <a href="/atom.xml" class="iconfont-archer others" target="_blank" title=others></a>
-            
-        
-    
-        
     
 
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-                    <span>
-                        <a href= //www.baidu.com target="_black">friendA</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href= //www.google.com target="_black">friendB</a>
-                    </span>
-                
-            
-                
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <a href = "/about" >ABOUT ME</a>
-        </div>
-    
-</div>
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
             
         </div>
         <footer class="footer footer-unloaded">
@@ -640,6 +539,24 @@ More...
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -975,6 +892,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
