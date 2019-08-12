@@ -415,6 +415,7 @@ height:50vh;
 <hr>
 <p>12.2-4&emsp;Bunyan教授认为他发现了一个二叉搜索树的重要性质。假设在一棵二叉搜索树中查找一个关键字$k$，查找结束于一个树叶。考虑三个集合：$A$为查找路径左边的关键字集合；$B$为u查找路径上的关键字集合；$C$为查找路径右边的关键字集合。Bunyan教授声称：$\forall a \in A,b \in B, c \in C$，一定满足$a \leq b \leq c$。请给出该教授这个论断的一个最小可能的反例。</p>
 <p><img src="/2019/08/09/算法导论练习12-2/2-3.jpg" alt></p>
+<p>查找5，那么$B=\{1,4,5\},A=\{2\},C=\{\}$, 显然不成立。</p>
 <hr>
 <p>12.2-5&emsp;证明：如果一棵二叉搜索树中一个结点有两个孩子，那么它的后继没有左孩子，它的前驱没有右孩子。</p>
 <p>证明：反证法，设结点为$x$，它的前驱为$pre$，那么对于BST的中序遍历序列为 $&lt;\dotsc-pre-x-\dotsc&gt;$ ，假如$pre$存在右孩子$ppret$，那么在中序遍历时，遍历完成$pre$后接着遍历$ppre$，这与之前中序遍历的序列相矛盾。即$x$的前驱$pre$不存在右孩子。同理$x$的后继结点不存在左孩子。</p>
@@ -446,7 +447,7 @@ height:50vh;
             <p>原文作者：<a href="http://007havegone.github.io">007havegone</a>
             <p>原文链接：<a href="http://007havegone.github.io/2019/08/09/算法导论练习12-2/">http://007havegone.github.io/2019/08/09/算法导论练习12-2/</a>
             <p>发表日期：<a href="http://007havegone.github.io/2019/08/09/算法导论练习12-2/">August 9th 2019, 1:22:44 am</a>
-            <p>更新日期：<a href="http://007havegone.github.io/2019/08/09/算法导论练习12-2/">August 12th 2019, 11:14:12 am</a>
+            <p>更新日期：<a href="http://007havegone.github.io/2019/08/09/算法导论练习12-2/">August 12th 2019, 11:22:03 am</a>
             <p>版权声明：‘原创内容，转载时请附上出处’</p>
         </div>
     
@@ -745,10 +746,6 @@ top:50vh;
     
     
     
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 15
@@ -845,27 +842,25 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
-    
-        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
-    
-        <span class="sidebar-tag-name" data-tags="排序"><span class="iconfont-archer">&#xe606;</span>排序</span>
-    
-        <span class="sidebar-tag-name" data-tags="d叉堆"><span class="iconfont-archer">&#xe606;</span>d叉堆</span>
-    
         <span class="sidebar-tag-name" data-tags="主方法"><span class="iconfont-archer">&#xe606;</span>主方法</span>
     
         <span class="sidebar-tag-name" data-tags="时间复杂度"><span class="iconfont-archer">&#xe606;</span>时间复杂度</span>
     
         <span class="sidebar-tag-name" data-tags="算法分析"><span class="iconfont-archer">&#xe606;</span>算法分析</span>
     
-        <span class="sidebar-tag-name" data-tags="中位数"><span class="iconfont-archer">&#xe606;</span>中位数</span>
-    
-        <span class="sidebar-tag-name" data-tags="二分查找"><span class="iconfont-archer">&#xe606;</span>二分查找</span>
+        <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
     
         <span class="sidebar-tag-name" data-tags="逆序对"><span class="iconfont-archer">&#xe606;</span>逆序对</span>
     
+        <span class="sidebar-tag-name" data-tags="排序"><span class="iconfont-archer">&#xe606;</span>排序</span>
+    
         <span class="sidebar-tag-name" data-tags="线段树"><span class="iconfont-archer">&#xe606;</span>线段树</span>
+    
+        <span class="sidebar-tag-name" data-tags="d叉堆"><span class="iconfont-archer">&#xe606;</span>d叉堆</span>
+    
+        <span class="sidebar-tag-name" data-tags="中位数"><span class="iconfont-archer">&#xe606;</span>中位数</span>
+    
+        <span class="sidebar-tag-name" data-tags="二分查找"><span class="iconfont-archer">&#xe606;</span>二分查找</span>
     
         <span class="sidebar-tag-name" data-tags="操作系统"><span class="iconfont-archer">&#xe606;</span>操作系统</span>
     
@@ -876,6 +871,8 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="二叉树"><span class="iconfont-archer">&#xe606;</span>二叉树</span>
     
         <span class="sidebar-tag-name" data-tags="中序遍历"><span class="iconfont-archer">&#xe606;</span>中序遍历</span>
+    
+        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
     
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
