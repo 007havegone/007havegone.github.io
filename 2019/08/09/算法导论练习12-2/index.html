@@ -408,10 +408,10 @@ height:50vh;
 <p>因为这是查找BST过程中的一个序列，因此根据该序列构造BST，如果满足BST的性质，那么就是查找的序列，否则不是。其中c和e不满足。</p>
 <hr>
 <p>12.2-2&emsp;写出TREE-MINIMUM和TREE-MAXIMUM的递归版本。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据书上的版本写的，书中没有判断x是否为空的情况</span></span><br><span class="line">TREE-MINIMUM(x)</span><br><span class="line"> <span class="keyword">if</span> x.left = NIL</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"> <span class="keyword">return</span> TREE-MINIMUM(x.left);</span><br><span class="line"></span><br><span class="line">TREE-MAXIMUM(x)</span><br><span class="line"> <span class="keyword">if</span> x.right = NIL</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"> <span class="keyword">return</span> TREE-MAXIMUM(x.right)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据书上的版本写的，书中没有判断x是否为空的情况</span></span><br><span class="line">TREE-MINIMUM(x)</span><br><span class="line"> <span class="keyword">if</span> x.left == NIL</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"> <span class="keyword">return</span> TREE-MINIMUM(x.left);</span><br><span class="line"></span><br><span class="line">TREE-MAXIMUM(x)</span><br><span class="line"> <span class="keyword">if</span> x.right == NIL</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"> <span class="keyword">return</span> TREE-MAXIMUM(x.right)</span><br></pre></td></tr></table></figure>
 <hr>
 <p>12.2-3&emsp;写出过程TREE-PREDECESSOR的伪代码</p>
-<p>与书上的TREE-SUCCESSOR想对称<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">TREE-PREDECESSOR</span><br><span class="line"> <span class="keyword">if</span> x.left != NIL</span><br><span class="line">    <span class="keyword">return</span> TREE-MAXIMUM(x.left)</span><br><span class="line"> y = x.p</span><br><span class="line"> <span class="keyword">while</span> y != NIL <span class="keyword">and</span> y.left = x</span><br><span class="line">    x = y</span><br><span class="line">    y = y.p</span><br><span class="line"><span class="keyword">return</span> y</span><br></pre></td></tr></table></figure></p>
+<p>与书上的TREE-SUCCESSOR想对称<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">TREE-PREDECESSOR</span><br><span class="line"> <span class="keyword">if</span> x.left != NIL</span><br><span class="line">    <span class="keyword">return</span> TREE-MAXIMUM(x.left)</span><br><span class="line"> y = x.p</span><br><span class="line"> <span class="keyword">while</span> y != NIL <span class="keyword">and</span> y.left == x</span><br><span class="line">    x = y</span><br><span class="line">    y = y.p</span><br><span class="line"><span class="keyword">return</span> y</span><br></pre></td></tr></table></figure></p>
 <hr>
 <p>12.2-4&emsp;Bunyan教授认为他发现了一个二叉搜索树的重要性质。假设在一棵二叉搜索树中查找一个关键字$k$，查找结束于一个树叶。考虑三个集合：$A$为查找路径左边的关键字集合；$B$为u查找路径上的关键字集合；$C$为查找路径右边的关键字集合。Bunyan教授声称：$\forall a \in A,b \in B, c \in C$，一定满足$a \leq b \leq c$。请给出该教授这个论断的一个最小可能的反例。</p>
 <p><img src="/2019/08/09/算法导论练习12-2/2-3.jpg" alt></p>
@@ -447,13 +447,18 @@ height:50vh;
             <p>原文作者：<a href="http://007havegone.github.io">007havegone</a>
             <p>原文链接：<a href="http://007havegone.github.io/2019/08/09/算法导论练习12-2/">http://007havegone.github.io/2019/08/09/算法导论练习12-2/</a>
             <p>发表日期：<a href="http://007havegone.github.io/2019/08/09/算法导论练习12-2/">August 9th 2019, 1:22:44 am</a>
-            <p>更新日期：<a href="http://007havegone.github.io/2019/08/09/算法导论练习12-2/">August 12th 2019, 11:22:03 am</a>
+            <p>更新日期：<a href="http://007havegone.github.io/2019/08/09/算法导论练习12-2/">August 12th 2019, 4:18:11 pm</a>
             <p>版权声明：‘原创内容，转载时请附上出处’</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2019/08/12/算法导论练习12-3/" title= "算法导论练习12.3">
+                    <div class="nextTitle">算法导论练习12.3</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -746,9 +751,26 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 15
+        Total : 16
         </div>
         <!-- search  -->
         
@@ -761,6 +783,11 @@ top:50vh;
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/12</span><a class="archive-post-title" href= "/2019/08/12/算法导论练习12-3/" >算法导论练习12.3</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -858,9 +885,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="d叉堆"><span class="iconfont-archer">&#xe606;</span>d叉堆</span>
     
-        <span class="sidebar-tag-name" data-tags="中位数"><span class="iconfont-archer">&#xe606;</span>中位数</span>
+        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
     
-        <span class="sidebar-tag-name" data-tags="二分查找"><span class="iconfont-archer">&#xe606;</span>二分查找</span>
+        <span class="sidebar-tag-name" data-tags="BST"><span class="iconfont-archer">&#xe606;</span>BST</span>
     
         <span class="sidebar-tag-name" data-tags="操作系统"><span class="iconfont-archer">&#xe606;</span>操作系统</span>
     
@@ -868,11 +895,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="cmd"><span class="iconfont-archer">&#xe606;</span>cmd</span>
     
+        <span class="sidebar-tag-name" data-tags="中位数"><span class="iconfont-archer">&#xe606;</span>中位数</span>
+    
+        <span class="sidebar-tag-name" data-tags="二分查找"><span class="iconfont-archer">&#xe606;</span>二分查找</span>
+    
         <span class="sidebar-tag-name" data-tags="二叉树"><span class="iconfont-archer">&#xe606;</span>二叉树</span>
     
         <span class="sidebar-tag-name" data-tags="中序遍历"><span class="iconfont-archer">&#xe606;</span>中序遍历</span>
-    
-        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
     
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     

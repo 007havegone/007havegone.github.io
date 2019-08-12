@@ -22,7 +22,7 @@
     <meta name="description" content="个人博客，写心得随笔。">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>007&#39;s Studio</title>
+    <title>算法导论练习12.3 · 007&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >007&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">算法导论练习12.3</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>007's Studio.</a>
 </header>
@@ -220,24 +231,76 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            算法导论练习12.3
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "BST">BST</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.1k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/08/12</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,375 +401,71 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/12/算法导论练习12-3/" >
-            
-                <span>算法导论练习12.3</span>
-        </a>
-        <div class="abstract-content">
-            12.3-1&emsp;给出TREE-INSERT过车过程的一个递归版本
-12345678910111213141516171819202122232425262728293031323334353637383940//实现1TREE-INSERT(T,z)    if T.root = NIL //空树        T.root = z        z.p = NIL    else    //非空，递归查找合适位置        TREE-INSERT-RECURSIVE(T.root,z)TREE-INSERT-RECURSIVE(x,z)    if z.key &lt; x...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "BST">BST</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/09/算法导论练习12-2/" >
-            
-                <span>算法导论练习12.2</span>
-        </a>
-        <div class="abstract-content">
-            12.2-1&emsp;假设一棵二叉搜索树中的结点在1到1000之间，现在想要查找值为363得到结点，下面序列那个不是查找过的序列。
-a. $2,252,401,398,330,344,397,363$。b. $924,220,911,244,898,258,362,363$。c. $925,202,911,240,912,245,363$。d. $2,399,387,219,266,382,381,278,363$。e. $935,278,347,621,299,392,358,363$。
-因为这是查找BST过程中的一个序列，因此根据该序列构造BST，如果满足BST的性质，那么就是查找...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "二叉搜索树">二叉搜索树</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/08/算法导论练习12-1/" >
-            
-                <span>算法导论练习12.1</span>
-        </a>
-        <div class="abstract-content">
-            12.1-1&emsp;对于关键字集合$\{1,4,5,10,16,17,21\}$，分别画出高度为2、3、4、5和6的二叉搜索树。
-这里说明一下：算法导论中定义的高度是根节点到叶节点的最大距离
-高度为2：      高度为3：                高度为4：
-    10              10                      5
-   /  \            /  \                    /  \
-  4    17         4   16                  4    10
- / \   /\        ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "二叉搜索树">二叉搜索树</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/02/算法导论思考题9-2/" >
-            
-                <span>算法导论思考题9-2</span>
-        </a>
-        <div class="abstract-content">
-            9-2&emsp;(带权中位数)对分别具体以正权重$w_1,w_2,\dotsb,w_n$,且满足$\sum_{i=1}^{n}{w_i=1}$的$n$个互异的元素$x_1,x_2,\dotsb,x_n$来说，带权中位数$x_k$(较小中位数)是满足如下条件的元素：
-\sum_{x_i < x_k}w_i  x_k}w_i \leq \frac{1}{2}例如，如果元素是$0.1  ,0.35  ,0.05  ,0.1  ,0.15  ,0.05  ,0.2$，并且每个元素的权重等于本身(即对所有$i=1,2,\dotsb,7都有w_i=x_i$)，那么中位数是0.1，而带全中位数是0....
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "中位数">中位数</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/01/算法导论练习9-3-8两个有序数组的中位数/" >
-            
-                <span>算法导论练习9.3-8两个有序数组的中位数</span>
-        </a>
-        <div class="abstract-content">
-            9.3-8&emsp;设X[1..n]和Y[1..n]为两个数组，每个都包含n个有序的元素，请设计一个$O(lgn)$时间的算法找出数组X和Y中所有2n个元素的中位数。下面假设中位数(低中位数，数组长度偶数时较小的那个)在数组$X$中。如果要求中间两个数的均值，只需要在该基础之上修改一点就好。
-a、$X[k]=m$为中位数，对于数组$X$,有$k$个元素小于等于$X[k]$，同时有$n-k$个元素大于等于$X[k]$。当两个数组合并有序时，对于中位数来说，共有$n$个元素小于等于$X[k]$，n个元素大于等于$X[k]$。那么对于数组$Y$来说，有$n-k$个元素小于等于$X[k]$，$...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "中位数">中位数</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "二分查找">二分查找</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/31/算法导论思考题6-2/" >
-            
-                <span>算法导论思考题6-2</span>
-        </a>
-        <div class="abstract-content">
-            6-2（对d叉堆的分析）d叉堆与二叉堆很类似，但（一个可能的例外是）其中的每个非叶节点有d个孩子，而不是仅仅2个。a.&emsp;如何在一个数组中表示一个d叉堆？
-假设数组从$A[1]$开始,它作为根，那么$A[1]$有d个孩子分别是$A[2]…A[d+1]$，共d个。那么对于$A[2]…A[d+1]$共d个结点，一共有$d^2$个结点，从$A[d+2]….A[d^2+d+1]$。依次类推。那么对于一个编号为$i$的结点的第$j$个孩子$(1 \leq j \leq d)$，
-D-ARY-Parent(i)return $\lfloor (i-2)/d+1 \rfloor$
-D-ARY-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "d叉堆">d叉堆</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/31/算法导论思考题4-1/" >
-            
-                <span>算法导论思考题4-1</span>
-        </a>
-        <div class="abstract-content">
-            4-1（递归式例子）对下列每个递归式，给出T(n)的渐进上界和渐进下界。假定 $n\leq2$时T(n)时常数。给出尽量紧确的界，并验证其正确性。不会主方法的先看一下这篇博客：https://blog.csdn.net/qq_40512922/article/details/96932368
-a.&emsp;$T(n)=2T(n/2)+n^4$
-证明：有$a=2,b=2,n^{log_ba}=n$，$f(n)=f(n^4)=\Omega(n^{\epsilon+1})$，其中$\epsilon=3$。下面证明正则条件：$\exists c&lt;1,af(n/b)\leq cf(n)$
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "主方法">主方法</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法分析">算法分析</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/30/算法导论思考题2-4/" >
-            
-                <span>算法导论思考题2-4</span>
-        </a>
-        <div class="abstract-content">
-            思考题2-4（逆序对） 假设A[1..n]是一个有$n$个不同数的数组，若iA[j]，则对偶(i,j)称为A的一个逆序对(inversion)。a.列出数组$$的5个逆序对。&emsp;逆序对有$(1,5),(2,5),(3,4),(3,5),(4,5)$
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>12.3-1&emsp;给出TREE-INSERT过车过程的一个递归版本</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实现1</span></span><br><span class="line">TREE-INSERT(T,z)</span><br><span class="line">    <span class="keyword">if</span> T.root = NIL <span class="comment">//空树</span></span><br><span class="line">        T.root = z</span><br><span class="line">        z.p = NIL</span><br><span class="line">    <span class="keyword">else</span>    <span class="comment">//非空，递归查找合适位置</span></span><br><span class="line">        TREE-INSERT-RECURSIVE(T.root,z)</span><br><span class="line"></span><br><span class="line">TREE-INSERT-RECURSIVE(x,z)</span><br><span class="line">    <span class="keyword">if</span> z.key &lt; x.key</span><br><span class="line">        <span class="keyword">if</span> x.left = NIL</span><br><span class="line">            x.left = z</span><br><span class="line">            z.p = x</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            TREE-INSERT-RECURSIVE(x.left,z)</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">if</span> x.right = NIL</span><br><span class="line">            x.right = z</span><br><span class="line">            z.p = x</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            TREE-INSERT-RECURSIVE(x.right,z)</span><br><span class="line"></span><br><span class="line"><span class="comment">//实现2</span></span><br><span class="line"><span class="comment">//调用 TREE-INSERT-CURSIVE(NIL,T.root,z)</span></span><br><span class="line"><span class="comment">//  y为父节点，x为插入位置</span></span><br><span class="line">TREE-INSERT-CURSIVE(y,x,z)</span><br><span class="line">    <span class="keyword">if</span> x != NIL</span><br><span class="line">        <span class="keyword">if</span> z.key &lt; x.key</span><br><span class="line">            TREE-INSERT-CURSIVE(x,x.left,z)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            TREE-INSERT-CURSIVE(x,x.right,z)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">    z.p = y</span><br><span class="line">    <span class="keyword">if</span> y == NIL</span><br><span class="line">        T.root = z</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> z.key &lt; y.key</span><br><span class="line">        y.left = z</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        y.right = z</span><br></pre></td></tr></table></figure>
+<hr>
+<p>12.3-2&emsp;假设通过反复向一棵树中插入互不相同的关键字来构造一棵二叉搜索树。证明：在这棵树中查找关键字所检查过的结点数目等于先前插入这个关键字所检查的结点数目加1。</p>
+<p>证明：根据书中TREE-INSERT的算法，我们插入一个结点，从根节点开始，判断合适位置插入。再次查找它时，我们沿着之前插入时判断的结点的路径（新插入的结点不会出现在该路径上，因此路径相同），最后再多检查结点本身，因此次数+1。</p>
+<hr>
+<p>12.3-3&emsp;对于给定$n$个关键字集合，可以通过先构造包含这些数据的一颗二叉搜索树（反复使用TREE-INSERT逐个插入这些数），然后按中序遍历输出这些数的方法，来对它们排序。这个排序算法的最坏情况运行时间和最好情况运行时间各是多少？</p>
+<p>最坏情况下是BST的高度为$n$，即按已经排序的方式插入。此时运行时间为$\Theta(n^2)$。在最佳情况下，BST的形状是平衡的，意味着它的高度不超过$O(lgn)$。此时运行时间为$O(nlgn)$，在题目12.1-5中已经说明最坏情况的需要$\Omega(nlgn)$。</p>
+<hr>
+<p>12.3-4&emsp;删除操作可交换吗？可交换的含义是，先删除$x$再删除$y$留下的结果树与先删除$y$再删除$x$留下的结果树完全一样。如果是，说明为什么？否则，给出一个反例。</p>
+<p>不可以交换，反例如下：</p>
+<p><img src="/2019/08/12/算法导论练习12-3/3-4.PNG" alt></p>
+<p>先删除1，再删除2，不同于先删除2，再删除1</p>
+<hr>
+<p>12.3-5&emsp;假设为每个结点换一种设计，属性$x.p$指向父亲，属性$x.succ$指向$x$的后继。给出使用这种表示法的二叉搜索树$T$上SEARCH、INSERT和DELETE操作的伪代码。这些伪代码再$O(h)$时间内执行完，其中$h$为$T$的高度。（提示：应该设计一个返回某个结点的双亲的子过程）。</p>
+<p>未解决。有好的想法的可以私我。</p>
+<hr>
+<p>12.3-6&emsp;当TREE-DELETE中的结点$z$有两个孩子时，应该选择结点$y$作为它的前驱，而不是作为它的后继。如果这样做，对TREE-DELETE应该做哪些什么必要的修改？一些人提出了一个公平的策略，为前驱和后继赋予相等的优先级，这样得到了较好的实验性能。如何对TREE-DELETE进行修改来实现这样一种公平策略？</p>
+<p>第一个问题：如果转换成删除前驱，只需要在TREE-DELETE中将有两个孩子的情况修改。</p>
+<p>下面是我的伪代码实现</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">TREE-DELETE(T,z)</span><br><span class="line">    <span class="keyword">if</span> z.left == NIL</span><br><span class="line">        TRANSPLANT(T,z,z.right)</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> z.right == NIL</span><br><span class="line">        TRANSPLANT(T,z,z.left)</span><br><span class="line">    <span class="keyword">else</span> y = TREE-MAXIMUM(z.left)</span><br><span class="line">        <span class="keyword">if</span> y.p != z</span><br><span class="line">            TRANSPLANT(T,y,y.left)</span><br><span class="line">            y.left = z.left</span><br><span class="line">            y.left.p = y</span><br><span class="line">        TREESPLANT(T,z,y)</span><br><span class="line">        y.right = z.right</span><br><span class="line">        y.right.p = y</span><br></pre></td></tr></table></figure>
+<p>第二个问题：要实现前驱后继相等的优先级，当有两个孩子时，可以采用一个随机数来决定采用前驱替换还是后继替换。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TREE-DELETE(T,z)</span><br><span class="line">    <span class="keyword">if</span> z.left == NIL</span><br><span class="line">        TRANSPLANT(T,z,z.right)</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> z.right == NIL</span><br><span class="line">        TRANSPLANT(T,z,z.left)</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        LorR = getRandomBool</span><br><span class="line">        <span class="keyword">if</span> LorR == <span class="literal">true</span></span><br><span class="line">            。。。<span class="comment">//替换后继</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            。。。<span class="comment">//替换前驱</span></span><br></pre></td></tr></table></figure>
 
-b.有集合$\{1,2,\dots,n\}$中的元素构成的什么数组具有最多的逆序对？它有多少逆序对？&emsp; 当数组为 $\{1,2,\dots,n\}$为逆序时，即$\{n,n-1,\dots,1\}$时逆序对最多。对于 $\forall i,j \in [1,n],(i,j)$均为逆序对。此时共有逆序对$(_n^2)=n(n...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/30</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "逆序对">逆序对</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "排序">排序</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "线段树">线段树</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/29/算法导论第二章插入排序/" >
-            
-                <span>算法导论第二章插入排序</span>
-        </a>
-        <div class="abstract-content">
-            算法导论 第二章插入排序实现&emsp;插入排序算法是时间复杂度为 $O(n)$，输入规模$n$较小时，插入排序往往能有较好的效果。
-&emsp;最优情况：数据整体有序，无需须交换元素，时间复杂度$O(n)$
-&emsp;最坏情况：数据整体逆序，每个元素要 $1~n-1$次，时间复杂度为 $O(n^2)$。
-&emsp;插入排序中的常数因子较小使得在$n$在较小的时候，在很多情况能够运行更快。作为归并排序，快速排序等算法在小规模时处理的问题时的子程序。
-书中的伪代码123456789INSERTION-SORT(A)1 for j = 2 to A.length2 	key = A[j]...
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://007havegone.github.io">007havegone</a>
+            <p>原文链接：<a href="http://007havegone.github.io/2019/08/12/算法导论练习12-3/">http://007havegone.github.io/2019/08/12/算法导论练习12-3/</a>
+            <p>发表日期：<a href="http://007havegone.github.io/2019/08/12/算法导论练习12-3/">August 12th 2019, 1:53:18 pm</a>
+            <p>更新日期：<a href="http://007havegone.github.io/2019/08/12/算法导论练习12-3/">August 12th 2019, 5:56:05 pm</a>
+            <p>版权声明：‘原创内容，转载时请附上出处’</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "排序">排序</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/29/算法导论思考题1-1/" >
-            
-                <span>算法导论思考题1-1</span>
-        </a>
-        <div class="abstract-content">
-            算法导论-思考题1-11-1（运行时间的比较）假设求解问题的算法需要 $f(n)$微秒(microseconds)，对下表中每个函数$f(n)$和时间$t$可以确定在时间$t$内求解问题的最大规模$n$。中文版给的$f(n)$单位是毫秒，但看了原版，发现单位是微秒(microseconds)，故下面采用微秒来计算。
-
-
-
-
-函数\时间
-1秒钟
-1分钟
-1小时
-1天
-1月
-1年
-1世纪
-
-
-
-
-$lgn$
-$2^{10^6}$
-$2^{6\times 10^7}$
-$2^{3.6 \times 10^9}$
-$2^{8.64 \times 10^{10}}$
-$2^{2.592 \time...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/08/09/算法导论练习12-2/" title= "算法导论练习12.2">
+                    <div class="prevTitle">算法导论练习12.2</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-    <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/tags/算法导论/page/2/">2</a><a class="extend next" rel="next" href="/tags/算法导论/page/2/">NEXT &#62;</a>
-    </nav>
     
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -788,6 +547,24 @@ $2^{2.592 \time...
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1183,6 +960,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
