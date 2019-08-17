@@ -359,6 +359,38 @@ height:60vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/08/17/算法导论思考题12-1/" >
+            
+                <span>算法导论思考题12-1</span>
+        </a>
+        <div class="abstract-content">
+            12-1（带有相同关键字的二叉搜索树）相同关键字给二叉搜索树的实现带来了问题。a. &emsp;当用TREE-INSERT将$n$个其中带有相同关键字的数据插入到一棵初始为空的二叉搜索树中时，其渐进性能是多少？最坏情况下，所有关键字相同，那么将形成一个单链。时间复杂度为$O(n^2)$。
+&emsp;建议通过在第5行之前测试$z.key = x.key$和在11行之前测试$z.key = y.key$的方法，来对TREE-INSERT改进。如果相等，根据下面的策略之一来实现。对于每个策略，得到将$n$个其中带有相同关键字的数据插入到一棵初始为空的二叉搜索树中的渐进性能。（对第5行描述的策...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "二叉搜索树">二叉搜索树</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/08/12/算法导论练习12-3/" >
             
                 <span>算法导论练习12.3</span>
@@ -378,7 +410,7 @@ height:60vh;
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "BST">BST</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "二叉搜索树">二叉搜索树</a>
     
 </div>
             
@@ -660,43 +692,6 @@ a.&emsp;$T(n)=2T(n/2)+n^4$
         <a class="post-tag" href="javascript:void(0);" data-tags = "算法分析">算法分析</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/30/算法导论思考题2-4/" >
-            
-                <span>算法导论思考题2-4</span>
-        </a>
-        <div class="abstract-content">
-            思考题2-4（逆序对） 假设A[1..n]是一个有$n$个不同数的数组，若iA[j]，则对偶(i,j)称为A的一个逆序对(inversion)。a.列出数组$$的5个逆序对。&emsp;逆序对有$(1,5),(2,5),(3,4),(3,5),(4,5)$
-
-b.有集合$\{1,2,\dots,n\}$中的元素构成的什么数组具有最多的逆序对？它有多少逆序对？&emsp; 当数组为 $\{1,2,\dots,n\}$为逆序时，即$\{n,n-1,\dots,1\}$时逆序对最多。对于 $\forall i,j \in [1,n],(i,j)$均为逆序对。此时共有逆序对$(_n^2)=n(n...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/30</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "逆序对">逆序对</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "排序">排序</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "线段树">线段树</a>
     
 </div>
             
@@ -1069,9 +1064,18 @@ b.有集合$\{1,2,\dots,n\}$中的元素构成的什么数组具有最多的逆�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 16
+        Total : 17
         </div>
         <!-- search  -->
         
@@ -1084,6 +1088,11 @@ b.有集合$\{1,2,\dots,n\}$中的元素构成的什么数组具有最多的逆�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/17</span><a class="archive-post-title" href= "/2019/08/17/算法导论思考题12-1/" >算法导论思考题12-1</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1178,23 +1187,13 @@ b.有集合$\{1,2,\dots,n\}$中的元素构成的什么数组具有最多的逆�
     
         <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
     
-        <span class="sidebar-tag-name" data-tags="逆序对"><span class="iconfont-archer">&#xe606;</span>逆序对</span>
-    
         <span class="sidebar-tag-name" data-tags="排序"><span class="iconfont-archer">&#xe606;</span>排序</span>
-    
-        <span class="sidebar-tag-name" data-tags="线段树"><span class="iconfont-archer">&#xe606;</span>线段树</span>
     
         <span class="sidebar-tag-name" data-tags="d叉堆"><span class="iconfont-archer">&#xe606;</span>d叉堆</span>
     
-        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
+        <span class="sidebar-tag-name" data-tags="逆序对"><span class="iconfont-archer">&#xe606;</span>逆序对</span>
     
-        <span class="sidebar-tag-name" data-tags="BST"><span class="iconfont-archer">&#xe606;</span>BST</span>
-    
-        <span class="sidebar-tag-name" data-tags="操作系统"><span class="iconfont-archer">&#xe606;</span>操作系统</span>
-    
-        <span class="sidebar-tag-name" data-tags="Win10"><span class="iconfont-archer">&#xe606;</span>Win10</span>
-    
-        <span class="sidebar-tag-name" data-tags="cmd"><span class="iconfont-archer">&#xe606;</span>cmd</span>
+        <span class="sidebar-tag-name" data-tags="线段树"><span class="iconfont-archer">&#xe606;</span>线段树</span>
     
         <span class="sidebar-tag-name" data-tags="中位数"><span class="iconfont-archer">&#xe606;</span>中位数</span>
     
@@ -1203,6 +1202,14 @@ b.有集合$\{1,2,\dots,n\}$中的元素构成的什么数组具有最多的逆�
         <span class="sidebar-tag-name" data-tags="二叉树"><span class="iconfont-archer">&#xe606;</span>二叉树</span>
     
         <span class="sidebar-tag-name" data-tags="中序遍历"><span class="iconfont-archer">&#xe606;</span>中序遍历</span>
+    
+        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
+    
+        <span class="sidebar-tag-name" data-tags="操作系统"><span class="iconfont-archer">&#xe606;</span>操作系统</span>
+    
+        <span class="sidebar-tag-name" data-tags="Win10"><span class="iconfont-archer">&#xe606;</span>Win10</span>
+    
+        <span class="sidebar-tag-name" data-tags="cmd"><span class="iconfont-archer">&#xe606;</span>cmd</span>
     
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
