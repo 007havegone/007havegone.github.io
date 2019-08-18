@@ -266,7 +266,7 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "vs Code">vs Code</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "VS Code">VS Code</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "Markdown">Markdown</a>
     
@@ -404,9 +404,9 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <h3 id="问题描述：最近写使用markdwon写博客，本人习惯在本地用visual-studio-code编写，然后上传。vs-code自带一个侧边预览窗口（右上角）可以查看markdown文档结果。平时也是用这个。后面写博客发到自己个人的网站上时，发现有时候-tab-键缩进-4个空格，有时候缩进-8个空格。"><a href="#问题描述：最近写使用markdwon写博客，本人习惯在本地用visual-studio-code编写，然后上传。vs-code自带一个侧边预览窗口（右上角）可以查看markdown文档结果。平时也是用这个。后面写博客发到自己个人的网站上时，发现有时候-tab-键缩进-4个空格，有时候缩进-8个空格。" class="headerlink" title="问题描述：最近写使用markdwon写博客，本人习惯在本地用visual studio code编写，然后上传。vs code自带一个侧边预览窗口（右上角）可以查看markdown文档结果。平时也是用这个。后面写博客发到自己个人的网站上时，发现有时候 tab 键缩进 4个空格，有时候缩进 8个空格。"></a>问题描述：最近写使用markdwon写博客，本人习惯在本地用visual studio code编写，然后上传。vs code自带一个侧边预览窗口（右上角）可以查看markdown文档结果。平时也是用这个。后面写博客发到自己个人的网站上时，发现有时候 tab 键缩进 4个空格，有时候缩进 8个空格。</h3><p>如图：第一个图是网页上的效果，可以看到一些 tab缩进是4，有一些是8</p>
-<p><img src="https://img-blog.csdnimg.cn/20190818210816896.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNTEyOTIy,size_16,color_FFFFFF,t_70" alt="网页效果"><br>下面是我这篇博客本地文件及效果：可以看到文件中缩进均是一个tab键，同时采用vs code的自带预览效果都是缩进4个空格。但是与实际网页的效果不同。<br><img src="https://img-blog.csdnimg.cn/20190818211028415.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNTEyOTIy,size_16,color_FFFFFF,t_70" alt="本地文件及预览效果"><br>后面我还尝试在csdn在线的markdown编写，一个tab缩进4个空格，但是我导出markdown上传到自己个人网站还是发现有tab出错。</p>
-<p>&emsp;一开始我以为是我的 tab-size实质错误，但是我始终的设置的是4。如下图：<br><img src="https://img-blog.csdnimg.cn/20190818210532747.PNG" alt="tab-size"><br>后面我尝试使用了一款vs code中的Markdown Preview Enhanced插件，利用该插件进行预览而不是使用默认自带的预览工具。利用该工具后，还是预览上面的那段代码，发现效果和我实际网页上显示的效果一致，有部分tab缩进为8空格。<br><img src="https://img-blog.csdnimg.cn/2019081821171353.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNTEyOTIy,size_16,color_FFFFFF,t_70" alt="本地预览及效果2"></p>
-<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>最终，经过一番查找资料，我们可以将 tab缩进转换成空格来消除 tab 缩进引起问题。在vs code中我们按<code>Ctrl + Shift + p</code>，调出命令窗口，输入 convert 就可以看到下面两个命令，我们选择 <code>convert Indentation to Spaces</code>命令将文件中得到缩进转换为空格。然后我们再用 Markdown Preview Enhanced进行预览。发现此时所有的tab 都是缩进 4个空格。<br><img src="https://img-blog.csdnimg.cn/20190818212247271.PNG" alt="命令窗口"><br>下图是转后后的效果，完成了对tab缩进不一致的问题修复。后面我们还可以<br>再尝试命令<code>convert Indentation to Tabs</code>，我们会发现又出现刚才缩进不一致的现象。<br><img src="https://img-blog.csdnimg.cn/2019081821284051.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNTEyOTIy,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="/2019/08/18/VSCode写Markdown中代码块tab缩进错误/网页上的效果.PNG" alt="网页上的效果"><br>下面是我这篇博客本地文件及效果：可以看到文件中缩进均是一个tab键，同时采用vs code的自带预览效果都是缩进4个空格。但是与实际网页的效果不同。<br><img src="/2019/08/18/VSCode写Markdown中代码块tab缩进错误/本地文件及预览效果.PNG" alt="本地文件及预览效果"><br>后面我还尝试在csdn在线的markdown编写，一个tab缩进4个空格，但是我导出markdown上传到自己个人网站还是发现有tab出错。</p>
+<p>&emsp;一开始我以为是我的 tab-size实质错误，但是我始终的设置的是4。如下图：<br><img src="/2019/08/18/VSCode写Markdown中代码块tab缩进错误/tab-size.PNG" alt="tab-size"><br>后面我尝试使用了一款vs code中的Markdown Preview Enhanced插件，利用该插件进行预览而不是使用默认自带的预览工具。利用该工具后，还是预览上面的那段代码，发现效果和我实际网页上显示的效果一致，有部分tab缩进为8空格。<br><img src="/2019/08/18/VSCode写Markdown中代码块tab缩进错误/本地预览及效果2.PNG" alt="本地预览及效果2"></p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>最终，经过一番查找资料，我们可以将 tab缩进转换成空格来消除 tab 缩进引起问题。在vs code中我们按<code>Ctrl + Shift + p</code>，调出命令窗口，输入 convert 就可以看到下面两个命令，我们选择 <code>convert Indentation to Spaces</code>命令将文件中得到缩进转换为空格。然后我们再用 Markdown Preview Enhanced进行预览。发现此时所有的tab 都是缩进 4个空格。<br><img src="/2019/08/18/VSCode写Markdown中代码块tab缩进错误/Command.PNG" alt="Command"><br>下图是转后后的效果，完成了对tab缩进不一致的问题修复。后面我们还可以<br>再尝试命令<code>convert Indentation to Tabs</code>，我们会发现又出现刚才缩进不一致的现象。<br><img src="/2019/08/18/VSCode写Markdown中代码块tab缩进错误/修复后效果.PNG" alt="修复后效果"></p>
 
     </article>
     <!-- license  -->
@@ -415,7 +415,7 @@ height:50vh;
             <p>原文作者：<a href="http://007havegone.github.io">007havegone</a>
             <p>原文链接：<a href="http://007havegone.github.io/2019/08/18/VSCode写Markdown中代码块tab缩进错误/">http://007havegone.github.io/2019/08/18/VSCode写Markdown中代码块tab缩进错误/</a>
             <p>发表日期：<a href="http://007havegone.github.io/2019/08/18/VSCode写Markdown中代码块tab缩进错误/">August 18th 2019, 9:40:44 pm</a>
-            <p>更新日期：<a href="http://007havegone.github.io/2019/08/18/VSCode写Markdown中代码块tab缩进错误/">August 18th 2019, 9:46:19 pm</a>
+            <p>更新日期：<a href="http://007havegone.github.io/2019/08/18/VSCode写Markdown中代码块tab缩进错误/">August 19th 2019, 12:24:03 am</a>
             <p>版权声明：‘原创内容，转载时请附上出处’</p>
         </div>
     
@@ -756,6 +756,20 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 19
@@ -888,11 +902,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="线段树"><span class="iconfont-archer">&#xe606;</span>线段树</span>
     
-        <span class="sidebar-tag-name" data-tags="d叉堆"><span class="iconfont-archer">&#xe606;</span>d叉堆</span>
-    
         <span class="sidebar-tag-name" data-tags="中位数"><span class="iconfont-archer">&#xe606;</span>中位数</span>
     
         <span class="sidebar-tag-name" data-tags="二分查找"><span class="iconfont-archer">&#xe606;</span>二分查找</span>
+    
+        <span class="sidebar-tag-name" data-tags="d叉堆"><span class="iconfont-archer">&#xe606;</span>d叉堆</span>
     
         <span class="sidebar-tag-name" data-tags="操作系统"><span class="iconfont-archer">&#xe606;</span>操作系统</span>
     
@@ -904,7 +918,7 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="中序遍历"><span class="iconfont-archer">&#xe606;</span>中序遍历</span>
     
-        <span class="sidebar-tag-name" data-tags="vs Code"><span class="iconfont-archer">&#xe606;</span>vs Code</span>
+        <span class="sidebar-tag-name" data-tags="VS Code"><span class="iconfont-archer">&#xe606;</span>VS Code</span>
     
         <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
     
