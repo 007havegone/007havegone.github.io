@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="007havegone">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="007havegone">
+    
+    <meta name="keywords" content="hexo,Algorithm,Data structure,C++,Java">
+    
+    <meta name="description" content="个人博客，写心得随笔。">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>007&#39;s Studio</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <a class="home-link" href=/>007's Studio.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+">
+    
+    <!-- 主页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main index-page">
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/07/31/算法导论思考题6-2/" >
+            
+                <span>算法导论思考题6-2</span>
+        </a>
+        <div class="abstract-content">
+            6-2（对d叉堆的分析）d叉堆与二叉堆很类似，但（一个可能的例外是）其中的每个非叶节点有d个孩子，而不是仅仅2个。a.&emsp;如何在一个数组中表示一个d叉堆？
+假设数组从$A[1]$开始,它作为根，那么$A[1]$有d个孩子分别是$A[2]…A[d+1]$，共d个。那么对于$A[2]…A[d+1]$共d个结点，一共有$d^2$个结点，从$A[d+2]….A[d^2+d+1]$。依次类推。那么对于一个编号为$i$的结点的第$j$个孩子$(1 \leq j \leq d)$，
+D-ARY-Parent(i)return $\lfloor (i-2)/d+1 \rfloor$
+D-ARY-...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/31</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "d叉堆">d叉堆</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/07/31/算法导论思考题4-1/" >
+            
+                <span>算法导论思考题4-1</span>
+        </a>
+        <div class="abstract-content">
+            4-1（递归式例子）对下列每个递归式，给出T(n)的渐进上界和渐进下界。假定 $n\leq2$时T(n)时常数。给出尽量紧确的界，并验证其正确性。不会主方法的先看一下这篇博客：https://blog.csdn.net/qq_40512922/article/details/96932368
+a.&emsp;$T(n)=2T(n/2)+n^4$
+证明：有$a=2,b=2,n^{log_ba}=n$，$f(n)=f(n^4)=\Omega(n^{\epsilon+1})$，其中$\epsilon=3$。下面证明正则条件：$\exists c&lt;1,af(n/b)\leq cf(n)$
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/31</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "主方法">主方法</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法分析">算法分析</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/07/30/算法导论思考题2-4/" >
+            
+                <span>算法导论思考题2-4</span>
+        </a>
+        <div class="abstract-content">
+            思考题2-4（逆序对） 假设A[1..n]是一个有$n$个不同数的数组，若iA[j]，则对偶(i,j)称为A的一个逆序对(inversion)。a.列出数组$$的5个逆序对。&emsp;逆序对有$(1,5),(2,5),(3,4),(3,5),(4,5)$
+
+b.有集合$\{1,2,\dots,n\}$中的元素构成的什么数组具有最多的逆序对？它有多少逆序对？&emsp; 当数组为 $\{1,2,\dots,n\}$为逆序时，即$\{n,n-1,\dots,1\}$时逆序对最多。对于 $\forall i,j \in [1,n],(i,j)$均为逆序对。此时共有逆序对$(_n^2)=n(n...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/30</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "排序">排序</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "逆序对">逆序对</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "线段树">线段树</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/07/29/算法导论第二章插入排序/" >
+            
+                <span>算法导论第二章插入排序</span>
+        </a>
+        <div class="abstract-content">
+            算法导论 第二章插入排序实现&emsp;插入排序算法是时间复杂度为 $O(n)$，输入规模$n$较小时，插入排序往往能有较好的效果。
+&emsp;最优情况：数据整体有序，无需须交换元素，时间复杂度$O(n)$
+&emsp;最坏情况：数据整体逆序，每个元素要 $1~n-1$次，时间复杂度为 $O(n^2)$。
+&emsp;插入排序中的常数因子较小使得在$n$在较小的时候，在很多情况能够运行更快。作为归并排序，快速排序等算法在小规模时处理的问题时的子程序。
+书中的伪代码123456789INSERTION-SORT(A)1 for j = 2 to A.length2 	key = A[j]...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/29</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "排序">排序</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/07/29/算法导论思考题1-1/" >
+            
+                <span>算法导论思考题1-1</span>
+        </a>
+        <div class="abstract-content">
+            算法导论-思考题1-11-1（运行时间的比较）假设求解问题的算法需要 $f(n)$微秒(microseconds)，对下表中每个函数$f(n)$和时间$t$可以确定在时间$t$内求解问题的最大规模$n$。中文版给的$f(n)$单位是毫秒，但看了原版，发现单位是微秒(microseconds)，故下面采用微秒来计算。
+
+
+
+
+函数\时间
+1秒钟
+1分钟
+1小时
+1天
+1月
+1年
+1世纪
+
+
+
+
+$lgn$
+$2^{10^6}$
+$2^{6\times 10^7}$
+$2^{3.6 \times 10^9}$
+$2^{8.64 \times 10^{10}}$
+$2^{2.592 \time...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/29</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/07/26/算法导论练习9-1-1找第二小的元素/" >
+            
+                <span>算法导论练习9.1-1找第二小的元素</span>
+        </a>
+        <div class="abstract-content">
+            算法导论9.1-1找第二小的元素1、证明：在最坏情况下，找到n个元素中第二小的元素需要 $n+ \lceil lgn  \rceil -2$次比较。（提示：可以同时找到最小元素）做以下断言：无论采用何种比较算法，在寻找最小元素的过程中，第二小的元素一定与最小元素做过比较。显然，因为第二小的元素直到遇到最小元素前，一定会胜出进入下一轮。如果最小元素没有与第二小元素相比较，则无法得出该元素是最小的关系。  
+因此，要想是我们找到最小元素的比较次数最少，就需要在寻找最小元素的过程中与最小元素发生比较的次数尽量的少。  
+由于每次我们只能取两个元素进行比较，从而考虑每一轮将我们比较元素两两比较，...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/07/22/主方法求解递归式/" >
+            
+                <span>主方法求解递归式</span>
+        </a>
+        <div class="abstract-content">
+            主方法求解递归式&emsp;&emsp;在分析递归的算法时，主方法可以较快的计算出算法的时间复杂度主方法可以用于满足以下形式的递归式。
+T(n)=aT(n/b)+f(n)其中$a\geq1和b&gt;1$是常数，$f(n)$是渐进函数。&emsp;&emsp;主方法描述的算法：将原本规模为$n$的问题，分解为 $a$ 个规模为 $n/b$ 的子问题，其中 $a,b\in \mathbb{Z^+}$，函数 $f(n)$ 包含了问题分解和子问题合并的代价。
+下面是归并排序的递归式:
+
+T(n)=
+\begin{cases}
+\Theta(1) & 若n=1 \\
+2T(n/2)+\Theta...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/22</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "主方法">主方法</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "时间复杂度">时间复杂度</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法分析">算法分析</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/07/13/Effective-c-读书笔记第一章/" >
+            
+                <span>Effective c++ 读书笔记第一章</span>
+        </a>
+        <div class="abstract-content">
+            
+Ⅰ、 让自习惯C++
+条款01：视C++为一个语言连邦
+C++是一个多重泛型编程语言，同时支持过程形式、面向对象形式、泛型形式、元编程形式的语言。
+将C++是为一个联邦,主要的此语言为4个：
+1.procedural-based C。C语言的面向过程2.Object-Oriented C++。面向对象3.Template C++。 C++ 的泛型 (generics) 编程和由 template 的强大功能带来 template   metaprogramming (TMP,模板元编程)4.STL。template程序库，主要包括 容器、迭代器、算法以及函数对象
+tips:编程过程中在...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/13</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "C++">C++</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Effective C++">Effective C++</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/07/13/hello-world/" >
+            
+                <span>Hello World</span>
+        </a>
+        <div class="abstract-content">
+            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post1$ hexo new "My New Post"
+More info: Writing
+Run server1$ hexo server
+More...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/13</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/archer/2019/">&#60; PREV</a><a class="page-number" href="/archer/2019/">1</a><span class="page-number current">2</span>
+    </nav>
+    
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:996209949@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/007havegone" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer others" target="_blank" title=others></a>
+            
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 19
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "/2019/08/18/VSCode写Markdown中代码块tab缩进错误/" >Visual Studio Code写Markdown中代码块tab缩进错误</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "/2019/08/18/数据结构-红黑树/" >数据结构-红黑树</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/17</span><a class="archive-post-title" href= "/2019/08/17/算法导论思考题12-1/" >算法导论思考题12-1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/12</span><a class="archive-post-title" href= "/2019/08/12/算法导论练习12-3/" >算法导论练习12.3</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/09</span><a class="archive-post-title" href= "/2019/08/09/算法导论练习12-2/" >算法导论练习12.2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href= "/2019/08/08/算法导论练习12-1/" >算法导论练习12.1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href= "/2019/08/08/算法导论练习10.4-5二叉树遍历/" >算法导论练习10.4-5二叉树遍历</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/07</span><a class="archive-post-title" href= "/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/" >Win10中shift+鼠标右键调出cmd窗口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/02</span><a class="archive-post-title" href= "/2019/08/02/算法导论思考题9-2/" >算法导论思考题9-2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/2019/08/01/算法导论练习9-3-8两个有序数组的中位数/" >算法导论练习9.3-8两个有序数组的中位数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href= "/2019/07/31/算法导论思考题6-2/" >算法导论思考题6-2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href= "/2019/07/31/算法导论思考题4-1/" >算法导论思考题4-1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/30</span><a class="archive-post-title" href= "/2019/07/30/算法导论思考题2-4/" >算法导论思考题2-4</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/29</span><a class="archive-post-title" href= "/2019/07/29/算法导论第二章插入排序/" >算法导论第二章插入排序</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/29</span><a class="archive-post-title" href= "/2019/07/29/算法导论思考题1-1/" >算法导论思考题1-1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/26</span><a class="archive-post-title" href= "/2019/07/26/算法导论练习9-1-1找第二小的元素/" >算法导论练习9.1-1找第二小的元素</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href= "/2019/07/22/主方法求解递归式/" >主方法求解递归式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href= "/2019/07/13/Effective-c-读书笔记第一章/" >Effective c++ 读书笔记第一章</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href= "/2019/07/13/hello-world/" >Hello World</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
+    
+        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
+    
+        <span class="sidebar-tag-name" data-tags="主方法"><span class="iconfont-archer">&#xe606;</span>主方法</span>
+    
+        <span class="sidebar-tag-name" data-tags="时间复杂度"><span class="iconfont-archer">&#xe606;</span>时间复杂度</span>
+    
+        <span class="sidebar-tag-name" data-tags="算法分析"><span class="iconfont-archer">&#xe606;</span>算法分析</span>
+    
+        <span class="sidebar-tag-name" data-tags="排序"><span class="iconfont-archer">&#xe606;</span>排序</span>
+    
+        <span class="sidebar-tag-name" data-tags="逆序对"><span class="iconfont-archer">&#xe606;</span>逆序对</span>
+    
+        <span class="sidebar-tag-name" data-tags="线段树"><span class="iconfont-archer">&#xe606;</span>线段树</span>
+    
+        <span class="sidebar-tag-name" data-tags="d叉堆"><span class="iconfont-archer">&#xe606;</span>d叉堆</span>
+    
+        <span class="sidebar-tag-name" data-tags="中位数"><span class="iconfont-archer">&#xe606;</span>中位数</span>
+    
+        <span class="sidebar-tag-name" data-tags="二分查找"><span class="iconfont-archer">&#xe606;</span>二分查找</span>
+    
+        <span class="sidebar-tag-name" data-tags="操作系统"><span class="iconfont-archer">&#xe606;</span>操作系统</span>
+    
+        <span class="sidebar-tag-name" data-tags="Win10"><span class="iconfont-archer">&#xe606;</span>Win10</span>
+    
+        <span class="sidebar-tag-name" data-tags="cmd"><span class="iconfont-archer">&#xe606;</span>cmd</span>
+    
+        <span class="sidebar-tag-name" data-tags="二叉树"><span class="iconfont-archer">&#xe606;</span>二叉树</span>
+    
+        <span class="sidebar-tag-name" data-tags="中序遍历"><span class="iconfont-archer">&#xe606;</span>中序遍历</span>
+    
+        <span class="sidebar-tag-name" data-tags="vs Code"><span class="iconfont-archer">&#xe606;</span>vs Code</span>
+    
+        <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
+    
+        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="Effective C++"><span class="iconfont-archer">&#xe606;</span>Effective C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="红黑树"><span class="iconfont-archer">&#xe606;</span>红黑树</span>
+    
+        <span class="sidebar-tag-name" data-tags="平衡树"><span class="iconfont-archer">&#xe606;</span>平衡树</span>
+    
+        <span class="sidebar-tag-name" data-tags="数据结构"><span class="iconfont-archer">&#xe606;</span>数据结构</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="算法导论"><span class="iconfont-archer">&#xe60a;</span>算法导论</span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统"><span class="iconfont-archer">&#xe60a;</span>操作系统</span>
+    
+        <span class="sidebar-category-name" data-categories="踩坑"><span class="iconfont-archer">&#xe60a;</span>踩坑</span>
+    
+        <span class="sidebar-category-name" data-categories="读书笔记"><span class="iconfont-archer">&#xe60a;</span>读书笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构"><span class="iconfont-archer">&#xe60a;</span>数据结构</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构/算法导论"><span class="iconfont-archer">&#xe60a;</span>数据结构/算法导论</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "007havegone"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+     
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>
+
+

@@ -359,6 +359,76 @@ height:60vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/07/31/算法导论思考题6-2/" >
+            
+                <span>算法导论思考题6-2</span>
+        </a>
+        <div class="abstract-content">
+            6-2（对d叉堆的分析）d叉堆与二叉堆很类似，但（一个可能的例外是）其中的每个非叶节点有d个孩子，而不是仅仅2个。a.&emsp;如何在一个数组中表示一个d叉堆？
+假设数组从$A[1]$开始,它作为根，那么$A[1]$有d个孩子分别是$A[2]…A[d+1]$，共d个。那么对于$A[2]…A[d+1]$共d个结点，一共有$d^2$个结点，从$A[d+2]….A[d^2+d+1]$。依次类推。那么对于一个编号为$i$的结点的第$j$个孩子$(1 \leq j \leq d)$，
+D-ARY-Parent(i)return $\lfloor (i-2)/d+1 \rfloor$
+D-ARY-...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/31</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "d叉堆">d叉堆</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/07/31/算法导论思考题4-1/" >
+            
+                <span>算法导论思考题4-1</span>
+        </a>
+        <div class="abstract-content">
+            4-1（递归式例子）对下列每个递归式，给出T(n)的渐进上界和渐进下界。假定 $n\leq2$时T(n)时常数。给出尽量紧确的界，并验证其正确性。不会主方法的先看一下这篇博客：https://blog.csdn.net/qq_40512922/article/details/96932368
+a.&emsp;$T(n)=2T(n/2)+n^4$
+证明：有$a=2,b=2,n^{log_ba}=n$，$f(n)=f(n^4)=\Omega(n^{\epsilon+1})$，其中$\epsilon=3$。下面证明正则条件：$\exists c&lt;1,af(n/b)\leq cf(n)$
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/31</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "主方法">主方法</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法分析">算法分析</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/07/30/算法导论思考题2-4/" >
             
                 <span>算法导论思考题2-4</span>
@@ -536,13 +606,13 @@ T(n)=
             
             <div class= abstract-tags >
     
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
         <a class="post-tag" href="javascript:void(0);" data-tags = "主方法">主方法</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "时间复杂度">时间复杂度</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "算法分析">算法分析</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
     
 </div>
             
@@ -988,9 +1058,25 @@ More...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 17
+        Total : 19
         </div>
         <!-- search  -->
         
@@ -1003,6 +1089,16 @@ More...
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "/2019/08/18/VSCode写Markdown中代码块tab缩进错误/" >Visual Studio Code写Markdown中代码块tab缩进错误</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "/2019/08/18/数据结构-红黑树/" >数据结构-红黑树</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1094,31 +1190,27 @@ More...
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
+    
+        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
+    
         <span class="sidebar-tag-name" data-tags="主方法"><span class="iconfont-archer">&#xe606;</span>主方法</span>
     
         <span class="sidebar-tag-name" data-tags="时间复杂度"><span class="iconfont-archer">&#xe606;</span>时间复杂度</span>
     
         <span class="sidebar-tag-name" data-tags="算法分析"><span class="iconfont-archer">&#xe606;</span>算法分析</span>
     
-        <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
-    
         <span class="sidebar-tag-name" data-tags="排序"><span class="iconfont-archer">&#xe606;</span>排序</span>
-    
-        <span class="sidebar-tag-name" data-tags="d叉堆"><span class="iconfont-archer">&#xe606;</span>d叉堆</span>
     
         <span class="sidebar-tag-name" data-tags="逆序对"><span class="iconfont-archer">&#xe606;</span>逆序对</span>
     
         <span class="sidebar-tag-name" data-tags="线段树"><span class="iconfont-archer">&#xe606;</span>线段树</span>
     
+        <span class="sidebar-tag-name" data-tags="d叉堆"><span class="iconfont-archer">&#xe606;</span>d叉堆</span>
+    
         <span class="sidebar-tag-name" data-tags="中位数"><span class="iconfont-archer">&#xe606;</span>中位数</span>
     
         <span class="sidebar-tag-name" data-tags="二分查找"><span class="iconfont-archer">&#xe606;</span>二分查找</span>
-    
-        <span class="sidebar-tag-name" data-tags="二叉树"><span class="iconfont-archer">&#xe606;</span>二叉树</span>
-    
-        <span class="sidebar-tag-name" data-tags="中序遍历"><span class="iconfont-archer">&#xe606;</span>中序遍历</span>
-    
-        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
     
         <span class="sidebar-tag-name" data-tags="操作系统"><span class="iconfont-archer">&#xe606;</span>操作系统</span>
     
@@ -1126,9 +1218,23 @@ More...
     
         <span class="sidebar-tag-name" data-tags="cmd"><span class="iconfont-archer">&#xe606;</span>cmd</span>
     
+        <span class="sidebar-tag-name" data-tags="二叉树"><span class="iconfont-archer">&#xe606;</span>二叉树</span>
+    
+        <span class="sidebar-tag-name" data-tags="中序遍历"><span class="iconfont-archer">&#xe606;</span>中序遍历</span>
+    
+        <span class="sidebar-tag-name" data-tags="vs Code"><span class="iconfont-archer">&#xe606;</span>vs Code</span>
+    
+        <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
+    
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
         <span class="sidebar-tag-name" data-tags="Effective C++"><span class="iconfont-archer">&#xe606;</span>Effective C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="红黑树"><span class="iconfont-archer">&#xe606;</span>红黑树</span>
+    
+        <span class="sidebar-tag-name" data-tags="平衡树"><span class="iconfont-archer">&#xe606;</span>平衡树</span>
+    
+        <span class="sidebar-tag-name" data-tags="数据结构"><span class="iconfont-archer">&#xe606;</span>数据结构</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1167,7 +1273,13 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="操作系统"><span class="iconfont-archer">&#xe60a;</span>操作系统</span>
     
+        <span class="sidebar-category-name" data-categories="踩坑"><span class="iconfont-archer">&#xe60a;</span>踩坑</span>
+    
         <span class="sidebar-category-name" data-categories="读书笔记"><span class="iconfont-archer">&#xe60a;</span>读书笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构"><span class="iconfont-archer">&#xe60a;</span>数据结构</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构/算法导论"><span class="iconfont-archer">&#xe60a;</span>数据结构/算法导论</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

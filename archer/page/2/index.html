@@ -346,18 +346,20 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/17/算法导论思考题12-1/" >
+        <a class="abstract-title" href = "/2019/07/31/算法导论思考题6-2/" >
             
-                <span>算法导论思考题12-1</span>
+                <span>算法导论思考题6-2</span>
         </a>
         <div class="abstract-content">
-            12-1（带有相同关键字的二叉搜索树）相同关键字给二叉搜索树的实现带来了问题。a. &emsp;当用TREE-INSERT将$n$个其中带有相同关键字的数据插入到一棵初始为空的二叉搜索树中时，其渐进性能是多少？最坏情况下，所有关键字相同，那么将形成一个单链。时间复杂度为$O(n^2)$。
-&emsp;建议通过在第5行之前测试$z.key = x.key$和在11行之前测试$z.key = y.key$的方法，来对TREE-INSERT改进。如果相等，根据下面的策略之一来实现。对于每个策略，得到将$n$个其中带有相同关键字的数据插入到一棵初始为空的二叉搜索树中的渐进性能。（对第5行描述的策...
+            6-2（对d叉堆的分析）d叉堆与二叉堆很类似，但（一个可能的例外是）其中的每个非叶节点有d个孩子，而不是仅仅2个。a.&emsp;如何在一个数组中表示一个d叉堆？
+假设数组从$A[1]$开始,它作为根，那么$A[1]$有d个孩子分别是$A[2]…A[d+1]$，共d个。那么对于$A[2]…A[d+1]$共d个结点，一共有$d^2$个结点，从$A[d+2]….A[d^2+d+1]$。依次类推。那么对于一个编号为$i$的结点的第$j$个孩子$(1 \leq j \leq d)$，
+D-ARY-Parent(i)return $\lfloor (i-2)/d+1 \rfloor$
+D-ARY-...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/17</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/31</span>
             </div>
             <!-- tags  -->
             
@@ -365,7 +367,7 @@
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "二叉搜索树">二叉搜索树</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "d叉堆">d叉堆</a>
     
 </div>
             
@@ -378,18 +380,20 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/12/算法导论练习12-3/" >
+        <a class="abstract-title" href = "/2019/07/31/算法导论思考题4-1/" >
             
-                <span>算法导论练习12.3</span>
+                <span>算法导论思考题4-1</span>
         </a>
         <div class="abstract-content">
-            12.3-1&emsp;给出TREE-INSERT过车过程的一个递归版本
-12345678910111213141516171819202122232425262728293031323334353637383940//实现1TREE-INSERT(T,z)    if T.root = NIL //空树        T.root = z        z.p = NIL    else    //非空，递归查找合适位置        TREE-INSERT-RECURSIVE(T.root,z)TREE-INSERT-RECURSIVE(x,z)    if z.key &lt; x...
+            4-1（递归式例子）对下列每个递归式，给出T(n)的渐进上界和渐进下界。假定 $n\leq2$时T(n)时常数。给出尽量紧确的界，并验证其正确性。不会主方法的先看一下这篇博客：https://blog.csdn.net/qq_40512922/article/details/96932368
+a.&emsp;$T(n)=2T(n/2)+n^4$
+证明：有$a=2,b=2,n^{log_ba}=n$，$f(n)=f(n^4)=\Omega(n^{\epsilon+1})$，其中$\epsilon=3$。下面证明正则条件：$\exists c&lt;1,af(n/b)\leq cf(n)$
+...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/12</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/31</span>
             </div>
             <!-- tags  -->
             
@@ -397,7 +401,9 @@
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "二叉搜索树">二叉搜索树</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "主方法">主方法</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法分析">算法分析</a>
     
 </div>
             
@@ -410,103 +416,31 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/09/算法导论练习12-2/" >
+        <a class="abstract-title" href = "/2019/07/30/算法导论思考题2-4/" >
             
-                <span>算法导论练习12.2</span>
+                <span>算法导论思考题2-4</span>
         </a>
         <div class="abstract-content">
-            12.2-1&emsp;假设一棵二叉搜索树中的结点在1到1000之间，现在想要查找值为363得到结点，下面序列那个不是查找过的序列。
-a. $2,252,401,398,330,344,397,363$。b. $924,220,911,244,898,258,362,363$。c. $925,202,911,240,912,245,363$。d. $2,399,387,219,266,382,381,278,363$。e. $935,278,347,621,299,392,358,363$。
-因为这是查找BST过程中的一个序列，因此根据该序列构造BST，如果满足BST的性质，那么就是查找...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "二叉搜索树">二叉搜索树</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/08/算法导论练习12-1/" >
-            
-                <span>算法导论练习12.1</span>
-        </a>
-        <div class="abstract-content">
-            12.1-1&emsp;对于关键字集合$\{1,4,5,10,16,17,21\}$，分别画出高度为2、3、4、5和6的二叉搜索树。
-这里说明一下：算法导论中定义的高度是根节点到叶节点的最大距离
-高度为2：      高度为3：                高度为4：
-    10              10                      5
-   /  \            /  \                    /  \
-  4    17         4   16                  4    10
- / \   /\        ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "二叉搜索树">二叉搜索树</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/08/算法导论练习10.4-5二叉树遍历/" >
-            
-                <span>算法导论练习10.4-5二叉树遍历</span>
-        </a>
-        <div class="abstract-content">
-            10.4-5 给定一个n结点的二叉树，写出一个$O(n)$时间的非递归过程，将该树的每一个结点的关键字输出。要求除该树本身的存储空间外只能使用固定量的额外存储空间，且中过程中不得修改该树，即使是暂时的修改也不允许。
-要完成$O(1))$的空间内遍历该树，需要每个结点需要能访问其父节点进行回溯。
-1234567struct Tree&#123;    Tree *parent;    Tree *left;    Tree *right;    int key;&#125;;
-中序遍历：
+            思考题2-4（逆序对） 假设A[1..n]是一个有$n$个不同数的数组，若iA[j]，则对偶(i,j)称为A的一个逆序对(inversion)。a.列出数组$$的5个逆序对。&emsp;逆序对有$(1,5),(2,5),(3,4),(3,5),(4,5)$
 
-访问左孩子
-访问右孩子
-从左孩子返回，访问根节点，进入右孩子访问
-从右孩子返回，整棵树访问完成，回溯...
+b.有集合$\{1,2,\dots,n\}$中的元素构成的什么数组具有最多的逆序对？它有多少逆序对？&emsp; 当数组为 $\{1,2,\dots,n\}$为逆序时，即$\{n,n-1,\dots,1\}$时逆序对最多。对于 $\forall i,j \in [1,n],(i,j)$均为逆序对。此时共有逆序对$(_n^2)=n(n...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/08</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/30</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "二叉树">二叉树</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "中序遍历">中序遍历</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "排序">排序</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "逆序对">逆序对</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "线段树">线段树</a>
     
 </div>
             
@@ -519,30 +453,80 @@ a. $2,252,401,398,330,344,397,363$。b. $924,220,911,244,898,258,362,363$。c. $
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/" >
+        <a class="abstract-title" href = "/2019/07/29/算法导论第二章插入排序/" >
             
-                <span>Win10中shift+鼠标右键调出cmd窗口</span>
+                <span>算法导论第二章插入排序</span>
         </a>
         <div class="abstract-content">
-            Win10中shift+鼠标右键调出cmd窗口最近Win10系统更新，更新后发现之前按shift+鼠标右键时，菜单栏里面的cmd选项不见了，取而代之的是 Powershell窗口。用习惯了了cmd还是有点不习惯powershell。
-下面是我Win10更新后shift+鼠标右键的选项栏的效果：
+            算法导论 第二章插入排序实现&emsp;插入排序算法是时间复杂度为 $O(n)$，输入规模$n$较小时，插入排序往往能有较好的效果。
+&emsp;最优情况：数据整体有序，无需须交换元素，时间复杂度$O(n)$
+&emsp;最坏情况：数据整体逆序，每个元素要 $1~n-1$次，时间复杂度为 $O(n^2)$。
+&emsp;插入排序中的常数因子较小使得在$n$在较小的时候，在很多情况能够运行更快。作为归并排序，快速排序等算法在小规模时处理的问题时的子程序。
+书中的伪代码123456789INSERTION-SORT(A)1 for j = 2 to A.length2 	key = A[j]...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/29</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "排序">排序</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/07/29/算法导论思考题1-1/" >
+            
+                <span>算法导论思考题1-1</span>
+        </a>
+        <div class="abstract-content">
+            算法导论-思考题1-11-1（运行时间的比较）假设求解问题的算法需要 $f(n)$微秒(microseconds)，对下表中每个函数$f(n)$和时间$t$可以确定在时间$t$内求解问题的最大规模$n$。中文版给的$f(n)$单位是毫秒，但看了原版，发现单位是微秒(microseconds)，故下面采用微秒来计算。
 
-&emsp;这里不做cmd和powershell的比较。简单来说powershell像是cmd的一个超集，不仅仅支持cmd的命令，还额外支持.net命令，也支持部分常用的Linux命令。powershell的字体颜色比cmd丰富点。但是相应的powershell所占用的资源更多，有时候我在pow...
+
+
+
+函数\时间
+1秒钟
+1分钟
+1小时
+1天
+1月
+1年
+1世纪
+
+
+
+
+$lgn$
+$2^{10^6}$
+$2^{6\times 10^7}$
+$2^{3.6 \times 10^9}$
+$2^{8.64 \times 10^{10}}$
+$2^{2.592 \time...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/07</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/29</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "操作系统">操作系统</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Win10">Win10</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "cmd">cmd</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
     
 </div>
             
@@ -555,26 +539,25 @@ a. $2,252,401,398,330,344,397,363$。b. $924,220,911,244,898,258,362,363$。c. $
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/02/算法导论思考题9-2/" >
+        <a class="abstract-title" href = "/2019/07/26/算法导论练习9-1-1找第二小的元素/" >
             
-                <span>算法导论思考题9-2</span>
+                <span>算法导论练习9.1-1找第二小的元素</span>
         </a>
         <div class="abstract-content">
-            9-2&emsp;(带权中位数)对分别具体以正权重$w_1,w_2,\dotsb,w_n$,且满足$\sum_{i=1}^{n}{w_i=1}$的$n$个互异的元素$x_1,x_2,\dotsb,x_n$来说，带权中位数$x_k$(较小中位数)是满足如下条件的元素：
-\sum_{x_i < x_k}w_i  x_k}w_i \leq \frac{1}{2}例如，如果元素是$0.1  ,0.35  ,0.05  ,0.1  ,0.15  ,0.05  ,0.2$，并且每个元素的权重等于本身(即对所有$i=1,2,\dotsb,7都有w_i=x_i$)，那么中位数是0.1，而带全中位数是0....
+            算法导论9.1-1找第二小的元素1、证明：在最坏情况下，找到n个元素中第二小的元素需要 $n+ \lceil lgn  \rceil -2$次比较。（提示：可以同时找到最小元素）做以下断言：无论采用何种比较算法，在寻找最小元素的过程中，第二小的元素一定与最小元素做过比较。显然，因为第二小的元素直到遇到最小元素前，一定会胜出进入下一轮。如果最小元素没有与第二小元素相比较，则无法得出该元素是最小的关系。  
+因此，要想是我们找到最小元素的比较次数最少，就需要在寻找最小元素的过程中与最小元素发生比较的次数尽量的少。  
+由于每次我们只能取两个元素进行比较，从而考虑每一轮将我们比较元素两两比较，...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/02</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/26</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "中位数">中位数</a>
     
 </div>
             
@@ -587,18 +570,24 @@ a. $2,252,401,398,330,344,397,363$。b. $924,220,911,244,898,258,362,363$。c. $
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/01/算法导论练习9-3-8两个有序数组的中位数/" >
+        <a class="abstract-title" href = "/2019/07/22/主方法求解递归式/" >
             
-                <span>算法导论练习9.3-8两个有序数组的中位数</span>
+                <span>主方法求解递归式</span>
         </a>
         <div class="abstract-content">
-            9.3-8&emsp;设X[1..n]和Y[1..n]为两个数组，每个都包含n个有序的元素，请设计一个$O(lgn)$时间的算法找出数组X和Y中所有2n个元素的中位数。下面假设中位数(低中位数，数组长度偶数时较小的那个)在数组$X$中。如果要求中间两个数的均值，只需要在该基础之上修改一点就好。
-a、$X[k]=m$为中位数，对于数组$X$,有$k$个元素小于等于$X[k]$，同时有$n-k$个元素大于等于$X[k]$。当两个数组合并有序时，对于中位数来说，共有$n$个元素小于等于$X[k]$，n个元素大于等于$X[k]$。那么对于数组$Y$来说，有$n-k$个元素小于等于$X[k]$，$...
+            主方法求解递归式&emsp;&emsp;在分析递归的算法时，主方法可以较快的计算出算法的时间复杂度主方法可以用于满足以下形式的递归式。
+T(n)=aT(n/b)+f(n)其中$a\geq1和b&gt;1$是常数，$f(n)$是渐进函数。&emsp;&emsp;主方法描述的算法：将原本规模为$n$的问题，分解为 $a$ 个规模为 $n/b$ 的子问题，其中 $a,b\in \mathbb{Z^+}$，函数 $f(n)$ 包含了问题分解和子问题合并的代价。
+下面是归并排序的递归式:
+
+T(n)=
+\begin{cases}
+\Theta(1) & 若n=1 \\
+2T(n/2)+\Theta...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/01</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/22</span>
             </div>
             <!-- tags  -->
             
@@ -606,16 +595,86 @@ a、$X[k]=m$为中位数，对于数组$X$,有$k$个元素小于等于$X[k]$，�
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "中位数">中位数</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "主方法">主方法</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "二分查找">二分查找</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "时间复杂度">时间复杂度</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法分析">算法分析</a>
     
 </div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/07/13/Effective-c-读书笔记第一章/" >
+            
+                <span>Effective c++ 读书笔记第一章</span>
+        </a>
+        <div class="abstract-content">
+            
+Ⅰ、 让自习惯C++
+条款01：视C++为一个语言连邦
+C++是一个多重泛型编程语言，同时支持过程形式、面向对象形式、泛型形式、元编程形式的语言。
+将C++是为一个联邦,主要的此语言为4个：
+1.procedural-based C。C语言的面向过程2.Object-Oriented C++。面向对象3.Template C++。 C++ 的泛型 (generics) 编程和由 template 的强大功能带来 template   metaprogramming (TMP,模板元编程)4.STL。template程序库，主要包括 容器、迭代器、算法以及函数对象
+tips:编程过程中在...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/13</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "C++">C++</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Effective C++">Effective C++</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/07/13/hello-world/" >
+            
+                <span>Hello World</span>
+        </a>
+        <div class="abstract-content">
+            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post1$ hexo new "My New Post"
+More info: Writing
+Run server1$ hexo server
+More...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/13</span>
+            </div>
+            <!-- tags  -->
             
         </div>
     </article>
     
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/archer/">&#60; PREV</a><a class="page-number" href="/archer/">1</a><span class="page-number current">2</span>
+    </nav>
     
 </main>
             <!-- profile -->
@@ -892,9 +951,25 @@ a、$X[k]=m$为中位数，对于数组$X$,有$k$个元素小于等于$X[k]$，�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 17
+        Total : 19
         </div>
         <!-- search  -->
         
@@ -907,6 +982,16 @@ a、$X[k]=m$为中位数，对于数组$X$,有$k$个元素小于等于$X[k]$，�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "/2019/08/18/VSCode写Markdown中代码块tab缩进错误/" >Visual Studio Code写Markdown中代码块tab缩进错误</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "/2019/08/18/数据结构-红黑树/" >数据结构-红黑树</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -998,31 +1083,27 @@ a、$X[k]=m$为中位数，对于数组$X$,有$k$个元素小于等于$X[k]$，�
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
+    
+        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
+    
         <span class="sidebar-tag-name" data-tags="主方法"><span class="iconfont-archer">&#xe606;</span>主方法</span>
     
         <span class="sidebar-tag-name" data-tags="时间复杂度"><span class="iconfont-archer">&#xe606;</span>时间复杂度</span>
     
         <span class="sidebar-tag-name" data-tags="算法分析"><span class="iconfont-archer">&#xe606;</span>算法分析</span>
     
-        <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
-    
         <span class="sidebar-tag-name" data-tags="排序"><span class="iconfont-archer">&#xe606;</span>排序</span>
-    
-        <span class="sidebar-tag-name" data-tags="d叉堆"><span class="iconfont-archer">&#xe606;</span>d叉堆</span>
     
         <span class="sidebar-tag-name" data-tags="逆序对"><span class="iconfont-archer">&#xe606;</span>逆序对</span>
     
         <span class="sidebar-tag-name" data-tags="线段树"><span class="iconfont-archer">&#xe606;</span>线段树</span>
     
+        <span class="sidebar-tag-name" data-tags="d叉堆"><span class="iconfont-archer">&#xe606;</span>d叉堆</span>
+    
         <span class="sidebar-tag-name" data-tags="中位数"><span class="iconfont-archer">&#xe606;</span>中位数</span>
     
         <span class="sidebar-tag-name" data-tags="二分查找"><span class="iconfont-archer">&#xe606;</span>二分查找</span>
-    
-        <span class="sidebar-tag-name" data-tags="二叉树"><span class="iconfont-archer">&#xe606;</span>二叉树</span>
-    
-        <span class="sidebar-tag-name" data-tags="中序遍历"><span class="iconfont-archer">&#xe606;</span>中序遍历</span>
-    
-        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
     
         <span class="sidebar-tag-name" data-tags="操作系统"><span class="iconfont-archer">&#xe606;</span>操作系统</span>
     
@@ -1030,9 +1111,23 @@ a、$X[k]=m$为中位数，对于数组$X$,有$k$个元素小于等于$X[k]$，�
     
         <span class="sidebar-tag-name" data-tags="cmd"><span class="iconfont-archer">&#xe606;</span>cmd</span>
     
+        <span class="sidebar-tag-name" data-tags="二叉树"><span class="iconfont-archer">&#xe606;</span>二叉树</span>
+    
+        <span class="sidebar-tag-name" data-tags="中序遍历"><span class="iconfont-archer">&#xe606;</span>中序遍历</span>
+    
+        <span class="sidebar-tag-name" data-tags="vs Code"><span class="iconfont-archer">&#xe606;</span>vs Code</span>
+    
+        <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
+    
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
         <span class="sidebar-tag-name" data-tags="Effective C++"><span class="iconfont-archer">&#xe606;</span>Effective C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="红黑树"><span class="iconfont-archer">&#xe606;</span>红黑树</span>
+    
+        <span class="sidebar-tag-name" data-tags="平衡树"><span class="iconfont-archer">&#xe606;</span>平衡树</span>
+    
+        <span class="sidebar-tag-name" data-tags="数据结构"><span class="iconfont-archer">&#xe606;</span>数据结构</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1071,7 +1166,13 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="操作系统"><span class="iconfont-archer">&#xe60a;</span>操作系统</span>
     
+        <span class="sidebar-category-name" data-categories="踩坑"><span class="iconfont-archer">&#xe60a;</span>踩坑</span>
+    
         <span class="sidebar-category-name" data-categories="读书笔记"><span class="iconfont-archer">&#xe60a;</span>读书笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构"><span class="iconfont-archer">&#xe60a;</span>数据结构</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构/算法导论"><span class="iconfont-archer">&#xe60a;</span>数据结构/算法导论</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
