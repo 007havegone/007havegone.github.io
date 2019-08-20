@@ -22,7 +22,7 @@
     <meta name="description" content="个人博客，写心得随笔。">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Win10中shift+鼠标右键调出cmd窗口 · 007&#39;s Studio</title>
+    <title>007&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,23 +203,12 @@
 </head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >007&#39;s Studio.</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">Win10中shift+鼠标右键调出cmd窗口</a>
-            </div>
-    </div>
     
     <a class="home-link" href=/>007's Studio.</a>
 </header>
@@ -231,78 +220,24 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
-            Win10中shift+鼠标右键调出cmd窗口
-            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                    <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "操作系统">操作系统</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Win10">Win10</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "cmd">cmd</a>
-    
-</div>
-                
-                
-                    <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">478</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/08/07</span>
-                    
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -403,92 +338,48 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <h1 id="Win10中shift-鼠标右键调出cmd窗口"><a href="#Win10中shift-鼠标右键调出cmd窗口" class="headerlink" title="Win10中shift+鼠标右键调出cmd窗口"></a>Win10中shift+鼠标右键调出cmd窗口</h1><p>最近Win10系统更新，更新后发现之前按shift+鼠标右键时，菜单栏里面的cmd选项不见了，取而代之的是 Powershell窗口。用习惯了了cmd还是有点不习惯powershell。</p>
-<p>下面是我Win10更新后shift+鼠标右键的选项栏的效果：</p>
-<p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/无cmd.jpg" alt></p>
-<p>&emsp;这里不做cmd和powershell的比较。简单来说powershell像是cmd的一个超集，不仅仅支持cmd的命令，还额外支持.net命令，也支持部分常用的Linux命令。powershell的字体颜色比cmd丰富点。但是相应的powershell所占用的资源更多，有时候我在powershell运行命令可以感觉到明显的延迟感。（可能电脑开的进程比较多）不过cmd较少遇到这种情况。</p>
-<h2 id="1、在shift-鼠标右键中添加cmd。"><a href="#1、在shift-鼠标右键中添加cmd。" class="headerlink" title="1、在shift+鼠标右键中添加cmd。"></a>1、在shift+鼠标右键中添加cmd。</h2><p>用到的工具是注册表。</p>
-<ol>
-<li>按 <code>Win + R</code> 或 <code>鼠标右键window</code> 打开运行窗口</li>
-</ol>
-<p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/运行窗口.jpg" alt></p>
-<ol>
-<li>输入 <code>regedit</code> 调出注册表</li>
-</ol>
-<p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/注册表.jpg" alt></p>
-<ol>
-<li>在注册表中定位到：<code>\HKEY_CLASSES_ROOT\Directory\Background\shell\cmd</code>，将右侧的<code>HideBasedOnVelocityId</code>重命名为<code>ShowBasedOnVelocityId</code>即可。</li>
-</ol>
-<p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/改名.jpg" alt></p>
-<ol>
-<li>同样的，如果想要关闭右键powershell，只要修改定位到：<code>\HKEY_CLASSES_ROOT\Directory\Background\shell\Powershell</code>,将右侧的<code>ShowBasedOnVelocityId</code>重命名为<code>HideBasedOnVelocityId</code>即可。</li>
-</ol>
-<hr>
-<p><strong>注意事项：</strong> 修改的过程中可能会遇到权限不足的情况，无法进行编辑。</p>
-<h2 id="2、权限修改"><a href="#2、权限修改" class="headerlink" title="2、权限修改"></a>2、权限修改</h2><ol>
-<li>这时候右键cmd文件夹或powershell文件夹选择权限项。</li>
-</ol>
-<p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/右键权限.jpg" alt></p>
-<ol>
-<li>在权限面板中：<code>组或用户名</code>一栏选择自己的用户，在下边的<code>Users的权限控制</code>选择上<code>完全控制</code>。然后点击下面的<code>高级</code>。</li>
-</ol>
-<p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/权限.jpg" alt></p>
-<ol>
-<li>在高级面板中：点击顶部的<code>更改所有者</code>，<code>输入要选择的对象名称</code>处输入当前账号名称，譬如输入xxx，再点<code>检查名称</code>并确定。回到上级菜单后继续确定即可。</li>
-</ol>
-<p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/更改所有者.jpg" alt></p>
-<ol>
-<li>然后再修改注册表名即可。</li>
-</ol>
-<hr>
-<h2 id="3、最终效果："><a href="#3、最终效果：" class="headerlink" title="3、最终效果："></a>3、最终效果：</h2><p><img src="/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/修改后效果.jpg" alt></p>
-
-    </article>
-    <!-- license  -->
+            <main class="main index-page">
     
-        <div class="license-wrapper">
-            <p>原文作者：<a href="http://007havegone.github.io">007havegone</a>
-            <p>原文链接：<a href="http://007havegone.github.io/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/">http://007havegone.github.io/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/</a>
-            <p>发表日期：<a href="http://007havegone.github.io/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/">August 7th 2019, 4:06:33 pm</a>
-            <p>更新日期：<a href="http://007havegone.github.io/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/">August 7th 2019, 5:57:56 pm</a>
-            <p>版权声明：‘原创内容，转载时请附上出处’</p>
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/08/01/算法导论练习9-3-8两个有序数组的中位数/" >
+            
+                <span>算法导论练习9.3-8两个有序数组的中位数</span>
+        </a>
+        <div class="abstract-content">
+            9.3-8&emsp;设X[1..n]和Y[1..n]为两个数组，每个都包含n个有序的元素，请设计一个$O(lgn)$时间的算法找出数组X和Y中所有2n个元素的中位数。下面假设中位数(低中位数，数组长度偶数时较小的那个)在数组$X$中。如果要求中间两个数的均值，只需要在该基础之上修改一点就好。
+a、$X[k]=m$为中位数，对于数组$X$,有$k$个元素小于等于$X[k]$，同时有$n-k$个元素大于等于$X[k]$。当两个数组合并有序时，对于中位数来说，共有$n$个元素小于等于$X[k]$，n个元素大于等于$X[k]$。那么对于数组$Y$来说，有$n-k$个元素小于等于$X[k]$，$...
         </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "中位数">中位数</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "二分查找">二分查找</a>
+    
+</div>
+            
+        </div>
+    </article>
     
     <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/08/08/算法导论练习10.4-5二叉树遍历/" title= "算法导论练习10.4-5二叉树遍历">
-                    <div class="nextTitle">算法导论练习10.4-5二叉树遍历</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/08/02/算法导论思考题9-2/" title= "算法导论思考题9-2">
-                    <div class="prevTitle">算法导论思考题9-2</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
     
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/archer/2019/08/">&#60; PREV</a><a class="page-number" href="/archer/2019/08/">1</a><span class="page-number current">2</span>
+    </nav>
     
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-    
-
-    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -570,24 +461,6 @@ height:50vh;
 </footer>
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Win10中shift-鼠标右键调出cmd窗口"><span class="toc-number">1.</span> <span class="toc-text">Win10中shift+鼠标右键调出cmd窗口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、在shift-鼠标右键中添加cmd。"><span class="toc-number">1.1.</span> <span class="toc-text">1、在shift+鼠标右键中添加cmd。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、权限修改"><span class="toc-number">1.2.</span> <span class="toc-text">2、权限修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、最终效果："><span class="toc-number">1.3.</span> <span class="toc-text">3、最终效果：</span></a></li></ol></li></ol>
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1065,8 +938,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
