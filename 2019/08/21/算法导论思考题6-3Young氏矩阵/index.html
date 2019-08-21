@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="007havegone">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="007havegone">
+    
+    <meta name="keywords" content="hexo,Algorithm,Data structure,C++,Java">
+    
+    <meta name="description" content="个人博客，写心得随笔。">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>算法导论思考题6-3Young氏矩阵 · 007&#39;s Studio</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >007&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">算法导论思考题6-3Young氏矩阵</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>007's Studio.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            算法导论思考题6-3Young氏矩阵
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Young氏矩阵">Young氏矩阵</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "堆">堆</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">2.3k</span>阅读时长: <span class="post-count reading-time">11 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/08/21</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h3 id="思考题6-3（Young氏矩阵）在一个-m-times-n-的Young氏矩阵（Young-tableau）中，每一行的数据都是从左到右排序的，每一列的数据都是从上到下排列的。Young氏矩阵中也会存在一些为-infty-的数据项，表示那些不存在的数据。因此，Young氏矩阵可以用来村出-r-leq-mn-个有限的数。"><a href="#思考题6-3（Young氏矩阵）在一个-m-times-n-的Young氏矩阵（Young-tableau）中，每一行的数据都是从左到右排序的，每一列的数据都是从上到下排列的。Young氏矩阵中也会存在一些为-infty-的数据项，表示那些不存在的数据。因此，Young氏矩阵可以用来村出-r-leq-mn-个有限的数。" class="headerlink" title="思考题6-3（Young氏矩阵）在一个$m\times n$的Young氏矩阵（Young tableau）中，每一行的数据都是从左到右排序的，每一列的数据都是从上到下排列的。Young氏矩阵中也会存在一些为 $\infty$ 的数据项，表示那些不存在的数据。因此，Young氏矩阵可以用来村出$r \leq mn$个有限的数。"></a>思考题6-3（Young氏矩阵）在一个$m\times n$的Young氏矩阵（Young tableau）中，每一行的数据都是从左到右排序的，每一列的数据都是从上到下排列的。Young氏矩阵中也会存在一些为 $\infty$ 的数据项，表示那些不存在的数据。因此，Young氏矩阵可以用来村出$r \leq mn$个有限的数。</h3><h4 id="a-emsp-画出一个包含元素-9，16，3，2，4，8，5，14，12-的-4-times-4-Young氏矩阵。"><a href="#a-emsp-画出一个包含元素-9，16，3，2，4，8，5，14，12-的-4-times-4-Young氏矩阵。" class="headerlink" title="a.&emsp;画出一个包含元素$\{9，16，3，2，4，8，5，14，12\}$的$4 \times 4$Young氏矩阵。"></a>a.&emsp;画出一个包含元素$\{9，16，3，2，4，8，5，14，12\}$的$4 \times 4$Young氏矩阵。</h4><p>第一题比较简单，只要满足插入和每行每列都是非递减就行。<br>下面示例：</p>
+<script type="math/tex; mode=display">\begin{bmatrix} 2 & 5 & 8 & \infty \\
+                  3 & 9 & 14 & \infty \\
+                  4 & 12 & 16 & \infty \\ 
+                  \infty & \infty  & \infty & \infty \\ 
+\end{bmatrix}</script><p>采用不同规则最终效果不同，只要满足其定义即可。</p>
+<p><strong>在后面的实现中我们为了简化边界检查，我们实际的矩阵实现行数和列数要比实际大2，Y的存储位置为$[1,1]$到$[M,N]$。</strong><br>$4 \times 4$的Young氏矩阵的实际存储空间。</p>
+<script type="math/tex; mode=display">\begin{bmatrix}
+                  -\infty& -\infty & -\infty & -\infty & -\infty &-\infty \\
+                  -\infty& 2 & 5 & 8 & \infty & \infty\\
+                  -\infty & 3 & 9 & 14 & \infty & \infty \\ 
+                  -\infty & 4 & 12 & 16 & \infty & \infty \\ 
+                  -\infty & \infty  & \infty & \infty & \infty & \infty\\ 
+\end{bmatrix}</script><p>采取这种方案，当达到边界时，不会越界。</p>
+<h4 id="b-emsp-对于一个-m-times-n-的Young氏矩阵来说，请证明：如果-Y-1-1-infty-，则-Y-为空；如果-Y-m-n-lt-infty-，则-Y-为满（即包含-mn-个元素）。"><a href="#b-emsp-对于一个-m-times-n-的Young氏矩阵来说，请证明：如果-Y-1-1-infty-，则-Y-为空；如果-Y-m-n-lt-infty-，则-Y-为满（即包含-mn-个元素）。" class="headerlink" title="b.&emsp;对于一个$m \times n$的Young氏矩阵来说，请证明：如果$Y[1,1]=\infty$，则$Y$为空；如果$Y[m,n]&lt; \infty$，则$Y$为满（即包含$mn$个元素）。"></a>b.&emsp;对于一个$m \times n$的Young氏矩阵来说，请证明：如果$Y[1,1]=\infty$，则$Y$为空；如果$Y[m,n]&lt; \infty$，则$Y$为满（即包含$mn$个元素）。</h4><p>这道题比较简单，根据定义就可以快速得出。<br>证明：根据Young氏矩阵的定义，$Y[i,j] \leq Y[i+k1,j+k2]，\forall i,i+k1 \leq m$ 且 $j,j+k2 \leq n$。即$Y[1,1]$为矩阵的最小值，$Y[m,n]$为最大值。</p>
+<p>如果$Y[1,1]=\infty$，则矩阵其他元素均为$\infty$，即为空。若$Y[m,n]&lt; \infty$，则其他元素均小于$\infty$，故$Y$为满。</p>
+<h4 id="c-emsp-请给出一个在-m-times-n-Young氏矩阵上时间复杂度为-O-m-n-的EXTRACT-MIN的算法实现。你的算法可以考虑使用一个递归过程，它把一个规模为-m-times-n-的问题分解为规模为-m-1-times-n-或-m-times-n-1-的子问题（提示：考虑使用MAX-HEAPFY）。这里，定义T-p-用来表示在任意-m-times-n-的Young氏矩阵上的时间复杂度，其中-p-m-n-。给出并求解-T-p-的递归表达式，其结果为-O-m-n-。"><a href="#c-emsp-请给出一个在-m-times-n-Young氏矩阵上时间复杂度为-O-m-n-的EXTRACT-MIN的算法实现。你的算法可以考虑使用一个递归过程，它把一个规模为-m-times-n-的问题分解为规模为-m-1-times-n-或-m-times-n-1-的子问题（提示：考虑使用MAX-HEAPFY）。这里，定义T-p-用来表示在任意-m-times-n-的Young氏矩阵上的时间复杂度，其中-p-m-n-。给出并求解-T-p-的递归表达式，其结果为-O-m-n-。" class="headerlink" title="c.&emsp;请给出一个在$m \times n$ Young氏矩阵上时间复杂度为$O(m+n)$的EXTRACT-MIN的算法实现。你的算法可以考虑使用一个递归过程，它把一个规模为$m \times n$的问题分解为规模为$(m-1) \times n$或$m \times (n-1)$的子问题（提示：考虑使用MAX-HEAPFY）。这里，定义T(p)用来表示在任意$m \times n$的Young氏矩阵上的时间复杂度，其中$p = m+n$。给出并求解$T(p)$的递归表达式，其结果为$O(m+n)$。"></a>c.&emsp;请给出一个在$m \times n$ Young氏矩阵上时间复杂度为$O(m+n)$的EXTRACT-MIN的算法实现。你的算法可以考虑使用一个递归过程，它把一个规模为$m \times n$的问题分解为规模为$(m-1) \times n$或$m \times (n-1)$的子问题（提示：考虑使用MAX-HEAPFY）。这里，定义T(p)用来表示在任意$m \times n$的Young氏矩阵上的时间复杂度，其中$p = m+n$。给出并求解$T(p)$的递归表达式，其结果为$O(m+n)$。</h4><p>这个实现上也比较简单。如下：</p>
+<ul>
+<li>在$Y$非空时，将$Y[1,1]$用$\infty$替换</li>
+</ul>
+<p>然后重新调整$\infty$的位置，记当前位置在$Y[i,j]$，让其满足定义。</p>
+<ul>
+<li>取其下面元素$Y[i+1,j]$和右边元素$Y[i,j+1]$的最小值$mix$，若$min \neq \infty$交换它和$\infty$的位置。</li>
+<li>当达到矩阵边界，或$min = \infty$，此时结束。</li>
+</ul>
+<p>下面是伪代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">extractMin(Y)</span><br><span class="line">    <span class="keyword">if</span>(!Y.empty())<span class="comment">//非空</span></span><br><span class="line">        Y[<span class="number">1</span>][<span class="number">1</span>] = INF;<span class="comment">//第一个元素置为INF</span></span><br><span class="line">        MinFixup(Y,Loc&#123;<span class="number">1</span>,<span class="number">1</span>&#125;);<span class="comment">//调整</span></span><br><span class="line"></span><br><span class="line">MinFixup(Young,loc)</span><br><span class="line">    t = Y[loc.x][loc.y]</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span>(Y[loc.x][loc.y+<span class="number">1</span>] &lt; Y[loc.x+<span class="number">1</span>][loc.y])<span class="comment">//获取下方和右边小的数的位置</span></span><br><span class="line">            small = &#123;loc.x,loc.y+<span class="number">1</span>&#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            small = &#123;loc.x+<span class="number">1</span>,loc.y&#125;</span><br><span class="line">        <span class="keyword">if</span>(Y[small.x][small.y] &lt; t)</span><br><span class="line">            Y[loc.x][loc.y] = Y[small.x][small.y]</span><br><span class="line">            loc = small</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)</span><br><span class="line">    Y[loc.x][loc.y] = t</span><br></pre></td></tr></table></figure></p>
+<p>该过程相当于一个棋子从左上角向右下方行走，每次交换后$i=i+1$或$j=j+1$，最多交换$m+n$次，总是时间复杂度为$O(m+m)$。</p>
+<h4 id="d-emsp-是说明如何在-O-m-n-的时间内，将一个元素插入到一个未满的-m-times-n-的Young氏矩阵中。"><a href="#d-emsp-是说明如何在-O-m-n-的时间内，将一个元素插入到一个未满的-m-times-n-的Young氏矩阵中。" class="headerlink" title="d.&emsp;是说明如何在$O(m+n)$的时间内，将一个元素插入到一个未满的$m \times n$的Young氏矩阵中。"></a>d.&emsp;是说明如何在$O(m+n)$的时间内，将一个元素插入到一个未满的$m \times n$的Young氏矩阵中。</h4><p>类似二叉堆的插入过程，我们将新的元素放置在矩阵的最后一个位置$Y[m,n]$，类似题目c相反，让它与上面的元素$Y[m-1,n]$或左边的元素$Y[m,n-1]$比较，取它们的最大值$max$，若$max\leq Y[m,n]$，那么此时满足，否则，取用$max$与它交换。直到达到达到边界或满足Young氏矩阵的定义。</p>
+<p>下面是伪代码<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">insert(Y,x)</span><br><span class="line"> <span class="keyword">if</span>(!Y.full())</span><br><span class="line">    Y[M][N] = x</span><br><span class="line">    MaxFixup(Loc&#123;M,N&#125;);</span><br><span class="line"></span><br><span class="line">MaxFixup(Y,loc)</span><br><span class="line">    t = Y[loc.x][loc.y]</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span>(Y[loc.x][loc.y<span class="number">-1</span>] &lt; Y[loc.x<span class="number">-1</span>][loc.y])</span><br><span class="line">            lager = &#123;loc.x,loc.y<span class="number">-1</span>&#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            small = &#123;loc.x<span class="number">-1</span>,loc.y&#125;</span><br><span class="line">        <span class="keyword">if</span>(Y[lager.x][lager.y] &gt; t)</span><br><span class="line">            Y[loc.x][loc.y] = Y[lager.x][lager.y]</span><br><span class="line">            loc = lager</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)</span><br><span class="line">    Y[loc.x][loc.y] = t</span><br></pre></td></tr></table></figure></p>
+<h4 id="e-emsp-在不用其他排序算法的情况下，是说明如何利用一个-n-times-n-的Young氏矩阵在-O-n-3-时间内将-n-2-个数进行排列。"><a href="#e-emsp-在不用其他排序算法的情况下，是说明如何利用一个-n-times-n-的Young氏矩阵在-O-n-3-时间内将-n-2-个数进行排列。" class="headerlink" title="e.&emsp;在不用其他排序算法的情况下，是说明如何利用一个$n \times n$的Young氏矩阵在$O(n^3)$时间内将$n^2$个数进行排列。"></a>e.&emsp;在不用其他排序算法的情况下，是说明如何利用一个$n \times n$的Young氏矩阵在$O(n^3)$时间内将$n^2$个数进行排列。</h4><p>将$n \times n$个元素插入Young氏矩阵中，花费$O(n^3)$，然后将他们意义取出即可，也是花费$O(n^3)$。故总的时间复杂度为$O(n^3)$。</p>
+<h4 id="f-emsp-设计一个时间复杂度为-O-m-n-的算法，它可以用来判断一个给定的数是否存储在-m-times-n-的Young氏矩阵内。"><a href="#f-emsp-设计一个时间复杂度为-O-m-n-的算法，它可以用来判断一个给定的数是否存储在-m-times-n-的Young氏矩阵内。" class="headerlink" title="f.&emsp;设计一个时间复杂度为$O(m+n)$的算法，它可以用来判断一个给定的数是否存储在$m \times n$的Young氏矩阵内。"></a>f.&emsp;设计一个时间复杂度为$O(m+n)$的算法，它可以用来判断一个给定的数是否存储在$m \times n$的Young氏矩阵内。</h4><p>查找一个数$x$，我们可以从左下角或右上角开始搜索。不能从左上角或右下角进行，例如左上角来说，当我们查找点元素大于$Y[1,1]$时，若往右或下均是大于$x$时，我们不知道往那个方向，有可能选择方向错误后，后面需要回过头来找尝试另一方向，花费额外时间。</p>
+<p>但是如果我们从左下角开始查找，如果$x &lt; Y[m,1]$，那么我们往上继续查找，若$X &gt; T[m,1]$，那么我们往右边查找。这样可以在$O(m+n)$时间内完成。当然，从右上角开始也是一样的效果。</p>
+<p>下面从左下角查找的伪代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">search(Y,t)<span class="comment">//查找t</span></span><br><span class="line">    x = M,y=<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span>(Y[x][y] != INF &amp;&amp; Y[x][y] != -INF)<span class="comment">//未到达边界</span></span><br><span class="line">        <span class="keyword">if</span>(Y[x][y] == t)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(t &lt; Y[x][y])</span><br><span class="line">            x = x + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            y = y - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cassert&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;array&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;random&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Loc</span>//位置定义</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> x,y;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">unsigned</span> M,<span class="keyword">unsigned</span> N=M&gt;</span><br><span class="line">class Youngtableau&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Youngtableau();<span class="comment">//构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">const</span> T&amp;x)</span></span>;<span class="comment">//插入</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">extractMin</span><span class="params">()</span></span>;<span class="comment">//删除</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> matrix[<span class="number">1</span>][<span class="number">1</span>]==INF;&#125;<span class="comment">//判空</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">full</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> matrix[M][N]!=INF;&#125;<span class="comment">//判满</span></span><br><span class="line">    <span class="function">T <span class="title">top</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> matrix[<span class="number">1</span>][<span class="number">1</span>];&#125;<span class="comment">//返回首元素</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">search</span><span class="params">(<span class="keyword">const</span> T&amp;t)</span></span>;<span class="comment">//查找</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;<span class="comment">//输出</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">MinFixup</span><span class="params">(Loc loc)</span></span>;<span class="comment">//调整函数</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">MaxFixup</span><span class="params">(Loc loc)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">//底层存储</span></span><br><span class="line">    <span class="comment">//为了方便边界处理，行列多开2个空间，方便处理边界</span></span><br><span class="line">    <span class="built_in">array</span>&lt;<span class="built_in">array</span>&lt;T,N+2&gt;,M+2&gt; matrix;</span><br><span class="line">    Loc ins;<span class="comment">//插入位置[M,N]</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    Functions Definition</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">unsigned</span> M,<span class="keyword">unsigned</span> N&gt;</span><br><span class="line">Youngtableau&lt;T,M,N&gt;::Youngtableau():ins(&#123;M,N&#125;)</span><br><span class="line">&#123;</span><br><span class="line">        matrix[<span class="number">0</span>].fill(-INF);</span><br><span class="line">        matrix[M+<span class="number">1</span>].fill(INF);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;matrix.size();++i)</span><br><span class="line">        &#123;</span><br><span class="line">            matrix[i][<span class="number">0</span>]=-INF;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;matrix[i].size();++j)</span><br><span class="line">                matrix[i][j]=INF;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">unsigned</span> M,<span class="keyword">unsigned</span> N&gt;</span><br><span class="line"><span class="keyword">void</span> Youngtableau&lt;T,M,N&gt;::print()&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=M;++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=N;++j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(matrix[i][j]!=INF)</span><br><span class="line">                    <span class="built_in">cout</span> &lt;&lt; matrix[i][j] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    <span class="built_in">cout</span> &lt;&lt; <span class="string">"INF "</span>;</span><br><span class="line">            &#125;       </span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">unsigned</span> M,<span class="keyword">unsigned</span> N&gt;</span><br><span class="line"><span class="keyword">void</span> Youngtableau&lt;T,M,N&gt;::insert(<span class="keyword">const</span> T&amp;x)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(!full())</span><br><span class="line">    &#123;</span><br><span class="line">        matrix[ins.x][ins.y]=x;</span><br><span class="line">        MaxFixup(ins);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">unsigned</span> M,<span class="keyword">unsigned</span> N&gt;</span><br><span class="line"><span class="keyword">void</span> Youngtableau&lt;T,M,N&gt;::extractMin()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(!empty())</span><br><span class="line">    &#123;</span><br><span class="line">        matrix[<span class="number">1</span>][<span class="number">1</span>]=INF;</span><br><span class="line">        MinFixup(Loc&#123;<span class="number">1</span>,<span class="number">1</span>&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">unsigned</span> M,<span class="keyword">unsigned</span> N&gt;</span><br><span class="line"><span class="keyword">bool</span> Youngtableau&lt;T,M,N&gt;::search(<span class="keyword">const</span> T&amp;t)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> x=M,y=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(matrix[x][y]!=INF&amp;&amp;matrix[x][y]!=-INF)<span class="comment">//边界检查</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(t==matrix[x][y])</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(t&lt;matrix[x][y])</span><br><span class="line">            --x;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            ++y;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">unsigned</span> M,<span class="keyword">unsigned</span> N&gt;</span><br><span class="line"><span class="keyword">void</span> Youngtableau&lt;T,M,N&gt;::MaxFixup(Loc loc)&#123;</span><br><span class="line">    T t=matrix[loc.x][loc.y];</span><br><span class="line">    Loc lager;</span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(matrix[loc.x][loc.y<span class="number">-1</span>]&gt;matrix[loc.x<span class="number">-1</span>][loc.y])</span><br><span class="line">            lager=&#123;loc.x,loc.y<span class="number">-1</span>&#125;;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            lager=&#123;loc.x<span class="number">-1</span>,loc.y&#125;;</span><br><span class="line">        <span class="keyword">if</span>(matrix[lager.x][lager.y]&gt;t)&#123;</span><br><span class="line">            matrix[loc.x][loc.y]=matrix[lager.x][lager.y];</span><br><span class="line">            loc=lager;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;<span class="keyword">while</span>(<span class="literal">true</span>);</span><br><span class="line">    matrix[loc.x][loc.y]=t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">unsigned</span> M,<span class="keyword">unsigned</span> N&gt;</span><br><span class="line"><span class="keyword">void</span> Youngtableau&lt;T,M,N&gt;::MinFixup(Loc loc)&#123;</span><br><span class="line">    T t=matrix[loc.x][loc.y];</span><br><span class="line">    Loc small;</span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(matrix[loc.x][loc.y+<span class="number">1</span>]&lt;matrix[loc.x+<span class="number">1</span>][loc.y])</span><br><span class="line">            small=&#123;loc.x,loc.y+<span class="number">1</span>&#125;;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            small=&#123;loc.x+<span class="number">1</span>,loc.y&#125;;</span><br><span class="line">        <span class="keyword">if</span>(matrix[small.x][small.y]&lt;t)&#123;</span><br><span class="line">            matrix[loc.x][loc.y]=matrix[small.x][small.y];</span><br><span class="line">            loc=small;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;<span class="keyword">while</span>(<span class="literal">true</span>);</span><br><span class="line">    matrix[loc.x][loc.y]=t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">unsigned</span> M,<span class="keyword">unsigned</span> N=M&gt;</span><br><span class="line"><span class="keyword">void</span> Youngtableau_test(Youngtableau&lt;<span class="keyword">int</span>,M,N&gt;&amp;matrix)</span><br><span class="line">&#123;   </span><br><span class="line">    <span class="keyword">static</span> default_random_engine e(time(<span class="literal">nullptr</span>));</span><br><span class="line">    <span class="keyword">static</span> uniform_int_distribution&lt;<span class="keyword">int</span>&gt; d(<span class="number">100</span>,<span class="number">999</span>);<span class="comment">//等概率生成3位的随机整数</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Before insert"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    matrix.print();</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;M*N)</span><br><span class="line">    &#123;</span><br><span class="line">       matrix.insert(d(e));</span><br><span class="line">       i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"After insert"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    matrix.print();</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"\nInput the number to check it if in the Young tableau,(-1 to stop):\n"</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; i &amp;&amp; i!=<span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; boolalpha &lt;&lt; matrix.search(i) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> pre=-INF;</span><br><span class="line">    <span class="keyword">while</span>(!matrix.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> t=matrix.top();</span><br><span class="line">        assert(pre&lt;=t);<span class="comment">//不满足非递减终止</span></span><br><span class="line">        pre=t;</span><br><span class="line">        matrix.extractMin();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"After delete"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    matrix.print();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Youngtableau&lt;<span class="keyword">int</span>,<span class="number">5</span>,<span class="number">10</span>&gt; matrix;</span><br><span class="line">    Youngtableau_test(matrix);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://007havegone.github.io">007havegone</a>
+            <p>原文链接：<a href="http://007havegone.github.io/2019/08/21/算法导论思考题6-3Young氏矩阵/">http://007havegone.github.io/2019/08/21/算法导论思考题6-3Young氏矩阵/</a>
+            <p>发表日期：<a href="http://007havegone.github.io/2019/08/21/算法导论思考题6-3Young氏矩阵/">August 21st 2019, 4:32:55 pm</a>
+            <p>更新日期：<a href="http://007havegone.github.io/2019/08/21/算法导论思考题6-3Young氏矩阵/">August 22nd 2019, 12:41:20 am</a>
+            <p>版权声明：‘原创内容，转载时请附上出处’</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/08/20/算法导论练习14-1-7/" title= "算法导论练习14.1-7">
+                    <div class="prevTitle">算法导论练习14.1-7</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:996209949@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/007havegone" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer others" target="_blank" title=others></a>
+            
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#思考题6-3（Young氏矩阵）在一个-m-times-n-的Young氏矩阵（Young-tableau）中，每一行的数据都是从左到右排序的，每一列的数据都是从上到下排列的。Young氏矩阵中也会存在一些为-infty-的数据项，表示那些不存在的数据。因此，Young氏矩阵可以用来村出-r-leq-mn-个有限的数。"><span class="toc-number">1.</span> <span class="toc-text">思考题6-3（Young氏矩阵）在一个$m\times n$的Young氏矩阵（Young tableau）中，每一行的数据都是从左到右排序的，每一列的数据都是从上到下排列的。Young氏矩阵中也会存在一些为 $\infty$ 的数据项，表示那些不存在的数据。因此，Young氏矩阵可以用来村出$r \leq mn$个有限的数。</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a-emsp-画出一个包含元素-9，16，3，2，4，8，5，14，12-的-4-times-4-Young氏矩阵。"><span class="toc-number">1.1.</span> <span class="toc-text">a. 画出一个包含元素$\{9，16，3，2，4，8，5，14，12\}$的$4 \times 4$Young氏矩阵。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b-emsp-对于一个-m-times-n-的Young氏矩阵来说，请证明：如果-Y-1-1-infty-，则-Y-为空；如果-Y-m-n-lt-infty-，则-Y-为满（即包含-mn-个元素）。"><span class="toc-number">1.2.</span> <span class="toc-text">b. 对于一个$m \times n$的Young氏矩阵来说，请证明：如果$Y[1,1]=\infty$，则$Y$为空；如果$Y[m,n]&lt; \infty$，则$Y$为满（即包含$mn$个元素）。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#c-emsp-请给出一个在-m-times-n-Young氏矩阵上时间复杂度为-O-m-n-的EXTRACT-MIN的算法实现。你的算法可以考虑使用一个递归过程，它把一个规模为-m-times-n-的问题分解为规模为-m-1-times-n-或-m-times-n-1-的子问题（提示：考虑使用MAX-HEAPFY）。这里，定义T-p-用来表示在任意-m-times-n-的Young氏矩阵上的时间复杂度，其中-p-m-n-。给出并求解-T-p-的递归表达式，其结果为-O-m-n-。"><span class="toc-number">1.3.</span> <span class="toc-text">c. 请给出一个在$m \times n$ Young氏矩阵上时间复杂度为$O(m+n)$的EXTRACT-MIN的算法实现。你的算法可以考虑使用一个递归过程，它把一个规模为$m \times n$的问题分解为规模为$(m-1) \times n$或$m \times (n-1)$的子问题（提示：考虑使用MAX-HEAPFY）。这里，定义T(p)用来表示在任意$m \times n$的Young氏矩阵上的时间复杂度，其中$p = m+n$。给出并求解$T(p)$的递归表达式，其结果为$O(m+n)$。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#d-emsp-是说明如何在-O-m-n-的时间内，将一个元素插入到一个未满的-m-times-n-的Young氏矩阵中。"><span class="toc-number">1.4.</span> <span class="toc-text">d. 是说明如何在$O(m+n)$的时间内，将一个元素插入到一个未满的$m \times n$的Young氏矩阵中。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#e-emsp-在不用其他排序算法的情况下，是说明如何利用一个-n-times-n-的Young氏矩阵在-O-n-3-时间内将-n-2-个数进行排列。"><span class="toc-number">1.5.</span> <span class="toc-text">e. 在不用其他排序算法的情况下，是说明如何利用一个$n \times n$的Young氏矩阵在$O(n^3)$时间内将$n^2$个数进行排列。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#f-emsp-设计一个时间复杂度为-O-m-n-的算法，它可以用来判断一个给定的数是否存储在-m-times-n-的Young氏矩阵内。"><span class="toc-number">1.6.</span> <span class="toc-text">f. 设计一个时间复杂度为$O(m+n)$的算法，它可以用来判断一个给定的数是否存储在$m \times n$的Young氏矩阵内。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现"><span class="toc-number">2.</span> <span class="toc-text">代码实现</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 21
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/21</span><a class="archive-post-title" href= "/2019/08/21/算法导论思考题6-3Young氏矩阵/" >算法导论思考题6-3Young氏矩阵</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href= "/2019/08/20/算法导论练习14-1-7/" >算法导论练习14.1-7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "/2019/08/18/VSCode写Markdown中代码块tab缩进错误/" >Visual Studio Code写Markdown中代码块tab缩进错误</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "/2019/08/18/数据结构-红黑树/" >数据结构-红黑树</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/17</span><a class="archive-post-title" href= "/2019/08/17/算法导论思考题12-1/" >算法导论思考题12-1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/12</span><a class="archive-post-title" href= "/2019/08/12/算法导论练习12-3/" >算法导论练习12.3</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/09</span><a class="archive-post-title" href= "/2019/08/09/算法导论练习12-2/" >算法导论练习12.2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href= "/2019/08/08/算法导论练习12-1/" >算法导论练习12.1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href= "/2019/08/08/算法导论练习10.4-5二叉树遍历/" >算法导论练习10.4-5二叉树遍历</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/07</span><a class="archive-post-title" href= "/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/" >Win10中shift+鼠标右键调出cmd窗口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/02</span><a class="archive-post-title" href= "/2019/08/02/算法导论思考题9-2/" >算法导论思考题9-2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/2019/08/01/算法导论练习9-3-8两个有序数组的中位数/" >算法导论练习9.3-8两个有序数组的中位数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href= "/2019/07/31/算法导论思考题6-2/" >算法导论思考题6-2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href= "/2019/07/31/算法导论思考题4-1/" >算法导论思考题4-1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/30</span><a class="archive-post-title" href= "/2019/07/30/算法导论思考题2-4/" >算法导论思考题2-4</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/29</span><a class="archive-post-title" href= "/2019/07/29/算法导论第二章插入排序/" >算法导论第二章插入排序</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/29</span><a class="archive-post-title" href= "/2019/07/29/算法导论思考题1-1/" >算法导论思考题1-1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/26</span><a class="archive-post-title" href= "/2019/07/26/算法导论练习9-1-1找第二小的元素/" >算法导论练习9.1-1找第二小的元素</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href= "/2019/07/22/主方法求解递归式/" >主方法求解递归式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href= "/2019/07/13/Effective-c-读书笔记第一章/" >Effective c++ 读书笔记第一章</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href= "/2019/07/13/hello-world/" >Hello World</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="主方法"><span class="iconfont-archer">&#xe606;</span>主方法</span>
+    
+        <span class="sidebar-tag-name" data-tags="时间复杂度"><span class="iconfont-archer">&#xe606;</span>时间复杂度</span>
+    
+        <span class="sidebar-tag-name" data-tags="算法分析"><span class="iconfont-archer">&#xe606;</span>算法分析</span>
+    
+        <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
+    
+        <span class="sidebar-tag-name" data-tags="排序"><span class="iconfont-archer">&#xe606;</span>排序</span>
+    
+        <span class="sidebar-tag-name" data-tags="逆序对"><span class="iconfont-archer">&#xe606;</span>逆序对</span>
+    
+        <span class="sidebar-tag-name" data-tags="线段树"><span class="iconfont-archer">&#xe606;</span>线段树</span>
+    
+        <span class="sidebar-tag-name" data-tags="d叉堆"><span class="iconfont-archer">&#xe606;</span>d叉堆</span>
+    
+        <span class="sidebar-tag-name" data-tags="中位数"><span class="iconfont-archer">&#xe606;</span>中位数</span>
+    
+        <span class="sidebar-tag-name" data-tags="二分查找"><span class="iconfont-archer">&#xe606;</span>二分查找</span>
+    
+        <span class="sidebar-tag-name" data-tags="操作系统"><span class="iconfont-archer">&#xe606;</span>操作系统</span>
+    
+        <span class="sidebar-tag-name" data-tags="Win10"><span class="iconfont-archer">&#xe606;</span>Win10</span>
+    
+        <span class="sidebar-tag-name" data-tags="cmd"><span class="iconfont-archer">&#xe606;</span>cmd</span>
+    
+        <span class="sidebar-tag-name" data-tags="二叉树"><span class="iconfont-archer">&#xe606;</span>二叉树</span>
+    
+        <span class="sidebar-tag-name" data-tags="中序遍历"><span class="iconfont-archer">&#xe606;</span>中序遍历</span>
+    
+        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
+    
+        <span class="sidebar-tag-name" data-tags="VS Code"><span class="iconfont-archer">&#xe606;</span>VS Code</span>
+    
+        <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
+    
+        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="Effective C++"><span class="iconfont-archer">&#xe606;</span>Effective C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="顺序统计树"><span class="iconfont-archer">&#xe606;</span>顺序统计树</span>
+    
+        <span class="sidebar-tag-name" data-tags="Young氏矩阵"><span class="iconfont-archer">&#xe606;</span>Young氏矩阵</span>
+    
+        <span class="sidebar-tag-name" data-tags="堆"><span class="iconfont-archer">&#xe606;</span>堆</span>
+    
+        <span class="sidebar-tag-name" data-tags="红黑树"><span class="iconfont-archer">&#xe606;</span>红黑树</span>
+    
+        <span class="sidebar-tag-name" data-tags="平衡树"><span class="iconfont-archer">&#xe606;</span>平衡树</span>
+    
+        <span class="sidebar-tag-name" data-tags="数据结构"><span class="iconfont-archer">&#xe606;</span>数据结构</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="算法导论"><span class="iconfont-archer">&#xe60a;</span>算法导论</span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统"><span class="iconfont-archer">&#xe60a;</span>操作系统</span>
+    
+        <span class="sidebar-category-name" data-categories="踩坑"><span class="iconfont-archer">&#xe60a;</span>踩坑</span>
+    
+        <span class="sidebar-category-name" data-categories="读书笔记"><span class="iconfont-archer">&#xe60a;</span>读书笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构"><span class="iconfont-archer">&#xe60a;</span>数据结构</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构/算法导论"><span class="iconfont-archer">&#xe60a;</span>数据结构/算法导论</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "007havegone"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+

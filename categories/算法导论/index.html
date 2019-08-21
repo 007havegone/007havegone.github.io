@@ -346,6 +346,40 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/08/21/算法导论思考题6-3Young氏矩阵/" >
+            
+                <span>算法导论思考题6-3Young氏矩阵</span>
+        </a>
+        <div class="abstract-content">
+            思考题6-3（Young氏矩阵）在一个$m\times n$的Young氏矩阵（Young tableau）中，每一行的数据都是从左到右排序的，每一列的数据都是从上到下排列的。Young氏矩阵中也会存在一些为 $\infty$ 的数据项，表示那些不存在的数据。因此，Young氏矩阵可以用来村出$r \leq mn$个有限的数。a.&emsp;画出一个包含元素$\{9，16，3，2，4，8，5，14，12\}$的$4 \times 4$Young氏矩阵。第一题比较简单，只要满足插入和每行每列都是非递减就行。下面示例：
+\begin{bmatrix} 2 & 5 & 8 & \infty \...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/21</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Young氏矩阵">Young氏矩阵</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "堆">堆</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/08/20/算法导论练习14-1-7/" >
             
                 <span>算法导论练习14.1-7</span>
@@ -645,42 +679,6 @@ D-ARY-...
         <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "d叉堆">d叉堆</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/31/算法导论思考题4-1/" >
-            
-                <span>算法导论思考题4-1</span>
-        </a>
-        <div class="abstract-content">
-            4-1（递归式例子）对下列每个递归式，给出T(n)的渐进上界和渐进下界。假定 $n\leq2$时T(n)时常数。给出尽量紧确的界，并验证其正确性。不会主方法的先看一下这篇博客：https://blog.csdn.net/qq_40512922/article/details/96932368
-a.&emsp;$T(n)=2T(n/2)+n^4$
-证明：有$a=2,b=2,n^{log_ba}=n$，$f(n)=f(n^4)=\Omega(n^{\epsilon+1})$，其中$\epsilon=3$。下面证明正则条件：$\exists c&lt;1,af(n/b)\leq cf(n)$
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "主方法">主方法</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法分析">算法分析</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
     
 </div>
             
@@ -1005,9 +1003,18 @@ a.&emsp;$T(n)=2T(n/2)+n^4$
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 20
+        Total : 21
         </div>
         <!-- search  -->
         
@@ -1020,6 +1027,11 @@ a.&emsp;$T(n)=2T(n/2)+n^4$
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/21</span><a class="archive-post-title" href= "/2019/08/21/算法导论思考题6-3Young氏矩阵/" >算法导论思考题6-3Young氏矩阵</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1168,6 +1180,10 @@ a.&emsp;$T(n)=2T(n/2)+n^4$
     
         <span class="sidebar-tag-name" data-tags="顺序统计树"><span class="iconfont-archer">&#xe606;</span>顺序统计树</span>
     
+        <span class="sidebar-tag-name" data-tags="Young氏矩阵"><span class="iconfont-archer">&#xe606;</span>Young氏矩阵</span>
+    
+        <span class="sidebar-tag-name" data-tags="堆"><span class="iconfont-archer">&#xe606;</span>堆</span>
+    
         <span class="sidebar-tag-name" data-tags="红黑树"><span class="iconfont-archer">&#xe606;</span>红黑树</span>
     
         <span class="sidebar-tag-name" data-tags="平衡树"><span class="iconfont-archer">&#xe606;</span>平衡树</span>
@@ -1252,23 +1268,7 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
-</body>
+    </body>
 </html>
 
 
