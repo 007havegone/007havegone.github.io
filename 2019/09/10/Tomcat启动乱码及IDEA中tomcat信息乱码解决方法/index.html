@@ -276,7 +276,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">635</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">676</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -405,10 +405,12 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="1、命令行下Tomcat乱码"><a href="#1、命令行下Tomcat乱码" class="headerlink" title="1、命令行下Tomcat乱码"></a>1、命令行下Tomcat乱码</h2><p>在Window下使用Tomcat,配置好Tomcat的路径后，在DOS下，输入命令<code>startup</code>，可以快速启动TomcaT,但是会发现输出之中有许多乱码。如下图：<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/乱码效果.PNG" alt="Dos下Tomcat启动乱码"></p>
+        <p>OS:win10 64位<br>IDEA 版本：2017.3.4(Utimate Edition)<br>Tomcat 版本：9.0.16</p>
+<h2 id="1、命令行下Tomcat乱码"><a href="#1、命令行下Tomcat乱码" class="headerlink" title="1、命令行下Tomcat乱码"></a>1、命令行下Tomcat乱码</h2><p>在Window下使用Tomcat,配置好Tomcat的路径后，在DOS下，输入命令<code>startup</code>，可以快速启动TomcaT,但是会发现输出之中有许多乱码。如下图：<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/乱码效果.PNG" alt="Dos下Tomcat启动乱码"></p>
 <p>我们可以通过修改Tomcat安装目录下的<code>conf</code>中的<code>logging.propeties</code>文件。消除中文乱码。<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/longging文件.PNG" alt="logging.propetoes文件"><br>将其中的<code>UTF-8</code>改为<code>GBK</code>。完成后，保存修改。然后我们重新在命令行下启动Tomcat，其中乱码消失，正常显示中文。<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/Tomcat消除乱码.PNG" alt="Dos下Tomcat乱码消除"></p>
 <h2 id="2、IDEA中Tomcat乱码处理"><a href="#2、IDEA中Tomcat乱码处理" class="headerlink" title="2、IDEA中Tomcat乱码处理"></a>2、IDEA中Tomcat乱码处理</h2><h3 id="IDEA编码的配置"><a href="#IDEA编码的配置" class="headerlink" title="IDEA编码的配置"></a>IDEA编码的配置</h3><ol>
-<li>首先是项目文件编码配置,在<em>File&gt;Settings&gt;Editor&gt;File Encodings</em>中，配置如下图。其中第3个可选可不选，解释可以参考这篇博客<a href="https://blog.csdn.net/MarcusFitz/article/details/84851945" target="_blank" rel="noopener">关于IDEA中”transparent native-to-ascii conversion”的解释</a>。<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/IDEAeditor.PNG" alt="Editot|File Ecodings"></li>
+<li><p>首先是项目文件编码配置,在<em>File&gt;Settings&gt;Editor&gt;File Encodings</em>中，配置如下图。其中第3个可选可不选，解释可以参考这篇博客<a href="https://blog.csdn.net/MarcusFitz/article/details/84851945" target="_blank" rel="noopener">关于IDEA中”transparent native-to-ascii conversion”的解释</a>。<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/IDEAeditor.PNG" alt="Editot|File Ecodings"></p>
+</li>
 <li><p>控制台编译乱码处理，在<em>File&gt;Settings&gt;Build,Exception,Deployment&gt;Compiler&gt;Java Compiler</em>中，在编译时添加命令参数<code>-encoding utf-8</code>。</p>
 <p> <img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/console编码.PNG" alt="Build|Compiler|Java Compiler"></p>
 </li>
@@ -420,6 +422,10 @@ height:50vh;
 </li>
 </ol>
 <h3 id="IDEA-Tomcat启动效果"><a href="#IDEA-Tomcat启动效果" class="headerlink" title="IDEA Tomcat启动效果"></a>IDEA Tomcat启动效果</h3><p>控制台Tomcat输出：<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/启动效果1.PNG" alt="Tomcat启动效果1"><br>网页效果：<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/启动效果2.PNG" alt="Tomcat启动效果2"></p>
+<p><strong>Tomcat乱码：</strong></p>
+<p>在idea64.exe.vmoptions文件添加<code>-Dfile.encoding=UTF-8</code>后。运行效果：</p>
+<p>出现乱码：<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/修改vmoption文件.PNG" alt="修改vmoption文件"></p>
+<p><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/修改vmoption文件后效果.PNG" alt="修改vmoption文件后效果"></p>
 
     </article>
     <!-- license  -->
@@ -428,13 +434,18 @@ height:50vh;
             <p>原文作者：<a href="http://007havegone.github.io">007havegone</a>
             <p>原文链接：<a href="http://007havegone.github.io/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/">http://007havegone.github.io/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/</a>
             <p>发表日期：<a href="http://007havegone.github.io/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/">September 10th 2019, 9:41:52 pm</a>
-            <p>更新日期：<a href="http://007havegone.github.io/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/">September 10th 2019, 11:18:09 pm</a>
+            <p>更新日期：<a href="http://007havegone.github.io/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/">September 10th 2019, 11:57:50 pm</a>
             <p>版权声明：‘原创内容，转载时请附上出处’</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2019/09/15/Eclipse运行失败tomcat失败/" title= "Eclipse运行失败tomcat失败">
+                    <div class="nextTitle">Eclipse运行失败tomcat失败</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -829,18 +840,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 22
+        Total : 23
         </div>
         <!-- search  -->
         
@@ -853,6 +855,11 @@ top:50vh;
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/15</span><a class="archive-post-title" href= "/2019/09/15/Eclipse运行失败tomcat失败/" >Eclipse运行失败tomcat失败</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -969,21 +976,17 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
-    
-        <span class="sidebar-tag-name" data-tags="逆序对"><span class="iconfont-archer">&#xe606;</span>逆序对</span>
-    
-        <span class="sidebar-tag-name" data-tags="持久动态集合"><span class="iconfont-archer">&#xe606;</span>持久动态集合</span>
-    
-        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
-    
         <span class="sidebar-tag-name" data-tags="主方法"><span class="iconfont-archer">&#xe606;</span>主方法</span>
     
         <span class="sidebar-tag-name" data-tags="时间复杂度"><span class="iconfont-archer">&#xe606;</span>时间复杂度</span>
     
         <span class="sidebar-tag-name" data-tags="算法分析"><span class="iconfont-archer">&#xe606;</span>算法分析</span>
     
+        <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
+    
         <span class="sidebar-tag-name" data-tags="排序"><span class="iconfont-archer">&#xe606;</span>排序</span>
+    
+        <span class="sidebar-tag-name" data-tags="逆序对"><span class="iconfont-archer">&#xe606;</span>逆序对</span>
     
         <span class="sidebar-tag-name" data-tags="线段树"><span class="iconfont-archer">&#xe606;</span>线段树</span>
     
@@ -1003,15 +1006,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="中序遍历"><span class="iconfont-archer">&#xe606;</span>中序遍历</span>
     
+        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
+    
+        <span class="sidebar-tag-name" data-tags="VS Code"><span class="iconfont-archer">&#xe606;</span>VS Code</span>
+    
+        <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
+    
         <span class="sidebar-tag-name" data-tags="Tomcat"><span class="iconfont-archer">&#xe606;</span>Tomcat</span>
     
         <span class="sidebar-tag-name" data-tags="IDEA"><span class="iconfont-archer">&#xe606;</span>IDEA</span>
     
         <span class="sidebar-tag-name" data-tags="Tomcat乱码"><span class="iconfont-archer">&#xe606;</span>Tomcat乱码</span>
     
-        <span class="sidebar-tag-name" data-tags="VS Code"><span class="iconfont-archer">&#xe606;</span>VS Code</span>
+        <span class="sidebar-tag-name" data-tags="Server tomcat启动失败"><span class="iconfont-archer">&#xe606;</span>Server tomcat启动失败</span>
     
-        <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
+        <span class="sidebar-tag-name" data-tags="Eclipse无法创建虚拟机"><span class="iconfont-archer">&#xe606;</span>Eclipse无法创建虚拟机</span>
+    
+        <span class="sidebar-tag-name" data-tags="vm参数"><span class="iconfont-archer">&#xe606;</span>vm参数</span>
+    
+        <span class="sidebar-tag-name" data-tags="Jdk版本过高"><span class="iconfont-archer">&#xe606;</span>Jdk版本过高</span>
+    
+        <span class="sidebar-tag-name" data-tags="持久动态集合"><span class="iconfont-archer">&#xe606;</span>持久动态集合</span>
     
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
@@ -1066,9 +1081,11 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="操作系统"><span class="iconfont-archer">&#xe60a;</span>操作系统</span>
     
+        <span class="sidebar-category-name" data-categories="踩坑"><span class="iconfont-archer">&#xe60a;</span>踩坑</span>
+    
         <span class="sidebar-category-name" data-categories="Tomcat"><span class="iconfont-archer">&#xe60a;</span>Tomcat</span>
     
-        <span class="sidebar-category-name" data-categories="踩坑"><span class="iconfont-archer">&#xe60a;</span>踩坑</span>
+        <span class="sidebar-category-name" data-categories="tomcat"><span class="iconfont-archer">&#xe60a;</span>tomcat</span>
     
         <span class="sidebar-category-name" data-categories="读书笔记"><span class="iconfont-archer">&#xe60a;</span>读书笔记</span>
     

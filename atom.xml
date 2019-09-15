@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://007havegone.github.io/"/>
-  <updated>2019-09-10T15:18:09.181Z</updated>
+  <updated>2019-09-15T02:01:43.946Z</updated>
   <id>http://007havegone.github.io/</id>
   
   <author>
@@ -17,19 +17,51 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Tomcat启动乱码及IDEA中tomcat信息乱码解决方法</title>
-    <link href="http://007havegone.github.io/2019/09/10/Tomcat%E5%90%AF%E5%8A%A8%E4%B9%B1%E7%A0%81%E5%8F%8AIDEA%E4%B8%ADtomcat%E4%BF%A1%E6%81%AF%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
-    <id>http://007havegone.github.io/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/</id>
-    <published>2019-09-10T13:41:52.000Z</published>
-    <updated>2019-09-10T15:18:09.181Z</updated>
+    <title>Eclipse运行失败tomcat失败</title>
+    <link href="http://007havegone.github.io/2019/09/15/Eclipse%E8%BF%90%E8%A1%8C%E5%A4%B1%E8%B4%A5tomcat%E5%A4%B1%E8%B4%A5/"/>
+    <id>http://007havegone.github.io/2019/09/15/Eclipse运行失败tomcat失败/</id>
+    <published>2019-09-15T00:24:28.000Z</published>
+    <updated>2019-09-15T02:01:43.946Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="1、命令行下Tomcat乱码"><a href="#1、命令行下Tomcat乱码" class="headerlink" title="1、命令行下Tomcat乱码"></a>1、命令行下Tomcat乱码</h2><p>在Window下使用Tomcat,配置好Tomcat的路径后，在DOS下，输入命令<code>startup</code>，可以快速启动TomcaT,但是会发现输出之中有许多乱码。如下图：<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/乱码效果.PNG" alt="Dos下Tomcat启动乱码"></p><p>我们可以通过修改Tomcat安装目录下的<code>conf</code>中的<code>logging.propeties</code>文件。消除中文乱码。<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/longging文件.PNG" alt="logging.propetoes文件"><br>将其中的<code>UTF-8</code>改为<code>GBK</code>。完成后，保存修改。然后我们重新在命令行下启动Tomcat，其中乱码消失，正常显示中文。<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/Tomcat消除乱码.PNG" alt="Dos下Tomcat乱码消除"></p><h2 id="2、IDEA中Tomcat乱码处理"><a href="#2、IDEA中Tomcat乱码处理" class="headerlink" title="2、IDEA中Tomcat乱码处理"></a>2、IDEA中Tomcat乱码处理</h2><h3 id="IDEA编码的配置"><a href="#IDEA编码的配置" class="headerlink" title="IDEA编码的配置"></a>IDEA编码的配置</h3><ol><li>首先是项目文件编码配置,在<em>File&gt;Settings&gt;Editor&gt;File Encodings</em>中，配置如下图。其中第3个可选可不选，解释可以参考这篇博客<a href="https://blog.csdn.net/MarcusFitz/article/details/84851945" target="_blank" rel="noopener">关于IDEA中”transparent native-to-ascii conversion”的解释</a>。<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/IDEAeditor.PNG" alt="Editot|File Ecodings"></li><li><p>控制台编译乱码处理，在<em>File&gt;Settings&gt;Build,Exception,Deployment&gt;Compiler&gt;Java Compiler</em>中，在编译时添加命令参数<code>-encoding utf-8</code>。</p><p> <img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/console编码.PNG" alt="Build|Compiler|Java Compiler"></p></li><li><p>Tomcat的编码配置<br>  &emsp;在Tomcat的配置中，我按原始的配置。下面是操作步骤。<br>  a. 点击菜单栏的<em>Edit Configurations</em>。<br>  <img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/Tomcat配置1.png" alt="Tomcat配置1"><br>  b. 点击左上角加号，然后找到Tomcat，选择本地。<br>  <img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/Tomcat配置2.png" alt="Tomcat配置2"><br>  c. 首先点击<code>Configure</code>选择Tomcat，然后设置主页地址，可以选择80端口也可以8080。最后，对于画线部分的参数，我没有加貌似也不会乱码，不过有一些人添加了这个参数，好像也没什么问题。<br>  <img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/Tomcat配置3.png" alt="Tomcat配置3"><br>  如果添加了该参数，会在 <code>Startup/Connection</code>的下面产生红色部分的命令。<br>  <img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/Tomcat配置4.png" alt="Tomcat配置4"><br>  d. 部署到Tomcat上。在<code>Deployment</code>中点击加号，选择<code>Artifacts</code>。<br>  <img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/Tomcat部署1.png" alt="Tomcat部署1"><br>  其中war为发布版，打包为war包后部署，war exploded将保持文件目录形式部署，因此该形式支持热部署（对jsp，class等文件的修改可以及时显示出效果）。因此，开发时一半使用war exploded形式，方便修改。这里选择war exploded。</p><p>  <img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/Tomcat部署2.png" alt="Tomcat部署2"></p><p>  完成以上配置后OK即可。</p></li><li><p><code>idea64.exe.vmoptions</code>文件的配置<br>该文件在你的IDEA的安装目录下的<code>bin</code>目录中。<br>如果你是32位启动，则修改<code>idea.exe.vmoptions</code>。我的配置如下：<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/idea64exevmoptions.PNG" alt="idea64.exe.vmoptions"><br>我看了一些别人的处理IDEA中Tomcat的乱码配置，会在这两个文件中加入<code>-Dfile.encoding=UTF-8</code>。（<a href="https://blog.csdn.net/liu865033503/article/details/81094575" target="_blank" rel="noopener">解决IntelliJ IDEA控制台输出中文乱码问题</a>）。不过我尝试了这个操作，反而会使IDEA启动Tomcat时输出乱码，去掉后反而正常。你可以自己尝试一下，<strong>修改文件后记得需要重启IDEA才会生效。</strong></p></li></ol><h3 id="IDEA-Tomcat启动效果"><a href="#IDEA-Tomcat启动效果" class="headerlink" title="IDEA Tomcat启动效果"></a>IDEA Tomcat启动效果</h3><p>控制台Tomcat输出：<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/启动效果1.PNG" alt="Tomcat启动效果1"><br>网页效果：<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/启动效果2.PNG" alt="Tomcat启动效果2"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="1、问题"><a href="#1、问题" class="headerlink" title="1、问题"></a>1、问题</h1><p>最近在使用Eclipse写Java Web。tomcat环境什么都已经配置好了，能够正常运行。但是又装了些插件，捣鼓了一些配置，第二天还是一样的项目，跑不起来了。 选择相同的server进行Pbulish后start，出现了下面的错误。</p><p><img src="/2019/09/15/Eclipse运行失败tomcat失败/失败截图1.PNG" alt="tomcat启动错误1"><br><img src="/2019/09/15/Eclipse运行失败tomcat失败/失败截图2.PNG" alt="tomcat启动错误2"></p><p>看到这些错误我就找了一些相关文章看了一下，失败的原因很多，如：</p><ol><li>端口占用（排除，还没启动过tomcat）</li><li>没有配置好Jdk，tomcat环境（排除，没有修该过环境变量等配置，命令行均正常运行）</li><li>xml文件出错（排除，相同的项目没改过）</li><li>无法创建虚拟机，以为是eclipse.ini文件出错（排除，没修改过）</li><li><p>然后我又去查看了tomcat的log下的日志文件，不过没有发现什么错误警告。</p><p>所以问题处在了Eclipse的配置上。在前面的错误提示中，我忽略了控制台给出的信息。导致我一直没有找到源头。如下：<br><img src="/2019/09/15/Eclipse运行失败tomcat失败/失败截图3.PNG" alt="tomcat启动错误3"></p><p>出现该错误，发现是Java虚拟机启动时参数配置导致的。然后我根据这个找到相关文章。</p><p><a href="https://blog.csdn.net/Marmara01/article/details/83685623" target="_blank" rel="noopener">处理-Djava.endorsed.dirs=D:\tomcat\apache-tomcat-9.0.8\endorsed is not supported. Endorsed standards and</a></p><p>这篇文章只是简单给出了在运行时修改<code>Run configuration</code>删除相应参数，我尝试后可以成功启动。<em>但是，第二次启动项目时，该参数还是存在，所以不能根除</em>。</p></li></ol><h1 id="2、解决"><a href="#2、解决" class="headerlink" title="2、解决"></a>2、解决</h1><p>后面又查看了相关的文章。<a href="https://www.cnblogs.com/we-smile/p/9822916.html" target="_blank" rel="noopener">mac eclipse中运行tomcat出现错误：-Djava.endorsed.dirs=D:\Tomcat 9.0\endorsed is not supported</a>，虽然平台不一样，但原因都是因为<strong>Jdk版本过高不兼容tomcat导致</strong>。</p><p>然后我发现原来是我JDK环境默认设置成Jdk-10（原先使用的是Jdk-1.8），下面是修改默认Jdk的方法，打开<em>Window|Preferences|Java|Build Path|Install JREs</em>中，讲默认Jdk选择1.8版本。然后点击Apply。<br><img src="/2019/09/15/Eclipse运行失败tomcat失败/解决1.PNG" alt="解决1"></p><p>同时如果项目原先使用jre-10需要改成jre-1.8。<br><img src="/2019/09/15/Eclipse运行失败tomcat失败/启动1.PNG" alt><br><img src="/2019/09/15/Eclipse运行失败tomcat失败/启动2.PNG" alt><br><img src="/2019/09/15/Eclipse运行失败tomcat失败/启动3.PNG" alt></p><p>关于tomcat和Jdk兼容版本可以打开tomcat官网查看，或者Eclipse的<em>Window|Preferences|Server|Runtime Enviroments</em>点击<em>Add</em>。<strong>可以看到Tomcat和相应支持的Jdk版本。我们可以适当降低Jdk版本来解决这个问题。</strong></p><p><img src="/2019/09/15/Eclipse运行失败tomcat失败/兼容版本.PNG" alt></p><p>下面是给出的总结：</p><div class="table-container"><table><thead><tr><th style="text-align:center">tomcat版本</th><th style="text-align:center">兼容的Jdk版本</th></tr></thead><tbody><tr><td style="text-align:center">Tomcat v3.2</td><td style="text-align:center">J2EE 1.2</td></tr><tr><td style="text-align:center">Tomcat v4.0</td><td style="text-align:center">J2EE 1.2 and 1.3</td></tr><tr><td style="text-align:center">Tomcat v4.1</td><td style="text-align:center">J2EE 1.2 and 1.3</td></tr><tr><td style="text-align:center">Tomcat v5.0</td><td style="text-align:center">J2EE 1.2,1.3,1.4</td></tr><tr><td style="text-align:center">Tomcat v5.5</td><td style="text-align:center">J2EE 1.2,1.3,1.4</td></tr><tr><td style="text-align:center">Tomcat v6.0</td><td style="text-align:center">J2EE 1.2,1.3,1.4 and Java EE 5 and 6</td></tr><tr><td style="text-align:center">Tomcat v7.0</td><td style="text-align:center">J2EE 1.2,1.3,1.4 and Java EE 5 and 6</td></tr><tr><td style="text-align:center">Tomcat v8.0</td><td style="text-align:center">J2EE 1.2,1.3,1.4 and Java EE 5,6 and 7</td></tr><tr><td style="text-align:center">Tomcat v8.5</td><td style="text-align:center">J2EE 1.2,1.3,1.4 and Java EE 5,6 and 7</td></tr><tr><td style="text-align:center">Tomcat v9.0</td><td style="text-align:center">J2EE 1.2,1.3,1.4 and Java EE 5,6,7 and 8</td></tr></tbody></table></div><p>下面是tomcat官网给出的版本关系：<a href="https://tomcat.apache.org/whichversion.html" target="_blank" rel="noopener">tomcat官网</a></p><p><strong>官网显示Tocmat v9.0支持Jdk 8及以上版本。可能是在Eclipse中会出现这样的问题，我在IDEA进行相同的测试，先后使用Jdk-1.8和Jdk-10来使用tomcat v9.0均能成功</strong>。<br>下面是相关jdk-10下运行maven项目截图：</p><p><img src="/2019/09/15/Eclipse运行失败tomcat失败/IDEAmaven创建项目JDK10.PNG" alt="IDEA maven运行jdk10"><br><img src="/2019/09/15/Eclipse运行失败tomcat失败/IDEAJDK10.PNG" alt><br><img src="/2019/09/15/Eclipse运行失败tomcat失败/IDEAJDK10启动1.PNG" alt><br><img src="/2019/09/15/Eclipse运行失败tomcat失败/IDEAJDK10启动2.PNG" alt></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;1、命令行下Tomcat乱码&quot;&gt;&lt;a href=&quot;#1、命令行下Tomcat乱码&quot; class=&quot;headerlink&quot; title=&quot;1、命令行下Tomcat乱码&quot;&gt;&lt;/a&gt;1、命令行下Tomcat乱码&lt;/h2&gt;&lt;p&gt;在Window下使用Tomcat,配置好To
+        &lt;h1 id=&quot;1、问题&quot;&gt;&lt;a href=&quot;#1、问题&quot; class=&quot;headerlink&quot; title=&quot;1、问题&quot;&gt;&lt;/a&gt;1、问题&lt;/h1&gt;&lt;p&gt;最近在使用Eclipse写Java Web。tomcat环境什么都已经配置好了，能够正常运行。但是又装了些插件，捣鼓了一些配
+      
+    
+    </summary>
+    
+      <category term="tomcat" scheme="http://007havegone.github.io/categories/tomcat/"/>
+    
+    
+      <category term="Server tomcat启动失败" scheme="http://007havegone.github.io/tags/Server-tomcat%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5/"/>
+    
+      <category term="Eclipse无法创建虚拟机" scheme="http://007havegone.github.io/tags/Eclipse%E6%97%A0%E6%B3%95%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+      <category term="vm参数" scheme="http://007havegone.github.io/tags/vm%E5%8F%82%E6%95%B0/"/>
+    
+      <category term="Jdk版本过高" scheme="http://007havegone.github.io/tags/Jdk%E7%89%88%E6%9C%AC%E8%BF%87%E9%AB%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tomcat启动乱码及IDEA中tomcat信息乱码解决方法</title>
+    <link href="http://007havegone.github.io/2019/09/10/Tomcat%E5%90%AF%E5%8A%A8%E4%B9%B1%E7%A0%81%E5%8F%8AIDEA%E4%B8%ADtomcat%E4%BF%A1%E6%81%AF%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
+    <id>http://007havegone.github.io/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/</id>
+    <published>2019-09-10T13:41:52.000Z</published>
+    <updated>2019-09-10T15:57:50.451Z</updated>
+    
+    <content type="html"><![CDATA[<p>OS:win10 64位<br>IDEA 版本：2017.3.4(Utimate Edition)<br>Tomcat 版本：9.0.16</p><h2 id="1、命令行下Tomcat乱码"><a href="#1、命令行下Tomcat乱码" class="headerlink" title="1、命令行下Tomcat乱码"></a>1、命令行下Tomcat乱码</h2><p>在Window下使用Tomcat,配置好Tomcat的路径后，在DOS下，输入命令<code>startup</code>，可以快速启动TomcaT,但是会发现输出之中有许多乱码。如下图：<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/乱码效果.PNG" alt="Dos下Tomcat启动乱码"></p><p>我们可以通过修改Tomcat安装目录下的<code>conf</code>中的<code>logging.propeties</code>文件。消除中文乱码。<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/longging文件.PNG" alt="logging.propetoes文件"><br>将其中的<code>UTF-8</code>改为<code>GBK</code>。完成后，保存修改。然后我们重新在命令行下启动Tomcat，其中乱码消失，正常显示中文。<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/Tomcat消除乱码.PNG" alt="Dos下Tomcat乱码消除"></p><h2 id="2、IDEA中Tomcat乱码处理"><a href="#2、IDEA中Tomcat乱码处理" class="headerlink" title="2、IDEA中Tomcat乱码处理"></a>2、IDEA中Tomcat乱码处理</h2><h3 id="IDEA编码的配置"><a href="#IDEA编码的配置" class="headerlink" title="IDEA编码的配置"></a>IDEA编码的配置</h3><ol><li><p>首先是项目文件编码配置,在<em>File&gt;Settings&gt;Editor&gt;File Encodings</em>中，配置如下图。其中第3个可选可不选，解释可以参考这篇博客<a href="https://blog.csdn.net/MarcusFitz/article/details/84851945" target="_blank" rel="noopener">关于IDEA中”transparent native-to-ascii conversion”的解释</a>。<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/IDEAeditor.PNG" alt="Editot|File Ecodings"></p></li><li><p>控制台编译乱码处理，在<em>File&gt;Settings&gt;Build,Exception,Deployment&gt;Compiler&gt;Java Compiler</em>中，在编译时添加命令参数<code>-encoding utf-8</code>。</p><p> <img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/console编码.PNG" alt="Build|Compiler|Java Compiler"></p></li><li><p>Tomcat的编码配置<br>  &emsp;在Tomcat的配置中，我按原始的配置。下面是操作步骤。<br>  a. 点击菜单栏的<em>Edit Configurations</em>。<br>  <img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/Tomcat配置1.png" alt="Tomcat配置1"><br>  b. 点击左上角加号，然后找到Tomcat，选择本地。<br>  <img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/Tomcat配置2.png" alt="Tomcat配置2"><br>  c. 首先点击<code>Configure</code>选择Tomcat，然后设置主页地址，可以选择80端口也可以8080。最后，对于画线部分的参数，我没有加貌似也不会乱码，不过有一些人添加了这个参数，好像也没什么问题。<br>  <img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/Tomcat配置3.png" alt="Tomcat配置3"><br>  如果添加了该参数，会在 <code>Startup/Connection</code>的下面产生红色部分的命令。<br>  <img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/Tomcat配置4.png" alt="Tomcat配置4"><br>  d. 部署到Tomcat上。在<code>Deployment</code>中点击加号，选择<code>Artifacts</code>。<br>  <img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/Tomcat部署1.png" alt="Tomcat部署1"><br>  其中war为发布版，打包为war包后部署，war exploded将保持文件目录形式部署，因此该形式支持热部署（对jsp，class等文件的修改可以及时显示出效果）。因此，开发时一半使用war exploded形式，方便修改。这里选择war exploded。</p><p>  <img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/Tomcat部署2.png" alt="Tomcat部署2"></p><p>  完成以上配置后OK即可。</p></li><li><p><code>idea64.exe.vmoptions</code>文件的配置<br>该文件在你的IDEA的安装目录下的<code>bin</code>目录中。<br>如果你是32位启动，则修改<code>idea.exe.vmoptions</code>。我的配置如下：<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/idea64exevmoptions.PNG" alt="idea64.exe.vmoptions"><br>我看了一些别人的处理IDEA中Tomcat的乱码配置，会在这两个文件中加入<code>-Dfile.encoding=UTF-8</code>。（<a href="https://blog.csdn.net/liu865033503/article/details/81094575" target="_blank" rel="noopener">解决IntelliJ IDEA控制台输出中文乱码问题</a>）。不过我尝试了这个操作，反而会使IDEA启动Tomcat时输出乱码，去掉后反而正常。你可以自己尝试一下，<strong>修改文件后记得需要重启IDEA才会生效。</strong></p></li></ol><h3 id="IDEA-Tomcat启动效果"><a href="#IDEA-Tomcat启动效果" class="headerlink" title="IDEA Tomcat启动效果"></a>IDEA Tomcat启动效果</h3><p>控制台Tomcat输出：<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/启动效果1.PNG" alt="Tomcat启动效果1"><br>网页效果：<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/启动效果2.PNG" alt="Tomcat启动效果2"></p><p><strong>Tomcat乱码：</strong></p><p>在idea64.exe.vmoptions文件添加<code>-Dfile.encoding=UTF-8</code>后。运行效果：</p><p>出现乱码：<br><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/修改vmoption文件.PNG" alt="修改vmoption文件"></p><p><img src="/2019/09/10/Tomcat启动乱码及IDEA中tomcat信息乱码解决方法/修改vmoption文件后效果.PNG" alt="修改vmoption文件后效果"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;OS:win10 64位&lt;br&gt;IDEA 版本：2017.3.4(Utimate Edition)&lt;br&gt;Tomcat 版本：9.0.16&lt;/p&gt;
+&lt;h2 id=&quot;1、命令行下Tomcat乱码&quot;&gt;&lt;a href=&quot;#1、命令行下Tomcat乱码&quot; class=&quot;header
       
     
     </summary>
@@ -438,11 +470,11 @@
       <category term="算法导论" scheme="http://007havegone.github.io/categories/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"/>
     
     
-      <category term="算法导论" scheme="http://007havegone.github.io/tags/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"/>
-    
       <category term="主方法" scheme="http://007havegone.github.io/tags/%E4%B8%BB%E6%96%B9%E6%B3%95/"/>
     
       <category term="算法分析" scheme="http://007havegone.github.io/tags/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/"/>
+    
+      <category term="算法导论" scheme="http://007havegone.github.io/tags/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"/>
     
   </entry>
   
@@ -469,9 +501,9 @@
     
       <category term="算法导论" scheme="http://007havegone.github.io/tags/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"/>
     
-      <category term="逆序对" scheme="http://007havegone.github.io/tags/%E9%80%86%E5%BA%8F%E5%AF%B9/"/>
-    
       <category term="排序" scheme="http://007havegone.github.io/tags/%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="逆序对" scheme="http://007havegone.github.io/tags/%E9%80%86%E5%BA%8F%E5%AF%B9/"/>
     
       <category term="线段树" scheme="http://007havegone.github.io/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
     
@@ -551,37 +583,6 @@
     
     
       <category term="算法导论" scheme="http://007havegone.github.io/tags/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>主方法求解递归式</title>
-    <link href="http://007havegone.github.io/2019/07/22/%E4%B8%BB%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E9%80%92%E5%BD%92%E5%BC%8F/"/>
-    <id>http://007havegone.github.io/2019/07/22/主方法求解递归式/</id>
-    <published>2019-07-22T15:49:10.000Z</published>
-    <updated>2019-07-30T08:59:09.843Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="主方法求解递归式"><a href="#主方法求解递归式" class="headerlink" title="主方法求解递归式"></a>主方法求解递归式</h1><p>&emsp;&emsp;在分析递归的算法时，主方法可以较快的计算出算法的时间复杂度<br>主方法可以用于满足以下形式的递归式。</p><script type="math/tex; mode=display">T(n)=aT(n/b)+f(n)</script><p>其中$a\geq1和b&gt;1$是常数，$f(n)$是渐进函数。<br>&emsp;&emsp;主方法描述的算法：将原本规模为$n$的问题，分解为 $a$ 个规模为 $n/b$ 的子问题，其中 $a,b\in \mathbb{Z^+}$，函数 $f(n)$ 包含了问题分解和子问题合并的代价。</p><p>下面是归并排序的递归式:</p><script type="math/tex; mode=display">T(n)=\begin{cases}\Theta(1) & 若n=1 \\2T(n/2)+\Theta(n) & 若n>1 \\\end{cases}</script><p>其中，$a=2, b=2, f(n)=\Theta(n^2)。$<br>&emsp;&emsp;在具体处理过程中,会遇到 $n/b$ 可能不是整数的情况。可以将 $a$ 项 $T(n/b)$全都替换为$T(\lfloor n/b \rfloor)或T(\lceil n/b\rceil)$ 并不会影响递归式的渐进性质。</p><hr><h3 id="主定理"><a href="#主定理" class="headerlink" title="主定理"></a>主定理</h3><p>主定理：$a\geq1和b&gt;1$是常数，$f(n)$是一个函数，$T(n)$是定义在非负整数上的递归式:</p><script type="math/tex; mode=display">T(n)=aT(n/b)+f(n)</script><p>其中将 $n/b$ 解释为$\lfloor n/b \rfloor或\lceil n/b\rceil$。那么$T(n)$有如下渐近界：</p><p> 1.若对某个常数 $\epsilon &gt;0$有 $f(n)= O(n^{log_ba-\epsilon})$ ,则 $T(n)=\Theta(n^{log_ba})。$</p><p> 2.若$f(n)=\Theta(n^{log_ba})$，则 $T(n)=\Theta(n^{log_ba} lgn)$</p><p> 3.若对某个常数$\epsilon&gt;0$ 有 $f(n)=\Omega(n^{log_ba+\epsilon})$，且对某个常数 $c&lt;1$ 和所有足够大的 $n$ 有 $af(n/b)\leq cf(n)$，则 $T(n)=\Theta(f(n))$。 </p><p>&emsp;&emsp;实际上就是将函数 $f(n)$ 和函数 $n^{log_ba}$ 进行比较。如情况1和情况3，两者的较大者决定了递归式的解。对于情况2，则再乘上一个对数因子 $lgn$ ，解为 $T(n)=\Theta(n^{loa_ba}  lgn)=\Theta(f(n) lgn)$。</p><p><strong>注意:</strong> 对于第1种情况和第3种情况的 $\mathbf{f(n)}$ 渐进小于和渐进大于 $\mathbf{n^{log_ba}}$，其中相差一个因子 $n^\epsilon$，其中 $\epsilon$为大于0的常数，即要满足 <strong>多项式的差距</strong>。同时第三种情况还要满足 “正则”条件 $af(n/b)\leq cf(n)$。</p><p><strong>这三种情况未覆盖 $f(n)$ 的所有可能性。</strong> 即 $f(n)$ 不满足多项式级别的渐进小于 $n^{log_ba}$而处于情况1和情况2之间。同理，不满足 $f(n)$ 渐进大于而处于 $n^{log_ba}$ 而处于情况2和情况2之间，或则情况3而不满足正则条件，均不能使用主方法求解递归式。</p><hr><h3 id="主方法使用例子"><a href="#主方法使用例子" class="headerlink" title="主方法使用例子"></a>主方法使用例子</h3><p>1、</p><script type="math/tex; mode=display">T(n)=9T(n/3)+ n</script><p>其中 $a=9,b=3,f(n)=n$。很容易求解 $n^{log_ba}=n^2=\Theta(n^2)$。<br>有$f(n)=n= O( n^{log_ba-\epsilon})$，其中$\epsilon=1$，故满足情况1，因此得出$T(n)=\Theta(n^2)$。</p><p>2、</p><script type="math/tex; mode=display">T(n)=T(2n/3)+1</script><p>其中 $a=1,b=3/2,f(n)=1$。$n^{log_ba}=n^{log_{3/2}1}=\Theta(1)$。<br>有$f(n)=\Theta(n^{log_ba})=\Theta(1)$。因此满足情况2，则 $T(n)=\Theta(n^{log_ba} lgn)=\Theta(lgn)$。</p><p>3、</p><script type="math/tex; mode=display">T(n)=3T(n/4)+nlgn</script><p>其中 $a=3,b=4,f(n)=nlgn$。$n^{log_ba}=n^{log_43}= O(n^{0.793})$。由于$f(n)=\Omega(n^{log_43+\epsilon})$，其中$\epsilon\approx0.2$。<br>接下来证明正则条件，即</p><script type="math/tex; mode=display">\begin{aligned}af(n/b) & \leq cf(n) \\ 3(n/4)lg(n/4) & \leq  cnlgn\\ \end{aligned}</script><p>显然，当$c=3/4$时，不等式成立。<br>故$T(n)=\Theta(f(n))=\Theta(nlgn)$</p><p>下面这个递归式不能运用主方法<br>4、</p><script type="math/tex; mode=display">T(n)=2T(n/2)+nlgn</script><p>其中 $a=2,b=2,f(n)=nlgn$，$n^{log_ba}=\Theta(n)$，<br>可能会得到错误的结论有：$f(n)=\Omega(n^{log_22+\epsilon})$。然后继续求解下去。<br>实际上，不满足之前提到的情况1和情况3的渐进差距需要时多项式级别的。<br>即：</p><script type="math/tex; mode=display">\frac{nlgn} {n^{log_22}}=\frac {nlgn} {n} = lgn = O(n^\epsilon)</script><blockquote><p>这里的 $\mathbf{\omicron}$ 符号代表非渐进紧确的上界，<br>如：$f(n)=\omicron(g(n))$: $\forall c&gt;0$，$\exists$常量$n_0&gt;0$，使得 $\forall n\geq n_0$，有 $0 \leq f(n) \leq cg(n)$。简单理解小于但不等于。</p></blockquote><p>即不满足多项式级别的大于。故处于情况2和情况3之间。不可以采用主方法求解。</p><h3 id="练习题4-5-1：-建议自己动手做完后对照。"><a href="#练习题4-5-1：-建议自己动手做完后对照。" class="headerlink" title="练习题4.5-1： 建议自己动手做完后对照。"></a>练习题4.5-1： 建议自己动手做完后对照。</h3><p>a.</p><script type="math/tex; mode=display">T(n)=2T(n/4)+1</script><p>其中$a=2,b=4,f(n)=1$, $n^{log_ba}= \sqrt n$。<br>有 $f(n) = O(n^{log_ba-\epsilon}) = O(n^{0.5-\epsilon})$，其中$\epsilon = 0.5$。<br>故 $T(n) = \Theta(n^{log_42}) = \Theta(\sqrt n)$</p><hr><p>b.</p><script type="math/tex; mode=display">T(n)=2T(n/4)+\sqrt{n}</script><p>同上,可以求出 $n^{log_ba}$，由于 $f(n) = \sqrt n =\Theta(\sqrt n) = \Theta(n^{log_42})$<br>故$T(n) = \Theta( f(n)lgn) = \Theta(\sqrt n  lgn)$</p><hr><p>c.</p><script type="math/tex; mode=display">T(n)=2T(n/4)+n</script><p>同上，求出 $n^{log_ba}$，由于 $f(n) = \Omega(n^{0.5 + \epsilon})$, 其中 $\epsilon =0.5$。接下来证明正则条件：</p><script type="math/tex; mode=display">\begin{aligned}af(n/b)  & \leq c f(n)\\2(n/4)    & \leq c \ n\\\frac 1 2  & \leq c\end{aligned}</script><p>显然，取 $c = \frac 1 2$时，满足条件。故 $T(n) = \Theta(f(n)) = \Theta(n)$</p><hr><p>d.</p><script type="math/tex; mode=display">T(n)=2T(n/4)+n^2</script><p>同上，求出 $n^{log_ba}$，由于 $f(n) =  n^2 = \Omega(n^{logb_a+\epsilon})$，其中 $\epsilon = 1.5$。下面证明正则条件：</p><script type="math/tex; mode=display">\begin{aligned}a f(n/b) & \leq c f(n) \\2 (n/4)^2 & \leq c \ n^2 \\n^2/8 & \leq c \ n^2\end{aligned}</script><p>显然，取 $c = 1/8$ 时，满足条件。故 $T(n) = \Theta( f(n) ) = \Theta(n^2)$。</p><p><strong>参考文献：算法导论</strong></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;主方法求解递归式&quot;&gt;&lt;a href=&quot;#主方法求解递归式&quot; class=&quot;headerlink&quot; title=&quot;主方法求解递归式&quot;&gt;&lt;/a&gt;主方法求解递归式&lt;/h1&gt;&lt;p&gt;&amp;emsp;&amp;emsp;在分析递归的算法时，主方法可以较快的计算出算法的时间复杂度&lt;br&gt;主
-      
-    
-    </summary>
-    
-      <category term="算法导论" scheme="http://007havegone.github.io/categories/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"/>
-    
-    
-      <category term="算法导论" scheme="http://007havegone.github.io/tags/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"/>
-    
-      <category term="主方法" scheme="http://007havegone.github.io/tags/%E4%B8%BB%E6%96%B9%E6%B3%95/"/>
-    
-      <category term="时间复杂度" scheme="http://007havegone.github.io/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/"/>
-    
-      <category term="算法分析" scheme="http://007havegone.github.io/tags/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/"/>
     
   </entry>
   

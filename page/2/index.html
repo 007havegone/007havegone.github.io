@@ -359,6 +359,45 @@ height:60vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/08/08/算法导论练习10.4-5二叉树遍历/" >
+            
+                <span>算法导论练习10.4-5二叉树遍历</span>
+        </a>
+        <div class="abstract-content">
+            10.4-5 给定一个n结点的二叉树，写出一个$O(n)$时间的非递归过程，将该树的每一个结点的关键字输出。要求除该树本身的存储空间外只能使用固定量的额外存储空间，且中过程中不得修改该树，即使是暂时的修改也不允许。
+要完成$O(1))$的空间内遍历该树，需要每个结点需要能访问其父节点进行回溯。
+1234567struct Tree&#123;    Tree *parent;    Tree *left;    Tree *right;    int key;&#125;;
+中序遍历：
+
+访问左孩子
+访问右孩子
+从左孩子返回，访问根节点，进入右孩子访问
+从右孩子返回，整棵树访问完成，回溯...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "二叉树">二叉树</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "中序遍历">中序遍历</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/08/07/Win10中shift-鼠标右键调出cmd窗口/" >
             
                 <span>Win10中shift+鼠标右键调出cmd窗口</span>
@@ -514,11 +553,11 @@ a.&emsp;$T(n)=2T(n/2)+n^4$
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
         <a class="post-tag" href="javascript:void(0);" data-tags = "主方法">主方法</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "算法分析">算法分析</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
     
 </div>
             
@@ -551,9 +590,9 @@ b.有集合$\{1,2,\dots,n\}$中的元素构成的什么数组具有最多的逆�
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "逆序对">逆序对</a>
-    
         <a class="post-tag" href="javascript:void(0);" data-tags = "排序">排序</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "逆序对">逆序对</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "线段树">线段树</a>
     
@@ -673,48 +712,6 @@ $2^{2.592 \time...
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/22/主方法求解递归式/" >
-            
-                <span>主方法求解递归式</span>
-        </a>
-        <div class="abstract-content">
-            主方法求解递归式&emsp;&emsp;在分析递归的算法时，主方法可以较快的计算出算法的时间复杂度主方法可以用于满足以下形式的递归式。
-T(n)=aT(n/b)+f(n)其中$a\geq1和b&gt;1$是常数，$f(n)$是渐进函数。&emsp;&emsp;主方法描述的算法：将原本规模为$n$的问题，分解为 $a$ 个规模为 $n/b$ 的子问题，其中 $a,b\in \mathbb{Z^+}$，函数 $f(n)$ 包含了问题分解和子问题合并的代价。
-下面是归并排序的递归式:
-
-T(n)=
-\begin{cases}
-\Theta(1) & 若n=1 \\
-2T(n/2)+\Theta...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法导论">算法导论</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "主方法">主方法</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "时间复杂度">时间复杂度</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法分析">算法分析</a>
     
 </div>
             
@@ -1172,18 +1169,9 @@ T(n)=
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 22
+        Total : 23
         </div>
         <!-- search  -->
         
@@ -1196,6 +1184,11 @@ T(n)=
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/15</span><a class="archive-post-title" href= "/2019/09/15/Eclipse运行失败tomcat失败/" >Eclipse运行失败tomcat失败</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1312,21 +1305,17 @@ T(n)=
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
-    
-        <span class="sidebar-tag-name" data-tags="逆序对"><span class="iconfont-archer">&#xe606;</span>逆序对</span>
-    
-        <span class="sidebar-tag-name" data-tags="持久动态集合"><span class="iconfont-archer">&#xe606;</span>持久动态集合</span>
-    
-        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
-    
         <span class="sidebar-tag-name" data-tags="主方法"><span class="iconfont-archer">&#xe606;</span>主方法</span>
     
         <span class="sidebar-tag-name" data-tags="时间复杂度"><span class="iconfont-archer">&#xe606;</span>时间复杂度</span>
     
         <span class="sidebar-tag-name" data-tags="算法分析"><span class="iconfont-archer">&#xe606;</span>算法分析</span>
     
+        <span class="sidebar-tag-name" data-tags="算法导论"><span class="iconfont-archer">&#xe606;</span>算法导论</span>
+    
         <span class="sidebar-tag-name" data-tags="排序"><span class="iconfont-archer">&#xe606;</span>排序</span>
+    
+        <span class="sidebar-tag-name" data-tags="逆序对"><span class="iconfont-archer">&#xe606;</span>逆序对</span>
     
         <span class="sidebar-tag-name" data-tags="线段树"><span class="iconfont-archer">&#xe606;</span>线段树</span>
     
@@ -1346,15 +1335,27 @@ T(n)=
     
         <span class="sidebar-tag-name" data-tags="中序遍历"><span class="iconfont-archer">&#xe606;</span>中序遍历</span>
     
+        <span class="sidebar-tag-name" data-tags="二叉搜索树"><span class="iconfont-archer">&#xe606;</span>二叉搜索树</span>
+    
+        <span class="sidebar-tag-name" data-tags="VS Code"><span class="iconfont-archer">&#xe606;</span>VS Code</span>
+    
+        <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
+    
         <span class="sidebar-tag-name" data-tags="Tomcat"><span class="iconfont-archer">&#xe606;</span>Tomcat</span>
     
         <span class="sidebar-tag-name" data-tags="IDEA"><span class="iconfont-archer">&#xe606;</span>IDEA</span>
     
         <span class="sidebar-tag-name" data-tags="Tomcat乱码"><span class="iconfont-archer">&#xe606;</span>Tomcat乱码</span>
     
-        <span class="sidebar-tag-name" data-tags="VS Code"><span class="iconfont-archer">&#xe606;</span>VS Code</span>
+        <span class="sidebar-tag-name" data-tags="Server tomcat启动失败"><span class="iconfont-archer">&#xe606;</span>Server tomcat启动失败</span>
     
-        <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
+        <span class="sidebar-tag-name" data-tags="Eclipse无法创建虚拟机"><span class="iconfont-archer">&#xe606;</span>Eclipse无法创建虚拟机</span>
+    
+        <span class="sidebar-tag-name" data-tags="vm参数"><span class="iconfont-archer">&#xe606;</span>vm参数</span>
+    
+        <span class="sidebar-tag-name" data-tags="Jdk版本过高"><span class="iconfont-archer">&#xe606;</span>Jdk版本过高</span>
+    
+        <span class="sidebar-tag-name" data-tags="持久动态集合"><span class="iconfont-archer">&#xe606;</span>持久动态集合</span>
     
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
@@ -1409,9 +1410,11 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="操作系统"><span class="iconfont-archer">&#xe60a;</span>操作系统</span>
     
+        <span class="sidebar-category-name" data-categories="踩坑"><span class="iconfont-archer">&#xe60a;</span>踩坑</span>
+    
         <span class="sidebar-category-name" data-categories="Tomcat"><span class="iconfont-archer">&#xe60a;</span>Tomcat</span>
     
-        <span class="sidebar-category-name" data-categories="踩坑"><span class="iconfont-archer">&#xe60a;</span>踩坑</span>
+        <span class="sidebar-category-name" data-categories="tomcat"><span class="iconfont-archer">&#xe60a;</span>tomcat</span>
     
         <span class="sidebar-category-name" data-categories="读书笔记"><span class="iconfont-archer">&#xe60a;</span>读书笔记</span>
     
